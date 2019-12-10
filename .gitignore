@@ -32,6 +32,8 @@ npm-debug.log
 nativescript-angular*.tgz
 package-lock.json
 
+*.code-workspace
+
 # Apps' JS files
 tests/app/**/*.js
 tests/test-output.txt
