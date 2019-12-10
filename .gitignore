@@ -30,7 +30,6 @@ dist
 .DS_Store
 npm-debug.log
 nativescript-angular*.tgz
-package-lock.json
 
 *.code-workspace
 
