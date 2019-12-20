@@ -4,7 +4,7 @@ import { routes } from '@src/app/app.routes';
 import { HomeComponent } from './home/home.component';
 
 var webRoutes : Routes = [
-  {path: 'index', redirectTo:'home', pathMatch:'full'}
+  //{path: 'index', redirectTo:'home', pathMatch:'full'}
 ]
 routes.forEach(r => webRoutes.push(r));
 
