@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  title = 'Green Curtain';
-  tagline = 'the ultimate tool for actors and artists'
+  title = 'Welcome!';
+  bannerText = 'Green Curtain';
+  tagline = 'the ultimate tool for actors and artists';
 
   constructor(private router: Router) { }
 

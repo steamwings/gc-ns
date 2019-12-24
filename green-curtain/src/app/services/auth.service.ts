@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
+import { LoginFormUser } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +22,21 @@ export class AuthService {
     return this.loggedIn$.asObservable();
   }
 
-  login(){ //TODO Call from LoginComponent
-    //TODO Do login
+  login(user: LoginFormUser){ //TODO Call from LoginComponent
+    //TODO Do login and use user
     this.loggedIn$.next(true);
-    if(!isNullOrUndefined(this.redirectUrl)){
+    this.navigate();
+    return new Promise(() => {});
+  }
+
+  register(user: LoginFormUser){ //TODO
+    this.navigate();
+    this.loggedIn$.next(true);
+    return new Promise(() => {});
+  }
+
+  private navigate(){
+    if (!isNullOrUndefined(this.redirectUrl)) {
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
     } else {
@@ -37,5 +49,8 @@ export class AuthService {
     this.router.navigate(['/welcome']);
   }
 
+  resetPassword(email: string){
+    return new Promise(() => {});
+  }
 
 }
