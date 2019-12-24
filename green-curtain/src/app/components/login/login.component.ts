@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     if (!this.user.email || !this.user.password) {
-      this.alert("Please provide both an email address and password.");
+      Util.alert("Please provide both an email address and password.");
       return;
     }
 
@@ -51,31 +51,32 @@ export class LoginComponent implements OnInit {
       })
       .catch(() => {
         this.processing = false;
-        this.alert("Unfortunately we could not find your account.");
+        Util.alert("Unfortunately we could not find your account.");
       });
   }
 
   register() {
     if (this.user.password != this.user.confirmPassword) {
-      this.alert("Your passwords do not match.");
+      Util.alert("Your passwords do not match.");
+      this.processing = false;
       return;
     }
     this.authService.register(this.user)
       .then(() => {
         this.processing = false;
-        this.alert("Your account was successfully created.");
+        Util.alert("Your account was successfully created.");
         this.isLoggingIn = true;
       })
       .catch(() => {
         this.processing = false;
-        this.alert("Unfortunately we were unable to create your account.");
+        Util.alert("We were unable to create your account.");
       });
   }
 
   forgotPassword() {
     Util.prompt({
       title: "Forgot Password",
-      message: "Enter the email address you used to register for APP NAME to reset your password.",
+      message: "Enter the email address you used to register.",
       inputType: "email",
       defaultText: "",
       okButtonText: "Ok",
@@ -84,9 +85,9 @@ export class LoginComponent implements OnInit {
       if (data.result) {
         this.authService.resetPassword(data.text.trim())
           .then(() => {
-            this.alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
+            Util.alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
           }).catch(() => {
-            this.alert("Unfortunately, an error occurred resetting your password.");
+            Util.alert("Unfortunately, an error occurred resetting your password.");
           });
       }
     }));

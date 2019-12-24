@@ -6,6 +6,7 @@ import { HomeComponent } from '@src/app/components/home/home.component';
 import { WelcomeComponent } from '@src/app/components/welcome/welcome.component';
 import { LoginComponent } from '@src/app/components/login/login.component';
 import { AuthService } from '@src/app/services/auth.service';
+import { DeleteNavHistoryDirective } from './directives/delete-nav-history.directive';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { AuthService } from '@src/app/services/auth.service';
     HomeComponent,
     WelcomeComponent,
     LoginComponent,
+    DeleteNavHistoryDirective,
   ],
   imports: [
     BrowserModule,

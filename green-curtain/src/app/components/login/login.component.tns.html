@@ -29,7 +29,10 @@
             </GridLayout>
         </PreviousNextView>
 
+        <!-- <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing" (tap)="submit()"
+            class="btn btn-primary m-t-20"></Button> -->
         <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing" (tap)="submit()"
+            [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true"
             class="btn btn-primary m-t-20"></Button>
         <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
     </StackLayout>

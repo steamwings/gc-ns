@@ -12,6 +12,7 @@ import { WelcomeComponent } from '@src/app/components/welcome/welcome.component'
 import { LoginComponent } from '@src/app/components/login/login.component';
 import { HideActionBarDirective } from '@src/app/directives/hide-action-bar.directive';
 import { AuthService } from './services/auth.service';
+import { ClearNavHistoryDirective } from './directives/clear-nav-history.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthService } from './services/auth.service';
     WelcomeComponent,
     LoginComponent,
     HideActionBarDirective,
+    ClearNavHistoryDirective,
   ],
   imports: [
     NativeScriptModule,
