@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    justify-content: center;
+    margin: 100px 0px;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mat-form-field {
+    width: 100%;
+    min-width: 300px;
+}

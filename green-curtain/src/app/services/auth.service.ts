@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
 import { LoginFormUser } from '../models/user.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   loggedIn$ = new BehaviorSubject<boolean>(false);
   public redirectUrl: string = null;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   isLoggedIn(){
     return this.loggedIn$.value;
@@ -26,12 +27,14 @@ export class AuthService {
     //TODO Do login and use user
     this.loggedIn$.next(true);
     this.navigate();
+    this.userService.knownUser = true;
     return new Promise(() => {});
   }
 
   register(user: LoginFormUser){ //TODO
     this.navigate();
     this.loggedIn$.next(true);
+    this.userService.knownUser = true;
     return new Promise(() => {});
   }
 

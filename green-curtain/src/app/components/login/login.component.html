@@ -1,1 +1,32 @@
-<p>login works!</p>
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+
+    <mat-card-content>
+        <form class="loginForm" (ngSubmit)="submit()">
+            <div>
+                <mat-form-field>
+                    <!-- TODO Fix validation -->
+                    <input matInput [(ngModel)]="user.email" name="email" 
+                        type="email" placeholder="Email" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput #password [(ngModel)]="user.password" 
+                        name="password" type="password" placeholder="Password" required>
+                    <!-- <input hidden formControlName="control"> -->
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field *ngIf="!isLoggingIn">
+                    <input matInput #confirmPassword name="confirmPassword" [(ngModel)]="user.confirmPassword"
+                        type="password" placeholder="Confirm password" [required]="isLoggingIn">
+                    <!-- <input hidden formControlName="control"> -->
+                </mat-form-field>
+            </div>
+            <div class="button">
+                <button type="submit" mat-button>Login</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

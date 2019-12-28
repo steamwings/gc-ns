@@ -1,6 +1,5 @@
 import * as dialogs from '@nativescript/core/ui/dialogs'
 import { UtilBase } from './util-base.class';
-import { type } from 'os';
 
 type callback = () => void;
 type prcallback = (value: dialogs.PromptResult) => void;

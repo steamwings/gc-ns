@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { Util } from '../util/util.class.tns';
+import { Util } from '../util/util.class';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-      //Util.alert('AuthGuard activated');
+    Util.alert('AuthGuard activated');
     return this.checkLogin(state.url);
   }
 

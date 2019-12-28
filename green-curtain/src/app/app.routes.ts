@@ -7,9 +7,9 @@ import { LoginComponent } from '@src/app/components/login/login.component';
 import { WelcomeGuard } from '@src/app/guards/welcome.guard';
 
 export const routes: Routes = [
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'login', component: LoginComponent, canActivate: [WelcomeGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo:'home', pathMatch:'full' },
-  { path: 'login', component: LoginComponent, canActivate: [WelcomeGuard]},
-  { path: 'welcome', component: WelcomeComponent },
   
 ];
