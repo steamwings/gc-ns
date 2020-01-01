@@ -23,7 +23,8 @@
     font-weight: 600;
     margin-bottom: 70;
     text-align: center;
-    color: #D51A1A;
+    /* TODO Use theme */
+    color: #229954; 
 }
 
 .input-field {

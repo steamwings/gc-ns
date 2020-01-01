@@ -27,14 +27,14 @@ export class AuthService {
     //TODO Do login and use user
     this.loggedIn$.next(true);
     this.navigate();
-    this.userService.knownUser = true;
+    this.userService.seenWelcome = true;
     return new Promise(() => {});
   }
 
   register(user: LoginFormUser){ //TODO
     this.navigate();
     this.loggedIn$.next(true);
-    this.userService.knownUser = true;
+    this.userService.seenWelcome = true;
     return new Promise(() => {});
   }
 

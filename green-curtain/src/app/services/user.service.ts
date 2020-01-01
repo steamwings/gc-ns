@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  knownUser: boolean = false;
+  //TODO Store state in storage
+  seenWelcome: boolean = false;
   constructor() { }
 
 }

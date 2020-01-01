@@ -11,8 +11,9 @@ import { HomeComponent } from '@src/app/components/home/home.component';
 import { WelcomeComponent } from '@src/app/components/welcome/welcome.component';
 import { LoginComponent } from '@src/app/components/login/login.component';
 import { HideActionBarDirective } from '@src/app/directives/hide-action-bar.directive';
-import { AuthService } from './services/auth.service';
-import { ClearNavHistoryDirective } from './directives/clear-nav-history.directive';
+import { AuthService } from '@src/app/services/auth.service';
+import { ClearNavHistoryDirective } from '@src/app/directives/clear-nav-history.directive';
+import { NavComponent } from '@src/app/components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ClearNavHistoryDirective } from './directives/clear-nav-history.directi
     LoginComponent,
     HideActionBarDirective,
     ClearNavHistoryDirective,
+    NavComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -29,6 +31,7 @@ import { ClearNavHistoryDirective } from './directives/clear-nav-history.directi
     NativeScriptHttpClientModule,
     AppRoutingModule,
   ],
+  entryComponents: [],
   providers: [AuthService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

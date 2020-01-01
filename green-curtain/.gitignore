@@ -38,6 +38,10 @@ yarn-error.log
 testem.log
 /typings
 
+#fonts
+*.ttf
+!fa-solid-900.ttf
+
 # System Files
 .DS_Store
 Thumbs.db

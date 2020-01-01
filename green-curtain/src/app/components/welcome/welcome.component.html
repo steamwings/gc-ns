@@ -1,8 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-    <h1>{{bannerText}}</h1>
-    <p>{{tagline}}</p>
-    <div>
-        <button mat-button (click)="login()">Login</button>
-    </div>
-</div>
+<mat-card>
+<!-- <div style="text-align:center"> -->
+    <mat-card-title>{{bannerText}}</mat-card-title>
+    <mat-card-content>
+        <p>{{tagline}}</p>
+        <button mat-button (click)="login()">{{buttonText}}</button>
+    </mat-card-content>
+<!-- </div> -->
+</mat-card>

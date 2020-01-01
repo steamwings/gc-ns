@@ -10,6 +10,7 @@ import { HomeComponent } from '@src/app/components/home/home.component';
 import { WelcomeComponent } from '@src/app/components/welcome/welcome.component';
 import { LoginComponent } from '@src/app/components/login/login.component';
 import { AuthService } from '@src/app/services/auth.service';
+import { NavComponent } from '@src/app/components/nav/nav.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AuthService } from '@src/app/services/auth.service';
     HomeComponent,
     WelcomeComponent,
     LoginComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,

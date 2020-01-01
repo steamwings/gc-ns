@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import {
   MatCardModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatMenuModule
 } from '@angular/material';
 
 const modules = [
   MatCardModule,
   MatInputModule,
-  MatButtonModule
+  MatButtonModule,
+  MatMenuModule,
 ];
 
 @NgModule({

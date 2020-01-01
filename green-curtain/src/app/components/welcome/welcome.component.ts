@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
   title = 'Welcome!';
+  buttonText = 'Get Started';
   bannerText = 'Green Curtain';
   tagline = 'the ultimate tool for actors and artists';
 

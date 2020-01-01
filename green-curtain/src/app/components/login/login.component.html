@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Login</mat-card-title>
+    <mat-card-title>{{title}}</mat-card-title>
 
     <mat-card-content>
         <form class="loginForm" (ngSubmit)="submit()">
@@ -20,12 +20,16 @@
             <div>
                 <mat-form-field *ngIf="!isLoggingIn">
                     <input matInput #confirmPassword name="confirmPassword" [(ngModel)]="user.confirmPassword"
-                        type="password" placeholder="Confirm password" [required]="isLoggingIn">
+                        type="password" placeholder="Confirm password" required>
                     <!-- <input hidden formControlName="control"> -->
                 </mat-form-field>
             </div>
             <div class="button">
-                <button type="submit" mat-button>Login</button>
+                <button type="submit" mat-button>{{isLoggingIn?"Log In":"Register"}}</button>
+            </div>
+            <div class="button clickable">
+                <span *ngIf="isLoggingIn" (click)="toggleForm()">Don't have an account? <b>Sign up</b></span>
+                <span *ngIf="!isLoggingIn" (click)="toggleForm()">Back to Login</span>
             </div>
         </form>
     </mat-card-content>

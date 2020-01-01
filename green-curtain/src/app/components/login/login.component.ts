@@ -11,6 +11,7 @@ import { Util } from '@src/app/util/util.class';
 })
 export class LoginComponent implements OnInit {
 
+  title = "Green Curtain";
   isLoggingIn: boolean = true;
   processing: boolean = false;
   user: LoginFormUser;

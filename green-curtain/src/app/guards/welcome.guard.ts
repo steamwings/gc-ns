@@ -13,8 +13,13 @@ export class WelcomeGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    Util.alert('AuthGuard activated');
-    return this.userService.knownUser;
+    //Util.alert('WelcomeGuard activated');
+    if(!this.userService.seenWelcome){
+      this.userService.seenWelcome = true;
+      this.router.navigate(['/welcome']);
+      return false;
+    }
+    return true;
   }
   
 }

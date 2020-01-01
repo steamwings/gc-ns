@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    Util.alert('AuthGuard activated');
+    //Util.alert('AuthGuard activated');
     return this.checkLogin(state.url);
   }
 

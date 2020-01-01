@@ -1,0 +1,68 @@
+<GridLayout appHideActionBar>
+    <GridLayout>
+        <Tabs #tabs [selectedIndex]="defaultSelected" (selectedIndexChanged)="onSelectedIndexChanged($event)">
+            <TabContentItem [backgroundColor]="tabList[0].backgroundColor">
+                <StackLayout>
+                    <!-- <Label text="Bottom Nav Content 1" class="h1 text-center p-t-20"></Label> -->
+                    <Button text="Venues"
+                        [nsRouterLink]="[{ outlets: { search: ['s'] } }]"></Button>
+                    <page-router-outlet name="search"></page-router-outlet>
+                </StackLayout>
+            </TabContentItem>
+
+            <TabContentItem [backgroundColor]="tabList[1].backgroundColor">
+                <StackLayout>
+                    <Button text="Venues" [nsRouterLink]="[{ outlets: { venues: ['v'] } }]"></Button>
+                    <page-router-outlet name="venues"></page-router-outlet>
+                </StackLayout>
+            </TabContentItem>
+
+            <TabContentItem [backgroundColor]="tabList[2].backgroundColor">
+                <StackLayout>
+                    <!-- <Label text="Bottom Nav Content 3" class="h1 text-center p-t-20"></Label> -->
+                    <Button text="Venues" [nsRouterLink]="[{ outlets: { profile:['p'] } }]"></Button>
+                    <page-router-outlet name="profile"></page-router-outlet>
+                </StackLayout>
+            </TabContentItem>
+        </Tabs>
+    </GridLayout>
+
+    <!-- bottom tabs -->
+    <GridLayout height="auto" verticalAlignment="bottom" columns="*, *, *">
+
+        <!-- base layer -->
+        <AbsoluteLayout col="0" colSpan="3" verticalAlignment="bottom">
+            <GridLayout #tabBGContainer columns="auto, 10, auto, 10, auto">
+                <GridLayout #leftTabs col="0" colSpan="2" height="80" [backgroundColor]="tabContainer.backgroundColor"
+                    verticalAlignment="bottom" borderRadius="0 68 0 0"></GridLayout>
+                <GridLayout #centerPatch col="1" colSpan="3" height="40"
+                    [backgroundColor]="tabContainer.backgroundColor" verticalAlignment="bottom"></GridLayout>
+                <GridLayout #rightTabs col="3" colSpan="4" height="80" [backgroundColor]="tabContainer.backgroundColor"
+                    verticalAlignment="bottom" borderRadius="68 0 0 0"></GridLayout>
+
+                <!-- focus circle -->
+                <GridLayout #centerCircle col="1" colSpan="3" height="100" width="100"
+                    [backgroundColor]="tabList[currentTabIndex].backgroundColor" borderRadius="50"
+                    verticalAlignment="bottom" marginBottom="10">
+                    <GridLayout verticalAlignment="center" horizontalAlignment="center" height="90" width="90"
+                        [backgroundColor]="tabContainer.focusColor" borderRadius="45"></GridLayout>
+                </GridLayout>
+
+            </GridLayout>
+        </AbsoluteLayout>
+
+        <!-- tab contents -->
+        <GridLayout #tabContents *ngFor="let item of tabList; let i = index" [col]="i" marginTop="20"
+            (tap)="onBottomNavTap(i)" verticalAlignment="middle">
+            <Label class="fas" [text]="item.text" verticalAlignment="middle" horizontalAlignment="center"
+                [color]="item.color" fontSize="22"></Label>
+        </GridLayout>
+
+        <!-- pan layer -->
+        <GridLayout #dragCircle column="0" colSpan="3" (pan)="onCenterCirclePan($event)" verticalAlignment="center"
+            horizontalAlignment="center" height="90" width="90" backgroundColor="transparent" borderRadius="45">
+        </GridLayout>
+
+    </GridLayout>
+
+</GridLayout>
