@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WelcomeComponent } from '@src/app/components/welcome/welcome.component';
+import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
 
 describe('WelcomeComponent', () => {
   let component: WelcomeComponent;

@@ -1,7 +1,7 @@
 import { Directive } from '@angular/core';
 import { RouterExtensions } from "nativescript-angular/router";
 import { RouterStateSnapshot } from '@angular/router';
-import { Util } from '../util/util.class';
+import { Util } from '@src/app/shared/util/util.class';
 
 @Directive({
   selector: '[appClearNavHistory]'

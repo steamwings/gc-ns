@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { routes } from '@src/app/app.routes';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './shared/components/home/home.component';
+import { AuthGuard } from '@src/app/shared/guards/auth.guard';
 
 var webRoutes : Routes = [
-  //{path: 'index', redirectTo:'home', pathMatch:'full'}
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
 ]
 routes.forEach(r => webRoutes.push(r));
 

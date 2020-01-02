@@ -1,4 +1,4 @@
-import { ClearNavHistoryDirective } from '@src/app/directives/clear-nav-history.directive';
+import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
 
 describe('ClearNavHistoryDirective', () => {
   it('should create an instance', () => {

@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginFormUser } from '@src/app/models/user.model';
-import { AuthService } from '@src/app/services/auth.service';
-import { Util } from '@src/app/util/util.class';
+import { LoginFormUser } from '@src/app/shared/models/user.model';
+import { AuthService } from '@src/app/shared/services/auth.service';
+import { Util } from '@src/app/shared/util/util.class';
 
 @Component({
   selector: 'app-login',

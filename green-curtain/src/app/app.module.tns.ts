@@ -7,13 +7,13 @@ registerElement("PreviousNextView", () => require("nativescript-iqkeyboardmanage
 
 import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
-import { HomeComponent } from '@src/app/components/home/home.component';
-import { WelcomeComponent } from '@src/app/components/welcome/welcome.component';
-import { LoginComponent } from '@src/app/components/login/login.component';
-import { HideActionBarDirective } from '@src/app/directives/hide-action-bar.directive';
-import { AuthService } from '@src/app/services/auth.service';
-import { ClearNavHistoryDirective } from '@src/app/directives/clear-nav-history.directive';
-import { NavComponent } from '@src/app/components/nav/nav.component';
+import { HomeComponent } from '@src/app/shared/components/home/home.component';
+import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
+import { LoginComponent } from '@src/app/shared/components/login/login.component';
+import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-bar.directive';
+import { AuthService } from '@src/app/shared/services/auth.service';
+import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
+import { NavComponent } from '@src/app/shared/components/nav/nav.component';
 
 @NgModule({
   declarations: [

@@ -1,4 +1,4 @@
-import { HideActionBarDirective } from '@src/app/directives/hide-action-bar.directive';
+import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-bar.directive';
 
 describe('HideActionBarDirective', () => {
   it('should create an instance', () => {
