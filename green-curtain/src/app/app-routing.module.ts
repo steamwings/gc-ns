@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { routes } from '@src/app/app.routes';
-import { HomeComponent } from './shared/components/home/home.component';
+import { HomeComponent } from '@src/app/home/home.component';
 import { AuthGuard } from '@src/app/shared/guards/auth.guard';
 
 var webRoutes : Routes = [
