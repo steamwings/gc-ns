@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { IStorageService } from './istorageservice';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService implements IStorageService {
+export class LocalStorageService extends StorageService {
   // Slow!
   hasKey(key:string):boolean{
     for(var i = 0; i < localStorage.length; i++){
@@ -25,5 +25,7 @@ export class StorageService implements IStorageService {
     localStorage.clear();
   }
 
-  constructor() { }
+  constructor() {
+    super();
+  }
 }

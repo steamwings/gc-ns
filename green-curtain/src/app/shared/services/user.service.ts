@@ -1,12 +1,70 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { isNullOrUndefined } from 'util';
+import { Router } from '@angular/router';
+import { LoginFormUser } from '../models/user.model';
+import { StorageService } from './storage.service';
+
+const USER_KEY: string = 'user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  //TODO Store state in storage
-  seenWelcome: boolean = false;
-  constructor() { }
+  loggedIn$ = new BehaviorSubject<boolean>(false);
+  public seenWelcome: boolean = false;
+  public redirectUrl: string = null;
+
+  constructor(
+    private router: Router,
+    private storage: StorageService,
+  ) {
+    var user = storage.get<LoginFormUser>(USER_KEY);
+    if (user) {
+      this.loggedIn$.next(true)
+      this.seenWelcome = true;
+    }
+  }
+
+  get isLoggedIn() {
+    return this.loggedIn$.value;
+  }
+
+  isLoggedIn$(){
+    return this.loggedIn$.asObservable();
+  }
+
+  login(user: LoginFormUser){ //TODO Call from LoginComponent
+    //TODO Do login and use user
+    this.storage.set(USER_KEY, user);
+    this.navigate();
+    return new Promise(() => {});
+  }
+
+  register(user: LoginFormUser){ //TODO
+    this.navigate();
+    return new Promise(() => {});
+  }
+
+  private navigate(){
+    this.loggedIn$.next(true);
+    if (!isNullOrUndefined(this.redirectUrl)) {
+      this.router.navigate([this.redirectUrl]);
+      this.redirectUrl = null;
+    } else {
+      this.router.navigate(['/home']);
+    }
+  }
+
+  logout(){
+    this.loggedIn$.next(false);
+    this.storage.remove(USER_KEY);
+    this.router.navigate(['/login']);
+  }
+
+  resetPassword(email: string){
+    return new Promise(() => {});
+  }
 
 }

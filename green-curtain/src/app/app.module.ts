@@ -5,8 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@src/app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AuthService } from '@src/app/shared/services/auth.service';
-import { StorageService } from '@src/app/modules/storage/storage.module'
+import { StorageService } from './shared/services/storage.service';
+
+import { UserService } from '@src/app/shared/services/user.service';
+import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
 
 import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
@@ -32,7 +34,10 @@ import { ProfileComponent } from '@src/app/profile/profile.component';
     MaterialModule,
     BrowserAnimationsModule,
   ],
-  providers: [AuthService],
+  providers: [
+    UserService,
+    { provide: StorageService, useClass: LocalStorageService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

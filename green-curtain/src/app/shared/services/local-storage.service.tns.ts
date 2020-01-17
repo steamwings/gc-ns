@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IStorageService } from './istorageservice';
 import * as appSettings from '@nativescript/core/application-settings';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService implements IStorageService {
+export class LocalStorageService extends StorageService {
   hasKey(key:string):boolean {
     return appSettings.hasKey(key);
   }
@@ -22,6 +22,7 @@ export class StorageService implements IStorageService {
     appSettings.clear();
   }
 
-
-  constructor() { }
+  constructor() {
+    super();
+  }
 }

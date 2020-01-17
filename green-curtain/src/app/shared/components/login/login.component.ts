@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginFormUser } from '@src/app/shared/models/user.model';
-import { AuthService } from '@src/app/shared/services/auth.service';
+import { UserService } from '@src/app/shared/services/user.service';
 import { Util } from '@src/app/shared/util/util.class';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   @ViewChild("password", { static: false }) password: ElementRef;
   @ViewChild("confirmPassword", { static: false }) confirmPassword: ElementRef;
   
-  constructor(private router: Router, private authService: AuthService) { 
+  constructor(private router: Router, private userService: UserService) { 
     this.user = new LoginFormUser();
   }
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.login(this.user)
+    this.userService.login(this.user)
       .then(() => {
         this.processing = false;
         //this.routerExtensions.navigate(["/home"], { clearHistory: true });
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       this.processing = false;
       return;
     }
-    this.authService.register(this.user)
+    this.userService.register(this.user)
       .then(() => {
         this.processing = false;
         Util.alert("Your account was successfully created.");
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       cancelButtonText: "Cancel"
     },((data) => {
       if (data.result) {
-        this.authService.resetPassword(data.text.trim())
+        this.userService.resetPassword(data.text.trim())
           .then(() => {
             Util.alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
           }).catch(() => {

@@ -10,8 +10,8 @@ registerElement("PreviousNextView", () => require("nativescript-iqkeyboardmanage
 import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-bar.directive';
 import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
 
-import { AuthService } from '@src/app/shared/services/auth.service';
-import { StorageService } from '@src/app/modules/storage/storage.module';
+import { UserService } from '@src/app/shared/services/user.service';
+import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
 
 import { AppComponent } from '@src/app/app.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
@@ -36,7 +36,10 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
   ],
   entryComponents: [],
-  providers: [AuthService],
+  providers: [
+    UserService,
+    LocalStorageService
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
