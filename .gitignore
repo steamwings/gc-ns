@@ -3,8 +3,12 @@ platforms
 hooks
 tags
 dist
+out-tsc
 **/*.js.map
 **/*.metadata.json
+
+# Compodoc
+documentation
 
 /nativescript-angular/**/*.d.ts
 /nativescript-angular/**/*.js
@@ -31,7 +35,13 @@ dist
 npm-debug.log
 nativescript-angular*.tgz
 
-*.code-workspace
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+yarn-error.log
+testem.log
+/typings
 
 # Apps' JS files
 tests/app/**/*.js
@@ -57,3 +67,12 @@ tsconfig.tns.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+*.code-workspace
+
+#fonts
+*.ttf
+!fa-solid-900.ttf
+
+# System Files
+.DS_Store
+Thumbs.db
