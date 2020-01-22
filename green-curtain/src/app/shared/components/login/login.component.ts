@@ -4,6 +4,8 @@ import { LoginFormUser } from '@src/app/shared/models/user.model';
 import { UserService } from '@src/app/shared/services/user.service';
 import { Util } from '@src/app/shared/util/util.class';
 
+let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,6 +17,8 @@ export class LoginComponent implements OnInit {
   isLoggingIn: boolean = true;
   processing: boolean = false;
   user: LoginFormUser;
+  @ViewChild("name", { static: false }) name: ElementRef;
+  @ViewChild("email", { static: false }) email: ElementRef;
   @ViewChild("password", { static: false }) password: ElementRef;
   @ViewChild("confirmPassword", { static: false }) confirmPassword: ElementRef;
   
@@ -30,10 +34,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+    let valid = false;
     if (!this.user.email || !this.user.password) {
       Util.alert("Please provide both an email address and password.");
-      return;
+    } else if(!this.user.email.match(emailRegex)) {
+      Util.alert("Please enter a valid email.");
+    } else {
+      valid = true;
     }
+    if(!valid) return;
 
     this.processing = true;
     if (this.isLoggingIn) {
@@ -48,7 +57,7 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.processing = false;
         //this.routerExtensions.navigate(["/home"], { clearHistory: true });
-        this.router.navigate(['/home']);
+        //this.router.navigate(['/home']);
       })
       .catch(() => {
         this.processing = false;
@@ -94,6 +103,9 @@ export class LoginComponent implements OnInit {
     }));
   }
 
+  focusEmail() {
+    this.email.nativeElement.focus();
+  }
   focusPassword() {
     this.password.nativeElement.focus();
   }

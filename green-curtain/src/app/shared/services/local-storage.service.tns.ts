@@ -10,10 +10,10 @@ export class LocalStorageService extends StorageService {
     return appSettings.hasKey(key);
   }
   get<T>(key: string): T {
-    return JSON.parse(appSettings.getString(key)) as T;
+    return null //TODO JSON.parse(appSettings.getString(key)) as T;
   }
   set(key: string, val: any): void {
-    appSettings.setString(key, JSON.stringify(key));
+    appSettings.setString(key, "fake"); //TODO JSON.stringify(key)
   }
   remove(key: string) {
     appSettings.remove(key);

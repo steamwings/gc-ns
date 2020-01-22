@@ -7,6 +7,9 @@ import { StorageService } from './storage.service';
 
 const USER_KEY: string = 'user';
 
+/**
+ * Welcome guard ensures new users visit the welcome page
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +17,7 @@ export class UserService {
 
   loggedIn$ = new BehaviorSubject<boolean>(false);
   public seenWelcome: boolean = false;
-  public redirectUrl: string = null;
+  public redirectUrl: string = "['/home']";
 
   constructor(
     private router: Router,
@@ -63,6 +66,7 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
+  // TODO
   resetPassword(email: string){
     return new Promise(() => {});
   }

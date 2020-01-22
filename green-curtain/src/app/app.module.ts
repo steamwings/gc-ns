@@ -16,6 +16,8 @@ import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.com
 import { LoginComponent } from '@src/app/shared/components/login/login.component';
 import { NavComponent } from '@src/app/shared/components/nav/nav.component';
 import { ProfileComponent } from '@src/app/profile/profile.component';
+import { PopupService } from './shared/services/popup.service';
+import { BasicPopupService } from './shared/services/basic-popup.service';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { ProfileComponent } from '@src/app/profile/profile.component';
   ],
   providers: [
     UserService,
-    { provide: StorageService, useClass: LocalStorageService}
+    { provide: StorageService, useClass: LocalStorageService},
+    { provide: PopupService, useClass: BasicPopupService},
   ],
   bootstrap: [AppComponent]
 })
