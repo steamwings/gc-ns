@@ -39,7 +39,6 @@ import { BasicPopupService } from './shared/services/basic-popup.service';
   providers: [
     UserService,
     { provide: StorageService, useClass: LocalStorageService},
-    { provide: PopupService, useClass: BasicPopupService},
   ],
   bootstrap: [AppComponent]
 })

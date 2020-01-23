@@ -2,14 +2,19 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginFormUser } from '@src/app/shared/models/user.model';
 import { UserService } from '@src/app/shared/services/user.service';
-import { Util } from '@src/app/shared/util/util.class';
+import { PopupService } from '../../services/popup.service';
+import { BasicPopupService } from '../../services/basic-popup.service';
+import { LogService } from '../../services/log.service';
 
 let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [
+    { provide: PopupService, useClass: BasicPopupService }
+  ]
 })
 export class LoginComponent implements OnInit {
 
@@ -22,7 +27,12 @@ export class LoginComponent implements OnInit {
   @ViewChild("password", { static: false }) password: ElementRef;
   @ViewChild("confirmPassword", { static: false }) confirmPassword: ElementRef;
   
-  constructor(private router: Router, private userService: UserService) { 
+  constructor(
+    private router: Router, 
+    private userService: UserService,
+    private popup: PopupService,
+    private log: LogService,
+    ) { 
     this.user = new LoginFormUser();
   }
 
@@ -36,9 +46,11 @@ export class LoginComponent implements OnInit {
   submit() {
     let valid = false;
     if (!this.user.email || !this.user.password) {
-      Util.alert("Please provide both an email address and password.");
+      this.popup.warning("Please provide both an email address and password.");
     } else if(!this.user.email.match(emailRegex)) {
-      Util.alert("Please enter a valid email.");
+      this.log.debug("bad email", this.user.email)
+      this.popup.warning("Please enter a valid email.");
+    // else if(user exists)
     } else {
       valid = true;
     }
@@ -61,30 +73,31 @@ export class LoginComponent implements OnInit {
       })
       .catch(() => {
         this.processing = false;
-        Util.alert("Unfortunately we could not find your account.");
+        this.popup.warning("Unfortunately we could not find your account.");
       });
   }
 
   register() {
     if (this.user.password != this.user.confirmPassword) {
-      Util.alert("Your passwords do not match.");
+      this.popup.warning("Your passwords do not match.");
       this.processing = false;
       return;
     }
     this.userService.register(this.user)
       .then(() => {
         this.processing = false;
-        Util.alert("Your account was successfully created.");
+        this.popup.warning("Your account was successfully created.");
         this.isLoggingIn = true;
       })
       .catch(() => {
         this.processing = false;
-        Util.alert("We were unable to create your account.");
+        this.popup.warning("We were unable to create your account.");
       });
   }
 
+  // Big fat TODO
   forgotPassword() {
-    Util.prompt({
+    this.popup.prompt({
       title: "Forgot Password",
       message: "Enter the email address you used to register.",
       inputType: "email",
@@ -95,9 +108,9 @@ export class LoginComponent implements OnInit {
       if (data.result) {
         this.userService.resetPassword(data.text.trim())
           .then(() => {
-            Util.alert("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
+            this.popup.warning("Your password was successfully reset. Please check your email for instructions on choosing a new password.");
           }).catch(() => {
-            Util.alert("Unfortunately, an error occurred resetting your password.");
+            this.popup.warning("Unfortunately, an error occurred resetting your password.");
           });
       }
     }));
@@ -114,13 +127,4 @@ export class LoginComponent implements OnInit {
       this.confirmPassword.nativeElement.focus();
     }
   }
-
-  alert(message: string) {
-    return Util.alert({
-      title: "APP NAME",
-      okButtonText: "OK",
-      message: message
-    });
-  }
-
 }

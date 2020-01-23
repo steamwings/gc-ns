@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { PopupService } from './popup.service';
+import { LogService } from './log.service';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class BasicPopupService extends PopupService{
 
-    constructor() {
+    constructor(private log:LogService) {
         super();
     }
 
-    alert(options) {
-        //console.log(options);
-        alert(options);
+    warning(msg) {
+        alert(msg);
+        this.log.info(msg);
     }
 
-    prompt(options) {
-        // TODO Use some material dialog thing
-        prompt(options);
+    //TODO this 
+    prompt(msg) {
+        // TODO Use some material thing
+        prompt(msg);
     }
 
     //TODO toast() with snackbar

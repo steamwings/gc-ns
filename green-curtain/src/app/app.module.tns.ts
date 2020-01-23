@@ -43,7 +43,6 @@ import { HomeComponent } from './home/home.component';
   providers: [
     UserService,
     { provide: StorageService, useClass: LocalStorageService },
-    { provide: PopupService, useClass: BasicPopupService },
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
 import { PopupService } from './popup.service';
 import * as dialogs from '@nativescript/core/ui/dialogs'
+import { LogService } from './log.service';
 
-type basicCallback = () => void;
 type prcallback = (value: dialogs.PromptResult) => void;
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class BasicPopupService extends PopupService {
 
-    constructor() {
+    constructor(private log:LogService) {
         super();
     }
 
-    alert(options, callback?: () => void) {
-        dialogs.alert(options).then(callback);
+    warning(msg, callback?: () => void) {
+        dialogs.alert({
+            title: "Warning",
+            okButtonText: "OK",
+            message: msg
+        }).then(callback);
+        this.log.info(msg);
     }
-    prompt(options, fulfilled?: prcallback, rejected?: () => void) {
-        dialogs.prompt(options).then(fulfilled, rejected);
+    //TODO
+    prompt(msg, fulfilled?: prcallback, rejected?: () => void) {
+        dialogs.prompt(msg).then(fulfilled, rejected);
     }
 }

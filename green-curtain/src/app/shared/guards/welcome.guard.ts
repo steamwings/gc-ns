@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Util } from '@src/app/shared/util/util.class';
 import { UserService } from '../services/user.service';
+import { LogService } from '../services/log.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WelcomeGuard implements CanActivate {
 
-  constructor(private user: UserService, private router: Router) {}
+  constructor(private user: UserService, private router: Router, private log: LogService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    Util.alert('WelcomeGuard activated');
+    this.log.verbose('AuthGuard activated');
     if(!this.user.seenWelcome){
       this.user.seenWelcome = true;
       this.router.navigate(['/welcome']);
