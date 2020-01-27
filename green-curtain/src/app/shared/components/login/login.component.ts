@@ -6,7 +6,7 @@ import { PopupService } from '../../services/popup.service';
 import { BasicPopupService } from '../../services/basic-popup.service';
 import { LogService } from '../../services/log.service';
 
-let emailRegex = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
+let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   @ViewChild("confirmPassword", { static: false }) confirmPassword: ElementRef;
   
   constructor(
-    private router: Router, 
     private userService: UserService,
     private popup: PopupService,
     private log: LogService,

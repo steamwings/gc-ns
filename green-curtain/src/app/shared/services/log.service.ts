@@ -18,14 +18,14 @@ export class LogService {
   private log(level: LogLevel, msg?: string, data?, error?){
     //TODO Save errors in production
     switch(level){
-      case LogLevel.debug:
-        if (environment.production) break;
       case LogLevel.verbose:
         if (!environment.verbose) break;
+      case LogLevel.debug:
+        if (environment.production) break;
       case LogLevel.error:
       case LogLevel.info:
         if(!environment.production){
-          console.log(msg);
+          console.log("Log: " + msg);
           if(data) console.log("Data: " + data)
           if(error) console.log("Error: " + error)
         }
