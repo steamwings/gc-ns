@@ -17,21 +17,30 @@ export class LogService {
 
   private log(level: LogLevel, msg?: string, data?, error?){
     //TODO Save errors in production
+    var prefix = '';
     switch(level){
       case LogLevel.verbose:
-        if (!environment.verbose) break;
+        prefix = 'VERBOSE: ';
+        if (!environment.verbose) return;
+        break;
       case LogLevel.debug:
-        if (environment.production) break;
+        prefix = "DEBUG: ";
+        if (environment.production) return;
+        break;
       case LogLevel.error:
+        prefix = 'ERROR: ';
+        break;
       case LogLevel.info:
-        if(!environment.production){
-          console.log("Log: " + msg);
-          if(data) console.log("Data: " + data)
-          if(error) console.log("Error: " + error)
-        }
-        //else send it somewhere
-      default: break;
+        prefix = 'INFO: '; 
+        break;
+      default: return;
     }
+    if (!environment.production) {
+      if (data) msg += "\nData: " + data
+      if (error) msg += "\nError: " + error
+      console.log(prefix + msg);
+    }
+    //else send it somewhere
   }
 
   public verbose(msg: string, data?){

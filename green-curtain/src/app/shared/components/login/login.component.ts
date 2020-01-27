@@ -69,6 +69,7 @@ export class LoginComponent implements OnInit {
         this.processing = false;
         //this.routerExtensions.navigate(["/home"], { clearHistory: true });
         //this.router.navigate(['/home']);
+        this.log.debug('User Service logged in');
       })
       .catch(() => {
         this.processing = false;

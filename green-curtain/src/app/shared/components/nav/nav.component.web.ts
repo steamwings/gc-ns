@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-  loggedIn = this.userService.isLoggedIn$();
+  loggedIn = this.userService.isLoggedIn$;
 
   LogX(){
     if(this.userService.isLoggedIn){

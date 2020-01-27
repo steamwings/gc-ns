@@ -4,6 +4,7 @@ import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
 import { LoginFormUser } from '../models/user.model';
 import { StorageService } from './storage.service';
+import { LogService } from './log.service';
 
 const USER_KEY: string = 'user';
 
@@ -17,11 +18,12 @@ export class UserService {
 
   loggedIn$ = new BehaviorSubject<boolean>(false);
   public seenWelcome: boolean = false;
-  public redirectUrl: string = "['/home']";
+  public redirectUrl: string = '/home';
 
   constructor(
     private router: Router,
     private storage: StorageService,
+    private log: LogService,
   ) {
     var user = storage.get<LoginFormUser>(USER_KEY);
     if (user) {
@@ -34,7 +36,7 @@ export class UserService {
     return this.loggedIn$.value;
   }
 
-  isLoggedIn$(){
+  get isLoggedIn$() {
     return this.loggedIn$.asObservable();
   }
 
@@ -53,9 +55,11 @@ export class UserService {
   private navigate(){
     this.loggedIn$.next(true);
     if (!isNullOrUndefined(this.redirectUrl)) {
+      this.log.verbose('User Service navigating to ' + this.redirectUrl);
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
     } else {
+      this.log.verbose('User Service navigating to home');
       this.router.navigate(['/home']);
     }
   }
