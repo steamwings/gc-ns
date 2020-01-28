@@ -26,7 +26,7 @@ export class UserService {
     private log: LogService,
   ) {
     var user = storage.get<LoginFormUser>(USER_KEY);
-    if (user) {
+    if (user.email) {
       this.loggedIn$.next(true)
       this.seenWelcome = true;
     }
@@ -40,7 +40,7 @@ export class UserService {
     return this.loggedIn$.asObservable();
   }
 
-  login(user: LoginFormUser){ //TODO Call from LoginComponent
+  login(user: LoginFormUser){
     //TODO Do login and use user
     this.storage.set(USER_KEY, user);
     this.navigate();

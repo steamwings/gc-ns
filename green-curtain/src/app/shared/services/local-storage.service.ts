@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 
+/**
+ * Web implementation for local storage service
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService extends StorageService {
-  // Slow!
+  /**
+   * For mobile this is O(n) slow
+   * @param {string} key 
+   */
   hasKey(key:string):boolean{
     for(var i = 0; i < localStorage.length; i++){
       if (localStorage.key(i) == key) return true;
