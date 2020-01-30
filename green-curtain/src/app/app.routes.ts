@@ -10,4 +10,5 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [WelcomeGuard] },
   // home is different for mobile and web
   { path: '', redirectTo:'home', pathMatch:'full' },
+  // { path: '**', component: PageNotFoundComponent} //TODO
 ];

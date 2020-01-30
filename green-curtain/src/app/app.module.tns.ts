@@ -11,10 +11,8 @@ import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-b
 import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
 
 import { UserService } from '@src/app/shared/services/user.service';
-import { StorageService } from './shared/services/storage.service';
+import { StorageService } from '@src/app/shared/services/storage.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
-import { PopupService } from './shared/services/popup.service';
-import { BasicPopupService } from './shared/services/basic-popup.service';
 
 import { AppComponent } from '@src/app/app.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
@@ -22,16 +20,15 @@ import { LoginComponent } from '@src/app/shared/components/login/login.component
 import { ProfileComponent } from '@src/app/profile/profile.component';
 import { HomeComponent } from './home/home.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     WelcomeComponent,
     LoginComponent,
+    ProfileComponent,
     HideActionBarDirective,
     ClearNavHistoryDirective,
-    ProfileComponent,
   ],
   imports: [
     NativeScriptModule,

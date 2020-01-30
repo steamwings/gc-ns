@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  verbose: false
+  verbose: false,
+  traceRoutes: false,
 };

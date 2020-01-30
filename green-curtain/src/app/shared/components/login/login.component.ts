@@ -122,8 +122,10 @@ export class LoginComponent implements OnInit {
   focusPassword() {
     this.password.nativeElement.focus();
   }
-  focusConfirmPassword() {
-    if (!this.isLoggingIn) {
+  passwordReturn() {
+    if (this.isLoggingIn) {
+      this.submit();
+    } else {
       this.confirmPassword.nativeElement.focus();
     }
   }

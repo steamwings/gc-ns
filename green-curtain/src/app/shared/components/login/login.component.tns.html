@@ -21,13 +21,14 @@
                 <StackLayout row="2" class="input-field">
                     <TextField #password class="input" [isEnabled]="!processing" hint="Password" secure="true"
                         [(ngModel)]="user.password" [returnKeyType]="isLoggingIn ? 'done' : 'next'"
-                        (returnPress)="focusConfirmPassword()"></TextField>
+                        (returnPress)="passwordReturn()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
                 <StackLayout row="3" *ngIf="!isLoggingIn" class="input-field">
                     <TextField #confirmPassword class="input" [isEnabled]="!processing" hint="Confirm password"
-                        secure="true" [(ngModel)]="user.confirmPassword" returnKeyType="done"></TextField>
+                        secure="true" [(ngModel)]="user.confirmPassword" returnKeyType="done"
+                        (returnPress)="submit()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 

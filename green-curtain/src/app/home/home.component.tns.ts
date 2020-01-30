@@ -4,7 +4,7 @@ import { GridLayout } from '@nativescript/core/ui/layouts/grid-layout';
 import { PanGestureEventData, GestureStateTypes, GestureEventData } from '@nativescript/core/ui/gestures';
 import { AnimationCurve } from '@nativescript/core/ui/enums';
 import { SelectedIndexChangedEventData } from "@nativescript/core/ui/tab-view";
-import { Router } from "@angular/router";
+import { RouterExtensions } from "@nativescript/angular"
 
 @Component({
     selector: 'app-home',
@@ -42,7 +42,7 @@ export class HomeComponent implements AfterViewInit {
     currentTabIndex: number = 1;
     defaultSelected: number = 1;
 
-    constructor(private router: Router) {
+    constructor(private router: RouterExtensions) {
     }
 
     // --------------------------------------------------------------------
@@ -50,6 +50,10 @@ export class HomeComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.initializeTabBar();
+    }
+
+    onTap(){
+        this.router.navigate([{ outlets: { search: ['search-start'], organizations: ['orgs-start'] } }]);
     }
 
     // --------------------------------------------------------------------
