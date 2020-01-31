@@ -3,24 +3,18 @@
         <Tabs #tabs [selectedIndex]="defaultSelected" (selectedIndexChanged)="onSelectedIndexChanged($event)">
             <TabContentItem [backgroundColor]="tabList[0].backgroundColor">
                 <StackLayout>
-                    <!-- <Label text="Bottom Nav Content 1" class="h1 text-center p-t-20"></Label> -->
-                    <Button text="Search"
-                        [nsRouterLink]="[{ outlets: { search: ['search-start'], organizations: ['orgs-start'] } }]"></Button>
                     <router-outlet name="search"></router-outlet>
                 </StackLayout>
             </TabContentItem>
 
             <TabContentItem [backgroundColor]="tabList[1].backgroundColor">
                 <StackLayout>
-                    <Button text="Organizations" (tap)="orgOnTap"></Button>
-                    <router-outlet name="organizations"></router-outlet>
+                    <router-outlet name="orgs"></router-outlet>
                 </StackLayout>
             </TabContentItem>
 
             <TabContentItem [backgroundColor]="tabList[2].backgroundColor">
                 <StackLayout>
-                    <!-- <Label text="Bottom Nav Content 3" class="h1 text-center p-t-20"></Label> -->
-                    <Button text="Profile" [nsRouterLink]="[{ outlets: { profile:['profile-start'] } }]"></Button>
                     <router-outlet name="profile"></router-outlet>
                 </StackLayout>
             </TabContentItem>

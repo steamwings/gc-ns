@@ -6,15 +6,16 @@ import { AuthGuard } from '@src/app/shared/guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { environment } from '@src/environments/environment';
+import { OrgsComponent } from '@src/app/orgs/orgs.component';
+import { SearchComponent } from './search/search.component';
 
 
 var appRoutes: Routes = [
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
-      { path: '', component: ProfileComponent, outlet: 'organizations' },
-      { path: '', component: ProfileComponent, outlet: 'search' },
-      { path: 'profile-start', component: ProfileComponent, outlet: 'profile' },
-      // { path: '', component: ProfileComponent, outlet: 'profile' },
+      { path: '', component: OrgsComponent, outlet: 'orgs' },
+      { path: '', component: SearchComponent, outlet: 'search' },
+      { path: '', component: ProfileComponent, outlet: 'profile' },
     ]
   },
 ]

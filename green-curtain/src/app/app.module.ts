@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@src/app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { StorageService } from './shared/services/storage.service';
+import { StorageService } from '@src/app/shared/services/storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
 
@@ -15,6 +15,8 @@ import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.com
 import { LoginComponent } from '@src/app/shared/components/login/login.component';
 import { NavComponent } from '@src/app/shared/components/nav/nav.component';
 import { ProfileComponent } from '@src/app/profile/profile.component';
+import { SearchComponent } from '@src/app/search/search.component';
+import { OrgsComponent } from '@src/app/orgs/orgs.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ProfileComponent } from '@src/app/profile/profile.component';
     LoginComponent,
     NavComponent,
     ProfileComponent,
+    SearchComponent,
+    OrgsComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,8 @@ import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.com
 import { LoginComponent } from '@src/app/shared/components/login/login.component';
 import { ProfileComponent } from '@src/app/profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from '@src/app/search/search.component';
+import { OrgsComponent } from '@src/app/orgs/orgs.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     HideActionBarDirective,
     ClearNavHistoryDirective,
+    SearchComponent,
+    OrgsComponent,
   ],
   imports: [
     NativeScriptModule,
