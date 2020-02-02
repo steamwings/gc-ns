@@ -11,11 +11,13 @@
 // hue. Available color palettes: https://material.io/design/color/
 // TODO build theme with custom colors
 $gc-light-primary: mat-palette($mat-green);
-//$gc-light-primary: mat-palette(rgb(177, 22, 22));
+//$gc-light-primary: mat-palette(rgb(34, 153, 84));
 $gc-light-accent: mat-palette($mat-amber, A200, A100, A400);
+//$gc-light-accent: mat-palette(rgb(245, 176, 65));
 
 // The warn palette is optional (defaults to red).
 $gc-light-warn: mat-palette($mat-red);
+//$gc-light-warn: mat-palette(rgb(236, 86, 79));
 
 // Create the theme object (a Sass map containing all of the palettes).
 $gc-light-theme: mat-light-theme($gc-light-primary, $gc-light-accent, $gc-light-warn);

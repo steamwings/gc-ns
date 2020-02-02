@@ -1,11 +1,11 @@
 <nav>
 
-<button mat-button>Home</button>
-<button mat-button>Organizations</button>
-<button mat-button [matMenuTriggerFor]="menu">Profile</button>
+<button mat-button>home</button>
+<button mat-button>organizations</button>
+<button mat-button [matMenuTriggerFor]="menu">profile</button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item>View</button>
-    <button mat-menu-item (click)="LogX()">{{(loggedIn | async) ? "Logout" : "Login"}}</button>
+    <button mat-menu-item>view</button>
+    <button mat-menu-item (click)="LogX()">{{(loggedIn | async) ? "logout" : "login"}}</button>
 </mat-menu>
 
 </nav>

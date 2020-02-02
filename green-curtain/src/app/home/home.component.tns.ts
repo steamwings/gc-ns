@@ -34,9 +34,9 @@ export class HomeComponent implements AfterViewInit {
         focusColor: '#fff'
     };
     tabList: { text: string, icon?: string, color?: string, backgroundColor: string, fadeColor?: string }[] = [
-        { text: String.fromCharCode(0xf002) /*search*/, backgroundColor: '#5B37B7', color: '#000' },
-        { text: String.fromCharCode(0xf66f) /*landmark*/, backgroundColor: '#E6A938', color: '#000' },
-        { text: String.fromCharCode(0xf2bb) /*address-card*/, backgroundColor: '#C9449D', color: '#000' },
+        { text: String.fromCharCode(0xf002) /*search*/, backgroundColor: '#f5b045', color: '#000' },
+        { text: String.fromCharCode(0xf66f) /*landmark*/, backgroundColor: '#229954', color: '#000' },
+        { text: String.fromCharCode(0xf2bb) /*address-card*/, backgroundColor: '#733b99', color: '#000' },
     ];
 
     currentTabIndex: number = 1;
@@ -50,10 +50,6 @@ export class HomeComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         this.initializeTabBar();
-    }
-
-    onTap(){
-        this.router.navigate([{ outlets: { search: ['search-start'], organizations: ['orgs-start'] } }]);
     }
 
     // --------------------------------------------------------------------

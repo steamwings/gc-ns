@@ -41,14 +41,14 @@
             <!-- TODO: Is nsRouterLink bypassing the AuthGuard? -->
         <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing" (tap)="submit()"
             [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true"
-            class="btn btn-primary m-t-20"></Button>
+            class="btn bg-green m-t-20"></Button>
         <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>
     </StackLayout>
 
     <Label class="login-label sign-up-label" (tap)="toggleForm()">
         <FormattedString>
-            <Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to Login'"></Span>
-            <Span [text]="isLoggingIn ? 'Sign up' : ''" class="bold"></Span>
+            <Span [text]="isLoggingIn ? 'Don’t have an account? ' : 'Back to '"></Span>
+            <Span [text]="isLoggingIn ? 'Sign Up' : 'Login'" class="bold"></Span>
         </FormattedString>
     </Label>
 </FlexboxLayout>

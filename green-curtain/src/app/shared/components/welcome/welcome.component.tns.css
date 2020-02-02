@@ -1,1 +1,10 @@
 /* Add mobile styles for the component here.  */
+
+.welcome-title {
+    font-size: 45;
+}
+
+.welcome-subtitle {
+    margin-bottom: 100;
+    font-size: 20;
+}

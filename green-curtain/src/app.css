@@ -1,13 +1,38 @@
  @import '~nativescript-theme-core/css/core.light.css';
 
- .btn-primary {
+ .ns-root {
+     --gc-green: #229954;
+     --gc-gold: #f5b045;
+     --gc-purple: #733b99;
+ }
+
+ .btn {
      height: 50;
-     background-color: #229954;
      border-radius: 5;
      font-size: 20;
      font-weight: 600;
+     background-color: var(--gc-green);
+     color: white;
  }
 
- .btn-primary:disabled {
+ .btn:disabled {
      opacity: 0.5;
  }
+
+ .bg-green {
+     background-color: var(--gc-green);
+ }
+
+ .bg-gold {
+     background-color: var(--gc-gold);
+ }
+
+ .bg-purple {
+     background-color: var(--gc-purple);
+ }
+
+ .title {
+     font-size: 30;
+     text-align: left;
+ }
+

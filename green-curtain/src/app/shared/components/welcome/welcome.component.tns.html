@@ -1,10 +1,10 @@
-<!--The content below is only a placeholder and can be replaced.-->
+
 <ActionBar [title]="title" appHideActionBar></ActionBar>
-<!-- <FlexboxLayout class="page"> -->
-    <StackLayout class="p-20">
-        <Label text="{{bannerText}}" class="h1 text-center" textWrap="true"></Label>
-        <Label text="{{tagline}}" class="text-center"></Label>
+
+<GridLayout rows="*, auto, *"> 
+    <StackLayout row="1" class="p-20">
+        <Label text="{{bannerText}}" class="h1 text-center welcome-title" textWrap="true"></Label>
+        <Label text="{{tagline}}" class="text-center welcome-subtitle"></Label>
         <Button [text]="buttonText" (tap)="login()" class="btn btn-primary"></Button>
     </StackLayout>
-    <!-- <Label text="More info"></Label> -->
-<!-- </FlexboxLayout> -->
+</GridLayout>

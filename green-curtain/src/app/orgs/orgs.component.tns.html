@@ -1,12 +1,19 @@
-<GridLayout rows="auto, *" backgroundColor="#5B37B7">
+<GridLayout rows="auto, *" class="bg-green">
     <GridLayout row="0" height="60">
-        <Label verticalAlignment="center" horizontalAlignment="center" fontSize="18" fontWeight="bold" color="#fff"
-            text="Movies"></Label>
+        <Label paddingLeft="10" class="title" verticalAlignment="center" fontWeight="bold" color="#fff"
+            text="organizations"></Label>
     </GridLayout>
     <StackLayout row="1">
-        <ListView class="orgs-list" backgroundColor="#5B37B7" height="100%">
-            <Label>Here's a label</Label>
-            <Label>Another label</Label>
-        </ListView>
+        <ScrollView>
+            <ListView class="orgs-list bg-green" [items]="orgs$ | async" height="100%">
+                <ng-template let-org="item">
+                    <GridLayout>
+                        <GridLayout class="card">
+                            <Label class="card--title" [text]="org.name"></Label>
+                        </GridLayout>
+                    </GridLayout>
+                </ng-template>
+            </ListView>
+        </ScrollView>
     </StackLayout>
 </GridLayout>   
