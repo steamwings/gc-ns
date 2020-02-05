@@ -17,17 +17,25 @@ export interface Marker {
     blurb : Blurb;
 }
 
-export class Highlight implements Marker {
+abstract class MarkerBase implements Marker {
+    type: MarkerType;
+    blurb: Blurb;
+    constructor(blurb: Blurb) {
+        this.blurb = blurb;
+    }
+}
+
+export class Highlight extends MarkerBase {
     type: MarkerType = MarkerType.Highlight;
     blurb: Blurb;
 }
 
-export class Concern implements Marker {
+export class Concern extends MarkerBase {
     type: MarkerType = MarkerType.Concern;
     blurb: Blurb;
 }
 
-export class Flag implements Marker {
+export class Flag extends MarkerBase {
     type: MarkerType = MarkerType.Flag;
     blurb: Blurb;
 }

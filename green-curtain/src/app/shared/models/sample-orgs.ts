@@ -1,4 +1,8 @@
 import { BasicOrg, FullOrg } from "./org.model";
+import { MarkerList, Flag, Highlight, Concern } from "./marker.model";
+
+const emptyMarkerList : MarkerList = {highlights:[new Highlight("This place is cool")], concerns:[new Concern("this place is smelly")], flags:[]}
+const sampleMarkerList: MarkerList = { highlights: [], concerns: [], flags: [] }
 
 export const SampleOrgs : FullOrg[] = [
     { id:40, name: "Clasico Theatre", city: "Waco", region: "Texas", markers:null, parent: null, children: [] },
