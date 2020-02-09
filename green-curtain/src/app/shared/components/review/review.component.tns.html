@@ -1,0 +1,10 @@
+<StackLayout>
+    <Label [text]="title"></Label>
+    <Progress [value]="questionIndex" maxValue="questionCount" [visibility]="showProgress ? 'visible' : 'collapse'"></Progress>
+    <TextView [text]="question.text" class="question" editable="false"></TextView>
+    <ScrollView>
+        <TextView *ngFor="let answer of question.answers; let i = index" class="answer" [text]="answer.text"
+            (tap)="setSelectedAnswer(i)" [ngClass]="getAnswerClasses(i)" editable="false">
+        </TextView>
+    </ScrollView>
+</StackLayout>

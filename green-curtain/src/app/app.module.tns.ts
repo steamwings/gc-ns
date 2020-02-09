@@ -18,10 +18,14 @@ import { AppComponent } from '@src/app/app.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
 import { LoginComponent } from '@src/app/shared/components/login/login.component';
 import { ProfileComponent } from '@src/app/profile/profile.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from '@src/app/home/home.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
+import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 
+/**
+ * AppModule for mobile
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +37,7 @@ import { OrgsComponent } from '@src/app/orgs/orgs.component';
     ClearNavHistoryDirective,
     SearchComponent,
     OrgsComponent,
+    ReviewComponent,
   ],
   imports: [
     NativeScriptModule,

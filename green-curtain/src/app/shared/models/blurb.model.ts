@@ -1,6 +1,5 @@
-import { IRef } from "./ref.model";
 import { IModel } from "./model.model";
-import { IIdentityRef } from "./user.model";
+import { IPartyRef } from "./party.model";
 
 /**
  * A blurb is a short description written by a user about something specific
@@ -9,11 +8,14 @@ import { IIdentityRef } from "./user.model";
 export interface IBlurb extends IModel {
     id: number;
     val: string;
-    ref: IIdentityRef;
+    ref: IPartyRef;
 }
 
 export class Blurb implements IBlurb {
     id: number;
     val: string;
-    ref: IIdentityRef;
+    ref: IPartyRef;
+    constructor(val: string /*, ref: IPartyRef TODO */){
+        this.val = val;
+    }
 }

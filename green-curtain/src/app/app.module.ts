@@ -17,7 +17,11 @@ import { NavComponent } from '@src/app/shared/components/nav/nav.component';
 import { ProfileComponent } from '@src/app/profile/profile.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
+import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 
+/**
+ * AppModule for web
+ */
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +32,7 @@ import { OrgsComponent } from '@src/app/orgs/orgs.component';
     ProfileComponent,
     SearchComponent,
     OrgsComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,

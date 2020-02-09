@@ -8,9 +8,6 @@ import { LogService } from './log.service';
 
 const USER_KEY: string = 'user';
 
-/**
- * Welcome guard ensures new users visit the welcome page
- */
 @Injectable({
   providedIn: 'root'
 })

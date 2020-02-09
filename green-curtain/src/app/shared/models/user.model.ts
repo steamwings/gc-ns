@@ -1,4 +1,5 @@
 import { IRef } from "./ref.model";
+import { IParty, IPartyRef } from "./party.model";
 
 export class LoginFormUser {
     name: string;
@@ -7,7 +8,11 @@ export class LoginFormUser {
     confirmPassword: string;
 }
 
-export interface IIdentityRef extends IRef {
+export interface IUserRef extends IPartyRef {
+    
+}
+
+export interface IUser extends IParty {
     // TODO add thumbnail
 }
 

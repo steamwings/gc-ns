@@ -20,8 +20,12 @@ export interface Marker {
 abstract class MarkerBase implements Marker {
     type: MarkerType;
     blurb: Blurb;
-    constructor(blurb: Blurb) {
-        this.blurb = blurb;
+    // TODO uncomment
+    // constructor(blurb: Blurb) {
+    //     this.blurb = blurb;
+    // }
+    constructor(){
+        this.blurb = null;
     }
 }
 

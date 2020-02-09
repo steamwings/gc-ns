@@ -1,0 +1,11 @@
+/* Add mobile styles for the component here.  */
+
+
+.selected {
+    border: 3;
+    border-color: aliceblue;
+}
+
+.unselected {
+    border: none;
+}

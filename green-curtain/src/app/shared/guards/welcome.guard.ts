@@ -3,6 +3,10 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { UserService } from '../services/user.service';
 import { LogService } from '../services/log.service';
 
+
+/**
+ * Welcome guard ensures new users visit the welcome page
+ */
 @Injectable({
   providedIn: 'root'
 })
