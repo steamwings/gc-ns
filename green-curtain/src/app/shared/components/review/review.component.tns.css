@@ -1,11 +1,36 @@
 /* Add mobile styles for the component here.  */
 
+.question {
+    color: white;
+    margin: 10;
+    border-radius: 25;
+    text-align: center;
+    padding: 8;
+    font-size: 24;
+}
+
+.answer {
+    margin: 5;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+    text-align: center;
+    padding: 15;
+    editable: false;
+    font-size: 20;
+    font-weight: 500;
+}
 
 .selected {
-    border: 3;
-    border-color: aliceblue;
+    background-color: var(--gc-gold);
+    color: black;
 }
 
 .unselected {
-    border: none;
+    background-color: var(--gc-green);
+    color: white;
+}
+
+.submit {
+    /* vertical-alignment: bottom; */
 }

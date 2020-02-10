@@ -8,7 +8,7 @@
             <ListView class="orgs-list bg-green" [items]="orgs$ | async" height="100%">
                 <ng-template let-org="item">
                     <GridLayout>
-                        <GridLayout class="card">
+                        <GridLayout class="card" (tap) = "select(org)">
                             <Label class="card--title" [text]="org.name"></Label>
                         </GridLayout>
                     </GridLayout>

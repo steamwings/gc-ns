@@ -4,6 +4,7 @@
      --gc-green: #229954;
      --gc-gold: #f5b045;
      --gc-purple: #733b99;
+     --gc-dark-grey: #362c41;
  }
 
  .btn {
@@ -31,8 +32,15 @@
      background-color: var(--gc-purple);
  }
 
+ .bg-dark-grey {
+     background-color: var(--gc-dark-grey);
+ }
+
  .title {
      font-size: 30;
      text-align: left;
  }
 
+ .progressBar {
+     color: var(--gc-green);
+ }

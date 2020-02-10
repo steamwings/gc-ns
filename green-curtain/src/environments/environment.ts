@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  verbose: false, // Enable for way too much output
+  verbose: true, // Enable for way too much output
   traceRoutes: false, // Enable to see routing
 };
 

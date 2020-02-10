@@ -8,9 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { environment } from '@src/environments/environment';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { SearchComponent } from './search/search.component';
+import { ReviewComponent } from './shared/components/review/review.component';
 
 
-var appRoutes: Routes = [
+const appRoutes: Routes = [
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: '', component: OrgsComponent, outlet: 'orgs' },
@@ -18,7 +19,9 @@ var appRoutes: Routes = [
       { path: '', component: ProfileComponent, outlet: 'profile' },
     ]
   },
-]
+  { path: 'review', component: ReviewComponent }
+];
+
 routes.forEach(r => appRoutes.push(r));
 
 @NgModule({

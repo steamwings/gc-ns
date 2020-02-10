@@ -23,26 +23,26 @@ export class NumberAnswer implements IAnswer {
 }
 
 export interface IQuestion {
-    prompt: string;
-    answers: IAnswer[];
-    answerCount: number;
+    // TODO id and version?
+    readonly prompt: string;
+    readonly answers: IAnswer[];
+    readonly answerCount: number;
 }
 
 abstract class BaseQuestion implements IQuestion {
-    prompt: string;
-    answers: IAnswer[];
+    readonly prompt: string;
+    readonly answers: IAnswer[];
     readonly answerCount: number;
-    constructor(prompt: string){
+    constructor(prompt: string, answers: IAnswer[]) {
         this.prompt = prompt;
+        this.answers = answers;
+        this.answerCount = answers.length;
     }
 }
 
 export class YesNoQuestion extends BaseQuestion {
-    readonly answers: TextAnswer[];
-    readonly answerCount: number = 2;
-    constructor(prompt: string, yesText: string = "Yes", noText: string = "No") {
-        super(prompt);
-        this.answers = [new TextAnswer(yesText), new TextAnswer(noText)];
+    constructor(prompt: string, yesText: string = 'Yes', noText: string = 'No') {
+        super(prompt, [new TextAnswer(yesText), new TextAnswer(noText)]);
     }
 }
 
@@ -51,30 +51,13 @@ export class YesNoQuestion extends BaseQuestion {
  * always starting with 1.
  */
 export class RatingQuestion extends BaseQuestion {
-    prompt: string;
-    readonly answers: NumberAnswer[];
-    readonly answerCount: number;
     constructor(prompt: string, scaleMax: number = 5) {
-        super(prompt);
-        this.answers = Array.from({length: scaleMax}, (_,i) => new NumberAnswer(i+1));
+        super(prompt, Array.from({ length: scaleMax }, (_, i) => new NumberAnswer(i + 1)));
     }
 }
 
 export class MultipleChoiceQuestion extends BaseQuestion {
-    prompt: string;
-    private _answers: TextAnswer[];
-    private _answerCount: number;
-
-    // constructor(prompt: string, answers: string[]){
-    //     super(prompt);
-    //     this.answers = answers.map(x => new TextAnswer(x));
-    // }
-
-    get answers(): TextAnswer[] { return this._answers; }
-    set answers(val: TextAnswer[]) {
-        this._answers = val;
-        this._answerCount = val.length;
+    constructor(prompt: string, answers: string[]){
+        super(prompt, answers.map(x => new TextAnswer(x)));
     }
-
-    get answerCount(): number { return this._answerCount; }
 }

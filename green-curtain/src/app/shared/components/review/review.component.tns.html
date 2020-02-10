@@ -1,10 +1,20 @@
-<StackLayout>
-    <Label [text]="title"></Label>
-    <Progress [value]="questionIndex" maxValue="questionCount" [visibility]="showProgress ? 'visible' : 'collapse'"></Progress>
-    <TextView [text]="question.text" class="question" editable="false"></TextView>
-    <ScrollView>
-        <TextView *ngFor="let answer of question.answers; let i = index" class="answer" [text]="answer.text"
-            (tap)="setSelectedAnswer(i)" [ngClass]="getAnswerClasses(i)" editable="false">
-        </TextView>
-    </ScrollView>
-</StackLayout>
+<GridLayout rows="*, auto" class="bg-dark-grey">
+    <StackLayout row="0">
+        <Progress [value]="progressVal" [maxValue]="progressMax" class="progressBar"
+            [visibility]="showProgress ? 'visible' : 'collapse'"></Progress>
+        <TextView [text]="question.prompt" class="question" editable="false"></TextView>
+        <ScrollView>
+            <FlexboxLayout [flexDirection]="answerDirection" flexWrap="wrap" alignItems="stretch"
+                alignContent="stretch" justifyContent="center">
+                <TextView *ngFor="let answer of question.answers; let i = index" class="answer"
+                    [text]="answer.value" (tap)="setSelectedAnswer(i)" [ngClass]="getAnswerClasses(i)"
+                    editable="false">
+                </TextView>
+            </FlexboxLayout>
+        </ScrollView>
+    </StackLayout>
+    <StackLayout row="1" orientation="horizontal" verticalAlignment="bottom" horizontalAlignment="center" class="bg-dark-grey">
+        <Button (tap)="previousQuestion()" class="btn" text="Back" [visibility]="!firstQuestion ? 'visible' : 'collapsed'"></Button>
+        <Button (tap)="doneQuestion()" class="btn" [text]="submitText"></Button>
+    </StackLayout>
+</GridLayout>
