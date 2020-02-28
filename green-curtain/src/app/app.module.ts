@@ -4,6 +4,7 @@ import { AppRoutingModule } from '@src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@src/app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
@@ -40,6 +41,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [
     UserService,

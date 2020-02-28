@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   verbose: true, // Enable for way too much output
   traceRoutes: false, // Enable to see routing
+  apiUrl: 'gcapi0.azurewebsites.net/gcapi0',
+  apiKey: 'bc7e5fe0b7dc4ebfa32ed80d5de43657',
 };
 
 /*

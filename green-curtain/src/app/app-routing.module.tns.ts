@@ -3,12 +3,12 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 import { routes } from '@src/app/app.routes';
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@src/app/shared/guards/auth.guard';
-import { ProfileComponent } from './profile/profile.component';
-import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from '@src/app/profile/profile.component';
+import { HomeComponent } from '@src/app/home/home.component';
 import { environment } from '@src/environments/environment';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
-import { SearchComponent } from './search/search.component';
-import { ReviewComponent } from './shared/components/review/review.component';
+import { SearchComponent } from '@src/app/search/search.component';
+import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 
 
 const appRoutes: Routes = [

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LoginFormUser } from '../models/user.model';
 import { StorageService } from './storage.service';
 import { LogService } from './log.service';
+import { ApiService } from './api.service';
 
 const USER_KEY: string = 'user';
 
@@ -20,6 +21,7 @@ export class UserService {
   constructor(
     private router: Router,
     private storage: StorageService,
+    private api: ApiService,
     private log: LogService,
   ) {
     var user = storage.get<LoginFormUser>(USER_KEY);
@@ -37,16 +39,34 @@ export class UserService {
     return this.loggedIn$.asObservable();
   }
 
-  login(user: LoginFormUser){
-    //TODO Do login and use user
-    this.storage.set(USER_KEY, user);
-    this.navigate();
-    return new Promise(() => {});
+  login(user: LoginFormUser) { // TODO hash password
+    return new Promise((resolve, reject) => {
+      this.api.login(user).subscribe((resp) => {
+        this.log.verbose(resp.toString());
+        if (resp.ok) {
+          this.storage.set(USER_KEY, user);
+          this.navigate();
+          resolve(resp.body);
+        } else {
+          reject(resp.status);
+        }
+      });
+    });
   }
 
-  register(user: LoginFormUser){ //TODO
-    this.navigate();
-    return new Promise(() => {});
+  register(user: LoginFormUser) { // TODO hash password // TODO JWT
+    return new Promise((resolve, reject) => {
+      this.api.register(user).subscribe((resp) => {
+        this.log.verbose(resp.toString());
+        if (resp.ok) {
+          this.storage.set(USER_KEY, user);
+          this.navigate();
+          resolve(resp.body);
+        } else {
+          reject(resp.status);
+        }
+      });
+    });
   }
 
   private navigate(){
