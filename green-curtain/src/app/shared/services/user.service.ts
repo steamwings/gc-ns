@@ -56,20 +56,18 @@ export class UserService {
   }
 
   private loginRegisterCallback = (user, resp, resolve, reject) => {
-    this.log.verbose(resp.toString());
-    if (resp.ok) {
-      if (!resp.hasOwnProperty('token')) {
-        this.log.error('No token on response!');
-        reject('No token.');
-        return;
-      }
+    this.log.verbose(JSON.stringify(resp));
+    if (resp.hasOwnProperty('token')) {
       this.log.verbose('token: ' + resp.token);
       this.storage.set(TOKEN_KEY, resp.token);
       this.storage.set(USER_KEY, user);
       this.navigate();
-      resolve(resp.body);
-    } else {
+      resolve();
+    } else if (resp.hasOwnProperty('status')) {
       reject(resp.status);
+    } else {
+      this.log.error('No token on response!');
+      reject('Something went wrong. Try again soon.');
     }
    }
 

@@ -5,6 +5,7 @@ import { UserService } from '@src/app/shared/services/user.service';
 import { PopupService } from '../../services/popup.service';
 import { BasicPopupService } from '../../services/basic-popup.service';
 import { LogService } from '../../services/log.service';
+import { BehaviorSubject } from 'rxjs';
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   title = 'Green Curtain';
   isLoggingIn = true;
-  processing = false;
+  processing: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   user: LoginFormUser;
   @ViewChild('name', { static: false }) name: ElementRef;
   @ViewChild('email', { static: false }) email: ElementRef;
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
     }
     if (!valid) { return; }
 
-    this.processing = true;
+    this.processing.next(true);
     if (this.isLoggingIn) {
       this.login();
     } else {
@@ -68,27 +69,27 @@ export class LoginComponent implements OnInit {
       .then(() => {
         // this.routerExtensions.navigate(["/home"], { clearHistory: true });
         // this.router.navigate(['/home']);
-        this.processing = false;
+        this.processing.next(false);
         this.log.debug('User Service logged in');
       }).catch((code) => {
-        this.processing = false;
+        this.processing.next(false);
         this.popup.warning(`${code}`);
       });
   }
 
   register() {
     if (this.user.password !== this.user.confirmPassword) {
-      this.processing = false;
+      this.processing.next(false);
       this.popup.warning('Your passwords do not match.');
       return;
     }
     this.userService.register(this.user)
       .then(() => {
-        this.processing = false;
+        this.processing.next(false);
         this.isLoggingIn = true;
       }).catch((code) => {
         // TODO handle dupes!
-        this.processing = false;
+        this.processing.next(false);
         this.popup.warning(`${code}`);
       });
   }
