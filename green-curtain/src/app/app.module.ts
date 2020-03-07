@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
+import { ApiService } from '@src/app/shared/services/api.service';
 
 import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
@@ -45,6 +46,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
   ],
   providers: [
     UserService,
+    ApiService,
     { provide: StorageService, useClass: LocalStorageService},
   ],
   bootstrap: [AppComponent]

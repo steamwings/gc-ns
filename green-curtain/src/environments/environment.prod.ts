@@ -2,6 +2,7 @@ export const environment = {
   production: true,
   verbose: false,
   traceRoutes: false,
-  apiUrl: 'gcapi0.azurewebsites.net',
-  apiKey: '93826d87dd4d4d6ab92424ec086338d5'
+  apiUrl: 'https://gc0.azure-api.net/api',
+  apiKey: 'bc7e5fe0b7dc4ebfa32ed80d5de43657',
+  apiHeader: 'Ocp-Apim-Subscription-Key',
 };

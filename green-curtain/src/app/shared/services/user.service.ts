@@ -7,16 +7,16 @@ import { StorageService } from './storage.service';
 import { LogService } from './log.service';
 import { ApiService } from './api.service';
 
-const USER_KEY: string = 'user';
+const USER_KEY = 'user';
+const TOKEN_KEY = 'token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   loggedIn$ = new BehaviorSubject<boolean>(false);
-  public seenWelcome: boolean = false;
-  public redirectUrl: string = '/home';
+  public seenWelcome = false;
+  public redirectUrl = '/home';
 
   constructor(
     private router: Router,
@@ -24,9 +24,9 @@ export class UserService {
     private api: ApiService,
     private log: LogService,
   ) {
-    var user = storage.get<LoginFormUser>(USER_KEY);
+    const user = storage.get<LoginFormUser>(USER_KEY);
     if (user.email) {
-      this.loggedIn$.next(true)
+      this.loggedIn$.next(true);
       this.seenWelcome = true;
     }
   }
@@ -41,35 +41,39 @@ export class UserService {
 
   login(user: LoginFormUser) { // TODO hash password
     return new Promise((resolve, reject) => {
-      this.api.login(user).subscribe((resp) => {
-        this.log.verbose(resp.toString());
-        if (resp.ok) {
-          this.storage.set(USER_KEY, user);
-          this.navigate();
-          resolve(resp.body);
-        } else {
-          reject(resp.status);
-        }
-      });
+      this.api.login(user).subscribe(
+        resp => this.loginRegisterCallback(user, resp, resolve, reject),
+        error => reject(error));
     });
   }
 
-  register(user: LoginFormUser) { // TODO hash password // TODO JWT
+  register(user: LoginFormUser) { // TODO hash password
     return new Promise((resolve, reject) => {
-      this.api.register(user).subscribe((resp) => {
-        this.log.verbose(resp.toString());
-        if (resp.ok) {
-          this.storage.set(USER_KEY, user);
-          this.navigate();
-          resolve(resp.body);
-        } else {
-          reject(resp.status);
-        }
-      });
+      this.api.register(user).subscribe(
+        resp => this.loginRegisterCallback(user, resp, resolve, reject),
+        error => reject(error));
     });
   }
 
-  private navigate(){
+  private loginRegisterCallback = (user, resp, resolve, reject) => {
+    this.log.verbose(resp.toString());
+    if (resp.ok) {
+      if (!resp.hasOwnProperty('token')) {
+        this.log.error('No token on response!');
+        reject('No token.');
+        return;
+      }
+      this.log.verbose('token: ' + resp.token);
+      this.storage.set(TOKEN_KEY, resp.token);
+      this.storage.set(USER_KEY, user);
+      this.navigate();
+      resolve(resp.body);
+    } else {
+      reject(resp.status);
+    }
+   }
+
+  private navigate() {
     this.loggedIn$.next(true);
     if (!isNullOrUndefined(this.redirectUrl)) {
       this.log.verbose('User Service navigating to ' + this.redirectUrl);
@@ -81,14 +85,14 @@ export class UserService {
     }
   }
 
-  logout(){
+  logout() {
     this.loggedIn$.next(false);
     this.storage.remove(USER_KEY);
     this.router.navigate(['/login']);
   }
 
   // TODO
-  resetPassword(email: string){
+  resetPassword(email: string) {
     return new Promise(() => {});
   }
 

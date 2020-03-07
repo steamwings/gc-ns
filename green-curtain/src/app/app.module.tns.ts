@@ -11,6 +11,7 @@ import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-b
 import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
 
 import { UserService } from '@src/app/shared/services/user.service';
+import { ApiService } from '@src/app/shared/services/api.service';
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
 
@@ -48,6 +49,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
   entryComponents: [],
   providers: [
     UserService,
+    ApiService,
     { provide: StorageService, useClass: LocalStorageService },
   ],
   bootstrap: [AppComponent],
