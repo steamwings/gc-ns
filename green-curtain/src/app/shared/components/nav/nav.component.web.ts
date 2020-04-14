@@ -9,18 +9,18 @@ import { UserService } from '../../services/user.service';
 })
 export class NavComponent implements OnInit {
 
+  loggedIn = this.userService.isLoggedIn$;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  loggedIn = this.userService.isLoggedIn$;
-
-  LogX(){
-    if(this.userService.isLoggedIn){
+  LogX() {
+    if (this.userService.isLoggedIn) {
       this.userService.logout();
     } else {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
   }
 

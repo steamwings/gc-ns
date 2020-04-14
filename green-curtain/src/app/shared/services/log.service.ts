@@ -35,7 +35,14 @@ export class LogService {
       default: return;
     }
     if (!environment.production) {
-      if (data) { msg += '\nData: ' + data; }
+      if (data) {
+        msg += '\nData: ';
+        try {
+          msg += JSON.stringify(data);
+        } catch {
+          msg += '(failed to stringify): ' + data;
+        }
+      }
       if (error) {
         msg += `\nError "${error.name}": ${error.message}`;
         msg += `\nStack trace: ${error.stack}`;

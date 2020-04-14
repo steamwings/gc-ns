@@ -14,6 +14,7 @@ import { UserService } from '@src/app/shared/services/user.service';
 import { ApiService } from '@src/app/shared/services/api.service';
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
+import { httpInterceptorProviders } from './shared/http-interceptors';
 
 import { AppComponent } from '@src/app/app.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
@@ -23,6 +24,7 @@ import { HomeComponent } from '@src/app/home/home.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
+import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 
 /**
  * AppModule for mobile
@@ -39,6 +41,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     SearchComponent,
     OrgsComponent,
     ReviewComponent,
+    SettingsComponent,
   ],
   imports: [
     NativeScriptModule,
@@ -51,6 +54,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     UserService,
     ApiService,
     { provide: StorageService, useClass: LocalStorageService },
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

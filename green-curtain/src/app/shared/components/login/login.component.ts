@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
         // this.routerExtensions.navigate(["/home"], { clearHistory: true });
         // this.router.navigate(['/home']);
         this.processing.next(false);
-        this.log.debug('User Service logged in');
+        this.log.debug('LoginComponent logged in');
       }).catch((code) => {
         this.processing.next(false);
         this.popup.warning(`${code}`);

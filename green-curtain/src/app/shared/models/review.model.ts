@@ -1,5 +1,5 @@
-import { IParty } from "./party.model";
-import { IQuestion } from "./question.model";
+import { IParty } from './party.model';
+import { IQuestion } from './question.model';
 
 export interface IReview {
     readonly questions: IQuestion[];
@@ -13,7 +13,7 @@ export class BasicReview implements IReview {
     reviewer: IParty = undefined;
     /** The party under review */
     reviewee: IParty = undefined;
-    constructor(questions: IQuestion[]){
+    constructor(questions: IQuestion[]) {
         this.questions = questions;
     }
 }

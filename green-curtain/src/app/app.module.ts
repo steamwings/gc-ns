@@ -20,6 +20,8 @@ import { ProfileComponent } from '@src/app/profile/profile.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
+import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
+import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
 
 /**
  * AppModule for web
@@ -35,6 +37,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     SearchComponent,
     OrgsComponent,
     ReviewComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     UserService,
     ApiService,
     { provide: StorageService, useClass: LocalStorageService},
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

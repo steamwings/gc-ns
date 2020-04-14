@@ -9,7 +9,7 @@ const timeToReviewContractPrompt = 'Were you given sufficient time to review con
 const fairCompPrompt = 'How would you rate the level of compensation? (10 is best)';
 
 const qTimeToReviewContract = new YesNoQuestion(timeToReviewContractPrompt);
-const qFairComp = new RatingQuestion(fairCompPrompt, 5);
+const qFairComp = new RatingQuestion(fairCompPrompt, 10);
 const qProductionType = new MultipleChoiceQuestion(prodTypePrompt, prodTypeAnswers);
 
 export const sampleTheaterReview: IReview = new BasicReview([qProductionType, qTimeToReviewContract, qFairComp]);

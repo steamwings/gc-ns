@@ -25,6 +25,7 @@ export class UserService {
     private log: LogService,
   ) {
     const user = storage.get<LoginFormUser>(USER_KEY);
+    log.verbose('User from storage: ' + JSON.stringify(user));
     if (user.email) {
       this.loggedIn$.next(true);
       this.seenWelcome = true;
@@ -37,6 +38,10 @@ export class UserService {
 
   get isLoggedIn$() {
     return this.loggedIn$.asObservable();
+  }
+
+  get token() {
+    return this.storage.get(TOKEN_KEY);
   }
 
   login(user: LoginFormUser) { // TODO hash password
@@ -55,10 +60,17 @@ export class UserService {
     });
   }
 
+  reauthenticate() {
+    this.log.debug('Reauthentication requested.');
+    this.loggedIn$.next(false);
+    this.router.navigate(['/login']);
+  }
+
   private loginRegisterCallback = (user, resp, resolve, reject) => {
     this.log.verbose(JSON.stringify(resp));
     if (resp.hasOwnProperty('token')) {
       this.log.verbose('token: ' + resp.token);
+      this.log.verbose('User from callback: ' + JSON.stringify(user));
       this.storage.set(TOKEN_KEY, resp.token);
       this.storage.set(USER_KEY, user);
       this.navigate();
@@ -66,26 +78,28 @@ export class UserService {
     } else if (resp.hasOwnProperty('status')) {
       reject(resp.status);
     } else {
-      this.log.error('No token on response!');
-      reject('Something went wrong. Try again soon.');
+      this.log.error('No token in response!');
+      reject('Something went wrong. Please try again soon.');
     }
    }
 
   private navigate() {
     this.loggedIn$.next(true);
     if (!isNullOrUndefined(this.redirectUrl)) {
-      this.log.verbose('User Service navigating to ' + this.redirectUrl);
+      this.log.verbose('User service navigating to ' + this.redirectUrl);
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
     } else {
-      this.log.verbose('User Service navigating to home');
+      this.log.verbose('User service navigating to home');
       this.router.navigate(['/home']);
     }
   }
 
   logout() {
+    this.log.debug('Performing logout...');
     this.loggedIn$.next(false);
     this.storage.remove(USER_KEY);
+    this.storage.remove(TOKEN_KEY);
     this.router.navigate(['/login']);
   }
 

@@ -9,6 +9,7 @@ import { environment } from '@src/environments/environment';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
+import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 
 
 const appRoutes: Routes = [
@@ -19,7 +20,8 @@ const appRoutes: Routes = [
       { path: '', component: ProfileComponent, outlet: 'profile' },
     ]
   },
-  { path: 'review', component: ReviewComponent }
+  { path: 'review', component: ReviewComponent },
+  { path: 'settings', component: SettingsComponent }
 ];
 
 routes.forEach(r => appRoutes.push(r));

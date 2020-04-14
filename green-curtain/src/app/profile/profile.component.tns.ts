@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
-import { Router } from '@angular/router';
-
+import { RouterExtensions } from 'nativescript-angular';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userSvc: UserService, private router: Router) { }
+  constructor(private userSvc: UserService, private router: RouterExtensions) { }
 
   ngOnInit() {
   }
