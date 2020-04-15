@@ -3,3 +3,8 @@
     justify-content: center;
     margin: 100px 0px;
 }
+
+.mat-button {
+    background-color: rgba(39, 153, 84, 0.8);
+    color: white;
+}

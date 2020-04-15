@@ -55,10 +55,13 @@ export class ApiService {
     }
     let msg = '';
     switch (error.status) {
-      case 404: msg = 'That account was not found.'; break;
-      case 409: msg = 'That email already exists.'; break;
-      // 0 will occur for java.net.UnknownHostException
-      case 0: msg = 'Are you connected to internet? You may also try restarting the application.'; break;
+      case 404: msg = 'That account was not found.';
+        break;
+      case 409: msg = 'That email already exists.';
+        break;
+      // 0 will occur for java.net.UnknownHostException, and CORS blocking
+      case 0: msg = 'Are you connected to internet? You may also try restarting the application.';
+        break;
       default: msg = `Your mysterious number is ${error.status}; please try again later.`;
     }
     return throwError(msg); // Observable with error message
