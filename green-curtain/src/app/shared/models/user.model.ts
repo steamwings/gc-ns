@@ -1,5 +1,4 @@
-import { IRef } from "./ref.model";
-import { IParty, IPartyRef } from "./party.model";
+import { IParty, IPartyRef } from './party.model';
 
 export class LoginFormUser {
     name: string;

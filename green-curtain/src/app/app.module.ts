@@ -4,10 +4,12 @@ import { AppRoutingModule } from '@src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@src/app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
+import { ApiService } from '@src/app/shared/services/api.service';
 
 import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/home/home.component';
@@ -18,6 +20,8 @@ import { ProfileComponent } from '@src/app/profile/profile.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
+import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
+import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
 
 /**
  * AppModule for web
@@ -33,6 +37,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     SearchComponent,
     OrgsComponent,
     ReviewComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,10 +45,13 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [
     UserService,
+    ApiService,
     { provide: StorageService, useClass: LocalStorageService},
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

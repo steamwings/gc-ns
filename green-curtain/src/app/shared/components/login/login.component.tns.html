@@ -6,40 +6,40 @@
         <PreviousNextView>
             <GridLayout rows="auto, auto, auto, auto">
                 <StackLayout row="0" *ngIf="!isLoggingIn" class="input-field">
-                    <TextField class="input" hint="Full Name" [isEnabled]="!processing"
+                    <TextField class="input" hint="Full Name" [isEnabled]="!(processing | async)"
                         autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.name"
                         returnKeyType="next" (returnPress)="focusEmail()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
                 <StackLayout row="1" class="input-field">
-                    <TextField class="input" hint="Email" [isEnabled]="!processing" keyboardType="email"
+                    <TextField class="input" hint="Email" [isEnabled]="!(processing | async)" keyboardType="email"
                         autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email" returnKeyType="next"
                         (returnPress)="focusPassword()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
                 <StackLayout row="2" class="input-field">
-                    <TextField #password class="input" [isEnabled]="!processing" hint="Password" secure="true"
+                    <TextField #password class="input" [isEnabled]="!(processing | async)" hint="Password" secure="true"
                         [(ngModel)]="user.password" [returnKeyType]="isLoggingIn ? 'done' : 'next'"
                         (returnPress)="passwordReturn()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
                 <StackLayout row="3" *ngIf="!isLoggingIn" class="input-field">
-                    <TextField #confirmPassword class="input" [isEnabled]="!processing" hint="Confirm password"
+                    <TextField #confirmPassword class="input" [isEnabled]="!(processing | async)" hint="Confirm password"
                         secure="true" [(ngModel)]="user.confirmPassword" returnKeyType="done"
                         (returnPress)="submit()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
 
-                <ActivityIndicator rowSpan="3" [busy]="processing"></ActivityIndicator>
+                <ActivityIndicator rowSpan="3" [busy]="processing | async" class="app-activity"></ActivityIndicator>
             </GridLayout>
         </PreviousNextView>
 
         <!-- <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing" (tap)="submit()"
             class="btn btn-primary m-t-20"></Button> -->
             <!-- TODO: Is nsRouterLink bypassing the AuthGuard? -->
-        <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing" (tap)="submit()"
+        <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!(processing | async)" (tap)="submit()"
             [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true"
             class="btn bg-green m-t-20"></Button>
         <Label *ngIf="isLoggingIn" text="Forgot your password?" class="login-label" (tap)="forgotPassword()"></Label>

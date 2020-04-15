@@ -3,23 +3,23 @@
 
     <mat-card-content>
         <form class="loginForm" (ngSubmit)="submit()">
-        <div>
-            <mat-form-field *ngIf="!isLoggingIn">
-                <!-- TODO Fix validation -->
-                <input matInput [(ngModel)]="user.name" name="email" type="email" placeholder="Full Name"
-                    [disabled]="processing" required>
-            </mat-form-field>
-        </div>
             <div>
-                <mat-form-field>
+                <mat-form-field *ngIf="!isLoggingIn">
                     <!-- TODO Fix validation -->
-                    <input matInput [(ngModel)]="user.email" name="email" 
-                        type="email" placeholder="Email" [disabled]="processing" required>
+                    <input matInput [(ngModel)]="user.name" name="email" type="email" placeholder="Full Name"
+                        [disabled]="processing | async" required>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field>
-                    <input matInput #password [(ngModel)]="user.password" [disabled]="processing"
+                    <!-- TODO Fix validation -->
+                    <input matInput [(ngModel)]="user.email" name="email" 
+                        type="email" placeholder="Email" [disabled]="processing | async" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput #password [(ngModel)]="user.password" [disabled]="processing | async"
                         name="password" type="password" placeholder="Password" required>
                     <!-- <input hidden formControlName="control"> -->
                 </mat-form-field>
@@ -27,13 +27,13 @@
             <div>
                 <mat-form-field *ngIf="!isLoggingIn">
                     <input matInput #confirmPassword name="confirmPassword" 
-                    [(ngModel)]="user.confirmPassword" [disabled]="processing"
+                    [(ngModel)]="user.confirmPassword" [disabled]="processing | async"
                         type="password" placeholder="Confirm password" required>
                     <!-- <input hidden formControlName="control"> -->
                 </mat-form-field>
             </div>
             <div class="button">
-                <button type="submit" [disabled]="processing" mat-button>
+                <button type="submit" [disabled]="processing | async" mat-button>
                     {{isLoggingIn?"Log In":"Register"}}
                 </button>
             </div>

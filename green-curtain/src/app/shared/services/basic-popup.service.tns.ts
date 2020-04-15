@@ -14,11 +14,11 @@ export class BasicPopupService extends PopupService {
 
     warning(msg, callback?: () => void) {
         dialogs.alert({
-            title: "Warning",
+            title: "We encountered a problem",
             okButtonText: "OK",
             message: msg
         }).then(callback);
-        this.log.info(msg);
+        this.log.info('Popup: ' + msg);
     }
     //TODO
     prompt(msg, fulfilled?: prcallback, rejected?: () => void) {

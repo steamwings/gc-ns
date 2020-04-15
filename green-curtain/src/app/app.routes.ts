@@ -8,7 +8,7 @@ import { WelcomeGuard } from '@src/app/shared/guards/welcome.guard';
 export const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent},
   { path: 'login', component: LoginComponent, canActivate: [WelcomeGuard] },
-  // home is different for mobile and web
-  { path: '', redirectTo:'home', pathMatch:'full' },
+  // 'home' is different for mobile and web
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   // { path: '**', component: PageNotFoundComponent} //TODO
 ];

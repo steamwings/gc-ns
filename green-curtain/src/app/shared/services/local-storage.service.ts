@@ -10,24 +10,24 @@ import { StorageService } from './storage.service';
 export class LocalStorageService extends StorageService {
   /**
    * For mobile this is O(n) slow
-   * @param {string} key 
+   * @param {string} key
    */
-  hasKey(key:string):boolean{
-    for(var i = 0; i < localStorage.length; i++){
-      if (localStorage.key(i) == key) return true;
+  hasKey(key: string): boolean{
+    for (let i = 0; i < localStorage.length; i++) {
+      if (localStorage.key(i) === key) { return true; }
     }
     return false;
   }
-  get<T>(key:string){
+  get<T>(key: string) {
     return JSON.parse(localStorage.getItem(key)) as T;
   }
-  set(key:string, val){
+  set(key: string, val) {
     localStorage.setItem(key, JSON.stringify(val));
   }
-  remove(key:string){
+  remove(key: string) {
     localStorage.removeItem(key);
   }
-  clear(){
+  clearAll() {
     localStorage.clear();
   }
 

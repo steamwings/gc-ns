@@ -17,9 +17,9 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-     this.router.navigate(['/review']);
-    // this.router.navigate(['/login']); // TODO Don't forget to put this back
+  login() {
+    // this.router.navigate(['/review']);
+    this.router.navigate(['/login']); // TODO Don't forget to put this back
   }
 
 }

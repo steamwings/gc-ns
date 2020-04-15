@@ -1,0 +1,12 @@
+<!-- <ActionBar [title]="title" appHideActionBar></ActionBar> -->
+
+<ActionBar title="Settings">
+    <NavigationButton icon="res://ic_arrow_back_black_24dp" (tap)="goBack()"></NavigationButton>
+</ActionBar>
+
+<GridLayout rows="*, auto, *">
+    <StackLayout row="1" class="p-20">
+        <Button [text]="logoutButtonText" (tap)="logout()" class="btn btn-primary"></Button>
+        <Button [text]="clearButtonText" (tap)="clearData()" class="btn btn-primary"></Button>
+    </StackLayout>
+</GridLayout>

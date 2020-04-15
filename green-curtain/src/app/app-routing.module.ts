@@ -4,9 +4,9 @@ import { routes } from '@src/app/app.routes';
 import { HomeComponent } from '@src/app/home/home.component';
 import { AuthGuard } from '@src/app/shared/guards/auth.guard';
 
-var webRoutes : Routes = [
+const webRoutes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
-]
+];
 routes.forEach(r => webRoutes.push(r));
 
 @NgModule({

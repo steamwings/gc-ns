@@ -44,3 +44,7 @@
  .progressBar {
      color: var(--gc-green);
  }
+
+.app-activity {
+    color: var(--gc-green);
+}
