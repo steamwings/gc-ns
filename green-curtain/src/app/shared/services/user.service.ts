@@ -25,10 +25,12 @@ export class UserService {
     private log: LogService,
   ) {
     const user = storage.get<LoginFormUser>(USER_KEY);
-    log.verbose('User from storage: ' + JSON.stringify(user));
-    if (user.email) {
-      this.loggedIn$.next(true);
-      this.seenWelcome = true;
+    if (user != null) {
+      log.verbose('User from storage: ' + JSON.stringify(user));
+      if (user.email) {
+        this.loggedIn$.next(true);
+        this.seenWelcome = true;
+      }
     }
   }
 
