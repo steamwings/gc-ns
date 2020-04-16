@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 /**
  * The first component seen for mobile and web.
@@ -15,9 +16,10 @@ export class WelcomeComponent implements OnInit {
   bannerText = 'Green Curtain';
   tagline = 'The ultimate tool for actors and artists.';
 
-  constructor(private router: Router) { }
+  constructor(private user: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.user.seenWelcome = true;
   }
 
   login() {
