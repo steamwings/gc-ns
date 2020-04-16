@@ -3,12 +3,14 @@ nav {
     color: white;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 span:first-child {
     margin-right: auto;
     justify-content: left;
 }
+
 
 span:last-child {
     margin-left: auto;
@@ -19,4 +21,17 @@ span {
     flex: 1;
     display: flex;
     justify-content: center;
+}
+
+/*  For best appearance, this max-width needs to be changed 
+    if the nav buttons are changed. */
+@media screen and (max-width: 600px) {
+    
+    .right-buttons {
+        order: 2;
+    }
+
+    .center-buttons {
+        order: 3;
+    }
 }

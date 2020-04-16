@@ -6,21 +6,22 @@
         </button>
     </span>
 
-    <span class="nav-buttons">
-        <button mat-button>auditions</button>
-        <button mat-button>organizations</button>
-        <button mat-button>people</button>
-
+    <span class="center-buttons">
+        <button mat-button>Auditions</button>
+        <button mat-button>Organizations</button>
+        <button mat-button>People</button>
     </span>
 
-    <span>
-        <button mat-button [matMenuTriggerFor]="menu">profile</button>
+    <span class = "right-buttons">
+        <!-- TODO: Put the profile pic (or default one) here instead of the word "Profile" -->
+        <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
     </span>
 
 </nav>
 
-<!-- Hide this over here so it doesn't get affected y -->
-<mat-menu #menu="matMenu">
-    <button mat-menu-item *ngIf="loggedIn | async">view</button>
-    <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "logout" : "login"}}</button>
+<!-- Hide these over here so it doesn't get affected y -->
+<mat-menu #profileMenu="matMenu">
+    <button mat-menu-item *ngIf="loggedIn | async">Portfolio</button>
+    <button mat-menu-item *ngIf="loggedIn | async">Settings</button>
+    <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "Logout" : "Login"}}</button>
 </mat-menu>
