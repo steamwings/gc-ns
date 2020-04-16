@@ -1,11 +1,26 @@
 <nav>
 
-<button mat-button>home</button>
-<button mat-button>organizations</button>
-<button mat-button [matMenuTriggerFor]="menu">profile</button>
-<mat-menu #menu="matMenu">
-    <button mat-menu-item>view</button>
-    <button mat-menu-item (click)="LogX()">{{(loggedIn | async) ? "logout" : "login"}}</button>
-</mat-menu>
+    <span class="title-image">
+        <button mat-button (click)="goHome()">
+            <img src="assets/images/Title-smallish.png" height="42" />
+        </button>
+    </span>
+
+    <span class="nav-buttons">
+        <button mat-button>auditions</button>
+        <button mat-button>organizations</button>
+        <button mat-button>people</button>
+
+    </span>
+
+    <span>
+        <button mat-button [matMenuTriggerFor]="menu">profile</button>
+    </span>
 
 </nav>
+
+<!-- Hide this over here so it doesn't get affected y -->
+<mat-menu #menu="matMenu">
+    <button mat-menu-item *ngIf="loggedIn | async">view</button>
+    <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "logout" : "login"}}</button>
+</mat-menu>

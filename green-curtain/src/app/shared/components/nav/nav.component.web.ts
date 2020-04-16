@@ -16,7 +16,11 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-  LogX() {
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+
+  logX() {
     if (this.userService.isLoggedIn) {
       this.userService.logout();
     } else {

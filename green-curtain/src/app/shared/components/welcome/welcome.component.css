@@ -4,7 +4,11 @@
     margin: 100px 0px;
 }
 
+.mat-card {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
 .mat-button {
-    background-color: rgba(39, 153, 84, 0.8);
+    background-color: rgba(39, 153, 84, 1);
     color: white;
 }

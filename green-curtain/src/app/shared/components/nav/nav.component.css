@@ -1,4 +1,22 @@
 nav {
-    background-color: rgba(39, 153, 84, .9);
+    background-color: rgba(39, 153, 84, .85);
     color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+span:first-child {
+    margin-right: auto;
+    justify-content: left;
+}
+
+span:last-child {
+    margin-left: auto;
+    justify-content: right;
+}
+
+span {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
