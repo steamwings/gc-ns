@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
+/**
+ * The first component seen for mobile and web.
+ */
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -11,7 +14,7 @@ export class WelcomeComponent implements OnInit {
   title = 'Welcome!';
   buttonText = 'Get Started';
   bannerText = 'Green Curtain';
-  tagline = 'the ultimate tool for actors and artists';
+  tagline = 'The ultimate tool for actors and artists.';
 
   constructor(private user: UserService, private router: Router) { }
 

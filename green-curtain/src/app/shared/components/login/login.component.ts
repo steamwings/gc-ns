@@ -19,8 +19,8 @@ const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".
 })
 export class LoginComponent implements OnInit {
 
-  title = 'Green Curtain';
   isLoggingIn = true;
+  title: string;
   processing: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   user: LoginFormUser;
   @ViewChild('name', { static: false }) name: ElementRef;
@@ -37,10 +37,16 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.setTitle();
+  }
+
+  private setTitle() {
+    this.title = this.isLoggingIn ? 'Welcome back!' : 'Create a new account';
   }
 
   toggleForm() {
     this.isLoggingIn = !this.isLoggingIn;
+    this.setTitle();
   }
 
   submit() {

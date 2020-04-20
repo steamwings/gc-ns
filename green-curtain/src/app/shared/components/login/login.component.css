@@ -14,6 +14,10 @@
     min-width: 300px;
 }
 
+.mat-card {
+    background-color: rgba(255, 255, 255, 1);
+}
+
 .clickable {
     font-size: 80%;
 }

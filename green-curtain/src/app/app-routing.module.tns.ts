@@ -27,7 +27,7 @@ const appRoutes: Routes = [
 routes.forEach(r => appRoutes.push(r));
 
 @NgModule({
-  imports: [NativeScriptRouterModule.forRoot(appRoutes, {enableTracing: environment.verbose})],
+  imports: [NativeScriptRouterModule.forRoot(appRoutes, {enableTracing: environment.traceRoutes})],
   exports: [NativeScriptRouterModule]
 })
 export class AppRoutingModule { }

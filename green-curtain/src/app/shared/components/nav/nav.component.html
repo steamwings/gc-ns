@@ -1,11 +1,27 @@
 <nav>
 
-<button mat-button>home</button>
-<button mat-button>organizations</button>
-<button mat-button [matMenuTriggerFor]="menu">profile</button>
-<mat-menu #menu="matMenu">
-    <button mat-menu-item>view</button>
-    <button mat-menu-item (click)="LogX()">{{(loggedIn | async) ? "logout" : "login"}}</button>
-</mat-menu>
+    <span class="title-image">
+        <button mat-button (click)="goHome()">
+            <img src="assets/images/Title-smallish.png" height="42" />
+        </button>
+    </span>
+
+    <span class="center-buttons">
+        <button mat-button>Auditions</button>
+        <button mat-button>Organizations</button>
+        <button mat-button>People</button>
+    </span>
+
+    <span class = "right-buttons">
+        <!-- TODO: Put the profile pic (or default one) here instead of the word "Profile" -->
+        <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
+    </span>
 
 </nav>
+
+<!-- Hide these over here so it doesn't get affected by CSS -->
+<mat-menu #profileMenu="matMenu">
+    <button mat-menu-item *ngIf="loggedIn | async">Portfolio</button>
+    <button mat-menu-item *ngIf="loggedIn | async">Settings</button>
+    <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "Logout" : "Login"}}</button>
+</mat-menu>
