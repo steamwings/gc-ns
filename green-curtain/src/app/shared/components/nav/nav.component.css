@@ -6,21 +6,26 @@ nav {
     flex-wrap: wrap;
 }
 
+span {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
 span:first-child {
     margin-right: auto;
     justify-content: left;
 }
-
 
 span:last-child {
     margin-left: auto;
     justify-content: right;
 }
 
-span {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+/* Children of the last span go right as well...
+   This shouldn't be needed, but it fixes the spacing for "Profile" in Chrome */
+span:last-child > * {
+    margin-left: auto;
 }
 
 /*  For best appearance, this max-width needs to be changed 

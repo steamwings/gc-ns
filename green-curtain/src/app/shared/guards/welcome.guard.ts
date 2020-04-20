@@ -17,7 +17,10 @@ export class WelcomeGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    this.log.verbose('Welcome Guard activated');
+    this.log.verbose('Welcome Guard activated (seenWelcome: ' + this.user.seenWelcome + ')');
+    if (!this.user.seenWelcome) {
+      this.router.navigate(['/welcome']);
+    }
     return this.user.seenWelcome;
   }
 }
