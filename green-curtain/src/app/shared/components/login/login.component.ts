@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   private setTitle() {
-    this.title = this.isLoggingIn ? 'Returning User' : 'Create an Account';
+    this.title = this.isLoggingIn ? 'Welcome back!' : 'Create a new account';
   }
 
   toggleForm() {
