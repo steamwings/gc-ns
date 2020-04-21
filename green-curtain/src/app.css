@@ -2,53 +2,76 @@
  * Styles used by NativeScript   
  */
  
- @import '~nativescript-theme-core/css/core.light.css';
+@import '~nativescript-theme-core/css/core.light.css';
 
- .ns-root {
-     --gc-green: #229954;
-     --gc-gold: #f5b045;
-     --gc-purple: #733b99;
-     --gc-dark-grey: #362c41;
- }
+.ns-root {
+--gc-green: #229954;
+--gc-gold: #f5b045;
+--gc-purple: #733b99;
+--gc-dark-grey: #362c41;
+}
 
- .btn {
-     height: 50;
-     border-radius: 5;
-     font-size: 20;
-     font-weight: 600;
-     background-color: var(--gc-green);
-     color: white;
- }
+/* Font Awesome Solid*/
+.fas {
+    font-family: 'Font Awesome 5 Free', 'fa-solid-900';
+    font-weight: 900;
+}
 
- .btn:disabled {
-     opacity: 0.5;
- }
+.btn {
+height: 50;
+border-radius: 5;
+font-size: 20;
+font-weight: 600;
+background-color: var(--gc-green);
+color: white;
+}
 
- .bg-green {
-     background-color: var(--gc-green);
- }
+.btn-small {
+    height: 35;
+    font-size: 15;
+    font-weight: 400;
+}
 
- .bg-gold {
-     background-color: var(--gc-gold);
- }
+.btn:disabled {
+opacity: 0.5;
+}
 
- .bg-purple {
-     background-color: var(--gc-purple);
- }
+.bg-green {
+background-color: var(--gc-green);
+}
 
- .bg-dark-grey {
-     background-color: var(--gc-dark-grey);
- }
+.bg-gold {
+background-color: var(--gc-gold);
+}
 
- .title {
-     font-size: 30;
-     text-align: left;
- }
+.bg-purple {
+background-color: var(--gc-purple);
+}
 
- .progressBar {
-     color: var(--gc-green);
- }
+.bg-dark-grey {
+background-color: var(--gc-dark-grey);
+}
+
+.title {
+font-size: 30;
+text-align: left;
+}
+
+.progressBar {
+color: var(--gc-green);
+}
 
 .app-activity {
     color: var(--gc-green);
+}
+
+/* Alas NS does not support :last-child, so we can't do this 
+.home-view:last-child {
+    margin-bottom: 80;
+} 
+*/
+
+/* TODO: this should be dynamic */
+.margin-for-navbar {
+    margin-bottom: 90;
 }
