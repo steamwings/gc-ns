@@ -1,1 +1,39 @@
 /* Add mobile styles for the component here.  */
+
+
+.settings-gears {
+    color: white;
+    font-size: 30;
+    margin-right: 15;
+}
+
+Label {
+    color: white;
+    horizontal-align: center;
+}
+
+.title, .profile-header {
+    horizontal-align: left;
+}
+
+Label.info {
+    font-size: 20;
+    margin-left: 10;
+}
+
+Label.lock {
+    margin-left: 4;
+    vertical-align: middle;
+}
+
+Label.profile-header {
+    margin-left: 10;
+    margin-top: 15;
+    font-size: 30;
+}
+
+Image {
+    horizontal-align: center;
+    width: 50%;
+    margin-bottom: 5;
+}

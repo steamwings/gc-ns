@@ -36,9 +36,7 @@
             </GridLayout>
         </PreviousNextView>
 
-        <!-- <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!processing" (tap)="submit()"
-            class="btn btn-primary m-t-20"></Button> -->
-            <!-- TODO: Is nsRouterLink bypassing the AuthGuard? -->
+        <!-- TODO: Is nsRouterLink bypassing the AuthGuard? -->
         <Button [text]="isLoggingIn ? 'Log In' : 'Sign Up'" [isEnabled]="!(processing | async)" (tap)="submit()"
             [nsRouterLink]="['/home']" pageTransition="slide" clearHistory="true"
             class="btn bg-green m-t-20"></Button>

@@ -1,10 +1,10 @@
-import { Component, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from "@angular/core";
+import { Component, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { screen } from '@nativescript/core/platform';
 import { GridLayout } from '@nativescript/core/ui/layouts/grid-layout';
 import { PanGestureEventData, GestureStateTypes, GestureEventData } from '@nativescript/core/ui/gestures';
 import { AnimationCurve } from '@nativescript/core/ui/enums';
-import { SelectedIndexChangedEventData } from "@nativescript/core/ui/tab-view";
-import { RouterExtensions } from "@nativescript/angular"
+import { SelectedIndexChangedEventData } from '@nativescript/core/ui/tab-view';
+import { RouterExtensions } from '@nativescript/angular';
 
 @Component({
     selector: 'app-home',
