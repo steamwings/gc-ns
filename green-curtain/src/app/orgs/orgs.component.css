@@ -1,0 +1,15 @@
+
+.orgs-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.org-card {
+    margin: 15px;
+    min-width: 300px;
+    width: 60%;
+    max-width: 700px;
+}
+

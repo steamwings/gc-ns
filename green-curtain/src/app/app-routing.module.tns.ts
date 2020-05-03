@@ -20,8 +20,6 @@ const appRoutes: Routes = [
       { path: '', component: ProfileComponent, outlet: 'profile' },
     ]
   },
-  { path: 'review', component: ReviewComponent },
-  { path: 'settings', component: SettingsComponent }
 ];
 
 routes.forEach(r => appRoutes.push(r));

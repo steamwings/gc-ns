@@ -1,5 +1,5 @@
 /**
- * Styles used by Angular
+ * Styles used by Angular for web
  */
 
 /* You can add global styles to this file, and also import other style files */
@@ -15,8 +15,13 @@
     --gc-green: #229954;
 }
 
+h1 {
+    text-align: center;
+    color: white;
+}
+
 /* This seems to be overwritten or ignored--why? */
-.mat-button {
+body > button {
     background-color: rgba(39, 153, 84, 0.8);
     /* background: #6D3891; */
     color: white;

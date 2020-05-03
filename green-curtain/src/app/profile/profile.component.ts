@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   constructor(private userSvc: UserService, private router: Router) { }
-
+  private title = 'Profile';
+  get Title() { return this.title; }
   private name = 'Sam Doe';
   private dob = 'September 3rd, 1989';
   private cogs = String.fromCharCode(0xf085);

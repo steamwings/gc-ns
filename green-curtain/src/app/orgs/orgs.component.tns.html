@@ -1,11 +1,11 @@
 <GridLayout rows="auto, *" class="bg-green">
     <GridLayout row="0" height="60">
         <Label paddingLeft="10" class="title" verticalAlignment="center" fontWeight="bold" color="#fff"
-            text="organizations"></Label>
+            text="{{title}}"></Label>
     </GridLayout>
     <StackLayout row="1">
         <ScrollView>
-            <ListView class="orgs-list bg-green" [items]="orgs$ | async" height="100%">
+            <ListView class="orgs-list bg-green" [items]="orgs$ | async">
                 <ng-template let-org="item">
                     <GridLayout>
                         <GridLayout class="card" (tap) = "select(org)">

@@ -22,9 +22,9 @@ span:last-child {
     justify-content: right;
 }
 
-/* Children of the last span go right as well...
-   This shouldn't be needed, but it fixes the spacing for "Profile" in Chrome */
-span:last-child > * {
+/* First Child of the last span goes right as well
+   This shouldn't be needed, but it fixes the spacing in Chrome */
+span:last-child > *:first-child {
     margin-left: auto;
 }
 
@@ -32,6 +32,10 @@ span:last-child > * {
     if the nav buttons are changed. */
 @media screen and (max-width: 600px) {
     
+    .title-image {
+        height: 32px;
+    }
+
     .right-buttons {
         order: 2;
     }

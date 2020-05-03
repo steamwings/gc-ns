@@ -12,7 +12,6 @@ import { LocalStorageService } from '@src/app/shared/services/local-storage.serv
 import { ApiService } from '@src/app/shared/services/api.service';
 
 import { AppComponent } from '@src/app/app.component';
-import { HomeComponent } from '@src/app/home/home.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
 import { LoginComponent } from '@src/app/shared/components/login/login.component';
 import { NavComponent } from '@src/app/shared/components/nav/nav.component';
@@ -29,7 +28,6 @@ import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     WelcomeComponent,
     LoginComponent,
     NavComponent,
