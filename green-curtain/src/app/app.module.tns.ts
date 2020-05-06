@@ -25,6 +25,7 @@ import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
+import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
 
 /**
  * AppModule for mobile
@@ -42,6 +43,7 @@ import { SettingsComponent } from '@src/app/shared/components/settings/settings.
     OrgsComponent,
     ReviewComponent,
     SettingsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     NativeScriptModule,

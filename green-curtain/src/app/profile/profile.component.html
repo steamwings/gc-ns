@@ -1,1 +1,16 @@
-<p>{{title}} works!</p>
+<h1>{{title}}</h1>
+
+<div class="profile-items-list">
+    <!-- <img src="~/assets/images/morgan.png"></img> -->
+    <div *ngFor="let item of info" class="info">
+        {{item.text}}     
+        <span *ngIf="item.lockable" class="fas lock">{{item.locked ? locked : unlocked}}</span>
+    </div>
+</div>
+
+<div class="portfolio">
+    <h2>portfolio</h2>
+    <button mat-button>
+        + Add an experience
+    </button>    
+</div>

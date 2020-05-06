@@ -14,7 +14,7 @@
     </span>
 
     <span class = "right-buttons">
-        <button mat-button>Your Orgs</button>
+        <button mat-button (click)="go('/orgs')">Your Orgs</button>
         <!-- TODO: Put the profile pic (or default one) here instead of the word "Profile" -->
         <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
     </span>
@@ -23,7 +23,7 @@
 
 <!-- Hide these over here so it doesn't get affected by CSS -->
 <mat-menu #profileMenu="matMenu">
-    <button mat-menu-item *ngIf="loggedIn | async">Profile</button>
-    <button mat-menu-item *ngIf="loggedIn | async">Settings</button>
+    <button mat-menu-item *ngIf="loggedIn | async" (click)="go('/profile')">Profile</button>
+    <button mat-menu-item *ngIf="loggedIn | async" (click)="go('/settings')">Settings</button>
     <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "Logout" : "Login"}}</button>
 </mat-menu>

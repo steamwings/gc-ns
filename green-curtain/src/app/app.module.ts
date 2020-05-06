@@ -21,6 +21,7 @@ import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
+import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
 
 /**
  * AppModule for web
@@ -36,6 +37,7 @@ import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
     OrgsComponent,
     ReviewComponent,
     SettingsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
