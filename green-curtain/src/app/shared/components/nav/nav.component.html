@@ -1,18 +1,20 @@
 <nav>
 
-    <span class="title-image">
-        <button mat-button (click)="goHome()">
-            <img src="assets/images/Title-smallish.png" height="42" />
+    <span>
+        <button mat-button (click)="go('/home')">
+            <img class="title-image" src="assets/images/Title-smallish.png" height="42" />
         </button>
     </span>
 
     <span class="center-buttons">
-        <button mat-button>Auditions</button>
-        <button mat-button>Organizations</button>
-        <button mat-button>People</button>
+        <!-- TODO: Go to search component with parameters -->
+        <button mat-button *ngFor="let btn of centerButtons | async" (click)="go(btn.path)">
+            {{btn.title}}
+        </button>
     </span>
 
     <span class = "right-buttons">
+        <button mat-button (click)="go('/orgs')">Your Orgs</button>
         <!-- TODO: Put the profile pic (or default one) here instead of the word "Profile" -->
         <button mat-button [matMenuTriggerFor]="profileMenu">Profile</button>
     </span>
@@ -21,7 +23,7 @@
 
 <!-- Hide these over here so it doesn't get affected by CSS -->
 <mat-menu #profileMenu="matMenu">
-    <button mat-menu-item *ngIf="loggedIn | async">Portfolio</button>
-    <button mat-menu-item *ngIf="loggedIn | async">Settings</button>
+    <button mat-menu-item *ngIf="loggedIn | async" (click)="go('/profile')">Profile</button>
+    <button mat-menu-item *ngIf="loggedIn | async" (click)="go('/settings')">Settings</button>
     <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "Logout" : "Login"}}</button>
 </mat-menu>

@@ -1,7 +1,7 @@
 <GridLayout rows="auto, *" class="bg-purple home-view">
     <GridLayout row="0" columns="*, auto" height="60">
         <Label column="0" paddingLeft="10" class="title" verticalAlignment="center" fontWeight="bold" color="#fff"
-            text="profile"></Label>
+            text="{{title}}"></Label>
         <GridLayout column="1" verticalAlignment="middle" horizontalAlignment="center">
             <Label [text]="cogs" class="fas settings-gears" (tap)="goToSettings()" automationText="Settings"></Label>
         </GridLayout>

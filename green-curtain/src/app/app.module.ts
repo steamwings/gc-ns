@@ -12,7 +12,6 @@ import { LocalStorageService } from '@src/app/shared/services/local-storage.serv
 import { ApiService } from '@src/app/shared/services/api.service';
 
 import { AppComponent } from '@src/app/app.component';
-import { HomeComponent } from '@src/app/home/home.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
 import { LoginComponent } from '@src/app/shared/components/login/login.component';
 import { NavComponent } from '@src/app/shared/components/nav/nav.component';
@@ -22,6 +21,7 @@ import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
+import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
 
 /**
  * AppModule for web
@@ -29,7 +29,6 @@ import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     WelcomeComponent,
     LoginComponent,
     NavComponent,
@@ -38,6 +37,7 @@ import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
     OrgsComponent,
     ReviewComponent,
     SettingsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

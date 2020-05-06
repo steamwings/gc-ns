@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  verbose: true, // Enable for way too much output
-  traceRoutes: false, // Enable to see routing
+  verbose: false, // Enable for way too much output
+  traceRoutes: false, // Enable to see routing details
   apiUrl: 'https://gcapi0-staging.azurewebsites.net/api',
   apiKey: 'BVgzNb1Fnwnun1KI9piYnX6Itz3f7lEMPYMQoS90uFI4i1gQ2pkwKA==',
   apiHeader: 'x-functions-key'

@@ -13,6 +13,7 @@ import { SettingsComponent } from '@src/app/shared/components/settings/settings.
 
 
 const appRoutes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' }, // Default route
   {
     path: 'home', component: HomeComponent, canActivate: [AuthGuard], children: [
       { path: '', component: OrgsComponent, outlet: 'orgs' },
@@ -20,8 +21,6 @@ const appRoutes: Routes = [
       { path: '', component: ProfileComponent, outlet: 'profile' },
     ]
   },
-  { path: 'review', component: ReviewComponent },
-  { path: 'settings', component: SettingsComponent }
 ];
 
 routes.forEach(r => appRoutes.push(r));

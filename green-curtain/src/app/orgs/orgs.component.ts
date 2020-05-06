@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrganization } from '../shared/models/org.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { SampleOrgs } from '../shared/models/sample-orgs';
 import { Router } from '@angular/router';
 
+/**
+ * Component for saved/followed organizations
+ * Mobile and web
+ */
 @Component({
   selector: 'app-orgs',
   templateUrl: './orgs.component.html',
@@ -11,7 +15,8 @@ import { Router } from '@angular/router';
 })
 export class OrgsComponent implements OnInit {
 
-  orgs$: Observable<IOrganization[]> = new Observable((subscriber) => { subscriber.next(SampleOrgs); });
+  private title = 'Your Organizations';
+  orgs$: BehaviorSubject<IOrganization[]> = new BehaviorSubject(SampleOrgs);
   constructor(private router: Router) { }
 
   ngOnInit() {
