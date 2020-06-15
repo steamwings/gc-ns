@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
-import { LoginFormUser } from '../models/user.model';
+import { LoginFormUser } from '../models/user/user.model';
 import { StorageService } from './storage.service';
 import { LogService } from './log.service';
 import { ApiService } from './api.service';
@@ -24,7 +24,7 @@ export class UserService {
     private api: ApiService,
     private log: LogService,
   ) {
-    const user = storage.get<LoginFormUser>(USER_KEY);
+    const user = storage.get<LoginFormUser>(USER_KEY); // TODO: Don't save the LoginFormUser, since it has the password!
     if (user != null) {
       log.verbose('User from storage: ' + JSON.stringify(user));
       if (user.email) {
@@ -74,7 +74,7 @@ export class UserService {
       this.log.verbose('token: ' + resp.token);
       this.log.verbose('User from callback: ' + JSON.stringify(user));
       this.storage.set(TOKEN_KEY, resp.token);
-      this.storage.set(USER_KEY, user);
+      this.storage.set(USER_KEY, user); // TODO: Don't save the LoginFormUser, since it has the password!
       this.navigate();
       resolve();
     } else if (resp.hasOwnProperty('status')) {

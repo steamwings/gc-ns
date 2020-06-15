@@ -1,4 +1,4 @@
-import { IParty } from './party.model';
+import { IParty } from '../party/party.model';
 import { IQuestion } from './question.model';
 
 export interface IReview {
