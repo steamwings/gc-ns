@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IQuestion, NumberAnswer } from '../../models/question.model';
+import { IQuestion, NumberAnswer } from '../../models/reviews/question.model';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs'; // TODO
-import { sampleOrgReview, sampleTheaterReview } from '../../models/sample-questions';
-import { IReview } from '../../models/review.model';
+import { sampleOrgReview, sampleTheaterReview } from '../../models/reviews/sample-questions';
+import { IReview } from '../../models/reviews/review.model';
 import { LogService } from '../../services/log.service';
 
 @Component({

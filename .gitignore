@@ -70,8 +70,9 @@ tsconfig.tns.json
 !.vscode/extensions.json
 *.code-workspace
 
-#fonts
+# exclude misc fonts
 *.ttf
+# include the font-awesome free pack we actually use
 !fa-solid-900.ttf
 
 # System Files

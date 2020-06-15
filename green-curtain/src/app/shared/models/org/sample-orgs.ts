@@ -1,5 +1,5 @@
 import { BasicOrg, FullOrg } from "./org.model";
-import { MarkerList, Flag, Highlight, Concern } from "./marker.model";
+import { MarkerList, Flag, Highlight, Concern } from "../party/marker.model";
 
 const emptyMarkerList : MarkerList = {highlights:[], concerns:[], flags:[]}
 const sampleMarkerList: MarkerList = { highlights: [], concerns: [], flags: [] }

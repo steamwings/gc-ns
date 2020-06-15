@@ -1,4 +1,4 @@
-import { IModel } from "./model.model";
+import { IModel } from "../model.model";
 import { IPartyRef } from "./party.model";
 
 /**

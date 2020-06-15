@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginFormUser } from '@src/app/shared/models/user.model';
+import { LoginFormUser } from '@src/app/shared/models/user/user.model';
 import { UserService } from '@src/app/shared/services/user.service';
 import { PopupService } from '../../services/popup.service';
 import { BasicPopupService } from '../../services/basic-popup.service';

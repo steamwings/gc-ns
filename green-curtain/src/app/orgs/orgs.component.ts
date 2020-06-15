@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IOrganization } from '../shared/models/org.model';
+import { IOrganization } from '../shared/models/org/org.model';
 import { BehaviorSubject } from 'rxjs';
-import { SampleOrgs } from '../shared/models/sample-orgs';
+import { SampleOrgs } from '../shared/models/org/sample-orgs';
 import { Router } from '@angular/router';
 
 /**
