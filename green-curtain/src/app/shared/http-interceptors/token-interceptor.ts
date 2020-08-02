@@ -6,7 +6,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { environment } from '@src/environments/environment';
 import { UserService } from '../services/user.service';
-import { map } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { LogService } from '../services/log.service';
 
 @Injectable()
@@ -14,6 +14,12 @@ export class TokenInterceptor implements HttpInterceptor {
 
     constructor(private userSvc: UserService, private log: LogService) { }
 
+    /**
+     * Appends an authentication token to the outbound request and triggers reauthentication flow 
+     * for 401 responses from our API.
+     * @param req 
+     * @param next 
+     */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this.userSvc.isLoggedIn
             && req.url.includes(environment.apiUrl)) {
@@ -23,19 +29,26 @@ export class TokenInterceptor implements HttpInterceptor {
                     Authorization: `Bearer ${token}`
                 }
             });
-            this.log.debug(`Authorization token added: ${token}`);
             this.log.verbose('token-interceptor request', req);
+            // TODO This map is not working
+            return next.handle(req).pipe(map(event => {
+                this.log.verbose('token-interceptor response', event);
+                if(event == null) {
+                    this.log.error('tears');
+                }
+                if (event instanceof HttpErrorResponse
+                    && event.url.includes(environment.apiUrl)
+                    && event.status === 401) {
+                    this.userSvc.reauthenticate();
+                    throwError('Unauthorized');
+                } else {
+                    return event;
+                }
+            }));
+            
+        } else {
+            this.log.verbose('token-interceptor ignoring request');
+            return next.handle(req);
         }
-        return next.handle(req).pipe(map(resp => {
-            this.log.verbose('token-interceptor response', resp);
-            if (resp instanceof HttpErrorResponse
-                && resp.url.includes(environment.apiUrl)
-                && resp.status === 401) {
-                this.userSvc.reauthenticate();
-                throwError('Unauthorized');
-            } else {
-                return resp;
-            }
-        }));
     }
 }

@@ -76,10 +76,10 @@ export class LoginComponent implements OnInit {
         // this.routerExtensions.navigate(["/home"], { clearHistory: true });
         // this.router.navigate(['/home']);
         this.processing.next(false);
-        this.log.debug('LoginComponent logged in');
+        this.log.debug('LoginComponentL: logged in');
       }).catch((code) => {
         this.processing.next(false);
-        this.popup.warning(`${code}`);
+        this.popup.warning(`Login failed. ${code}`);
       });
   }
 
@@ -92,11 +92,11 @@ export class LoginComponent implements OnInit {
     this.userService.register(this.user)
       .then(() => {
         this.processing.next(false);
-        this.isLoggingIn = true;
+        this.log.debug('LoginComponent: registered');
       }).catch((code) => {
         // TODO handle dupes!
         this.processing.next(false);
-        this.popup.warning(`${code}`);
+        this.popup.warning(`Register failed. ${code}`);
       });
   }
 

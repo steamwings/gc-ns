@@ -7,6 +7,7 @@ export const environment = {
   verbose: false, // Enable for way too much output
   traceRoutes: false, // Enable to see routing details
   apiUrl: 'https://gcapi0-staging.azurewebsites.net/api',
+  //apiUrl: 'http://localhost:7071/api',
   apiKey: 'BVgzNb1Fnwnun1KI9piYnX6Itz3f7lEMPYMQoS90uFI4i1gQ2pkwKA==',
   apiHeader: 'x-functions-key'
 };

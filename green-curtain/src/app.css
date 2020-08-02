@@ -5,10 +5,10 @@
 @import '~nativescript-theme-core/css/core.light.css';
 
 .ns-root {
---gc-green: #229954;
---gc-gold: #f5b045;
---gc-purple: #733b99;
---gc-dark-grey: #362c41;
+    --gc-green: #229954;
+    --gc-gold: #f5b045;
+    --gc-purple: #733b99;
+    --gc-dark-grey: #362c41;
 }
 
 /* Font Awesome Solid*/
@@ -18,12 +18,12 @@
 }
 
 .btn {
-height: 50;
-border-radius: 5;
-font-size: 20;
-font-weight: 600;
-background-color: var(--gc-green);
-color: white;
+    height: 50;
+    border-radius: 5;
+    font-size: 20;
+    font-weight: 600;
+    background-color: var(--gc-green);
+    color: white;
 }
 
 .btn-small {
@@ -33,32 +33,32 @@ color: white;
 }
 
 .btn:disabled {
-opacity: 0.5;
+    opacity: 0.5;
 }
 
 .bg-green {
-background-color: var(--gc-green);
+    background-color: var(--gc-green);
 }
 
 .bg-gold {
-background-color: var(--gc-gold);
+    background-color: var(--gc-gold);
 }
 
 .bg-purple {
-background-color: var(--gc-purple);
+    background-color: var(--gc-purple);
 }
 
 .bg-dark-grey {
-background-color: var(--gc-dark-grey);
+    background-color: var(--gc-dark-grey);
 }
 
 .title {
-font-size: 30;
-text-align: left;
+    font-size: 30;
+    text-align: left;
 }
 
 .progressBar {
-color: var(--gc-green);
+    color: var(--gc-green);
 }
 
 .app-activity {

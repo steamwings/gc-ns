@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
-import { LoginFormUser } from '../models/user/user.model';
+import { LoginFormUser, UserProfile, UserFull, UserDetail } from '../models/user/user.model';
 import { StorageService } from './storage.service';
 import { LogService } from './log.service';
 import { ApiService } from './api.service';
+import { HttpResponse } from '@angular/common/http';
+import "@src/app/shared/utilities/object-utility";
 
 const USER_KEY = 'user';
 const TOKEN_KEY = 'token';
@@ -14,7 +16,10 @@ const TOKEN_KEY = 'token';
   providedIn: 'root',
 })
 export class UserService {
-  loggedIn$ = new BehaviorSubject<boolean>(false);
+  private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  private _user$ = new BehaviorSubject<UserDetail>(null);
+  private _profile$ = new BehaviorSubject<UserProfile>(new UserProfile());
+  private _token : string;
   public seenWelcome = false;
   public redirectUrl = '/home';
 
@@ -24,26 +29,38 @@ export class UserService {
     private api: ApiService,
     private log: LogService,
   ) {
-    const user = storage.get<LoginFormUser>(USER_KEY); // TODO: Don't save the LoginFormUser, since it has the password!
-    if (user != null) {
-      log.verbose('User from storage: ' + JSON.stringify(user));
-      if (user.email) {
-        this.loggedIn$.next(true);
+    const userDetail = storage.getUserDetail();
+    if (userDetail != null) {
+      log.verbose('User from storage: ' + JSON.stringify(userDetail));
+      this._user$.next(userDetail);
+      const token = storage.getUserToken();
+      if (token != null) { // TODO check token status (if expired, valid)
+        this._token = token;
+        this._isLoggedIn$.next(true);
+        // TODO remove
         this.seenWelcome = true;
       }
     }
   }
 
   get isLoggedIn() {
-    return this.loggedIn$.value;
+    return this._isLoggedIn$.value;
   }
 
   get isLoggedIn$() {
-    return this.loggedIn$.asObservable();
+    return this._isLoggedIn$.asObservable();
+  }
+
+  get user$() {
+    return this._user$.asObservable();
+  }
+
+  get profile$() {
+    return this._profile$.asObservable();
   }
 
   get token() {
-    return this.storage.get(TOKEN_KEY);
+    return this._token;
   }
 
   login(user: LoginFormUser) { // TODO hash password
@@ -64,29 +81,65 @@ export class UserService {
 
   reauthenticate() {
     this.log.debug('Reauthentication requested.');
-    this.loggedIn$.next(false);
+    this._isLoggedIn$.next(false);
     this.router.navigate(['/login']);
   }
 
-  private loginRegisterCallback = (user, resp, resolve, reject) => {
+  updateProfile(profile: UserProfile) {
+    return new Promise((resolve, reject) => {
+      this.api.setProfile(profile).subscribe(r => {
+        this.log.info("set response " + JSON.stringify(r));
+        this.api.getProfile(this._user$.value.id).subscribe((r) => {
+          this.log.info(JSON.stringify(r));
+          this._profile$.next(r.body);
+          resolve();
+        }, error => reject(error));
+      }, error => reject(error))
+    });
+  }
+  
+  logout() {
+    this.log.debug('Performing logout...');
+    this._isLoggedIn$.next(false);
+    this.storage.clearUser();
+    this.router.navigate(['/login']);
+  }
+
+  // TODO
+  resetPassword(email: string) {
+    return new Promise(() => {});
+  }
+
+  private loginRegisterCallback = (user: LoginFormUser, resp: HttpResponse<UserFull>, resolve, reject) => {
     this.log.verbose(JSON.stringify(resp));
-    if (resp.hasOwnProperty('token')) {
-      this.log.verbose('token: ' + resp.token);
+    if (!isNullOrUndefined(resp.body.token)) {
+      var detail = this._user$.value;
+      var profile = this._profile$.value;
+      this.log.verbose('token: ' + resp.body.token);
       this.log.verbose('User from callback: ' + JSON.stringify(user));
-      this.storage.set(TOKEN_KEY, resp.token);
-      this.storage.set(USER_KEY, user); // TODO: Don't save the LoginFormUser, since it has the password!
-      this.navigate();
+
+      //profile.copyMatchingValuedPropertiesFrom(resp.body.profile);
+      //detail.copyMatchingValuedPropertiesFrom(resp.body);
+
+      // Save details, profile, token to storage and service state
+      this.storage.setUserToken(resp.body.token);
+      this._token = resp.body.token;
+      this.storage.setUserDetail(detail);
+      this._user$.next(detail);
+      this.storage.setUserProfile(profile);
+      this._profile$.next(profile);
+      
       resolve();
-    } else if (resp.hasOwnProperty('status')) {
-      reject(resp.status);
+      this.navigate();
     } else {
-      this.log.error('No token in response!');
-      reject('Something went wrong. Please try again soon.');
+      var msg = resp.hasOwnProperty('status') ? resp.status.toString() : 'Something went wrong. Please try again soon.';
+      reject(msg);
+      this.log.error(msg);
     }
    }
 
   private navigate() {
-    this.loggedIn$.next(true);
+    this._isLoggedIn$.next(true);
     if (!isNullOrUndefined(this.redirectUrl)) {
       this.log.verbose('User service navigating to ' + this.redirectUrl);
       this.router.navigate([this.redirectUrl]);
@@ -95,19 +148,6 @@ export class UserService {
       this.log.verbose('User service navigating to home');
       this.router.navigate(['/home']);
     }
-  }
-
-  logout() {
-    this.log.debug('Performing logout...');
-    this.loggedIn$.next(false);
-    this.storage.remove(USER_KEY);
-    this.storage.remove(TOKEN_KEY);
-    this.router.navigate(['/login']);
-  }
-
-  // TODO
-  resetPassword(email: string) {
-    return new Promise(() => {});
   }
 
 }

@@ -22,6 +22,10 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
 import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
+import { FooterComponent } from '@src/app/shared/components/footer/footer.component';
+
+import { MyLetDirective } from '@src/app/shared/directives/my-let.directive';
+import { ProfileEditComponent } from '@src/app/shared/components/profile-edit/profile-edit.component';
 
 /**
  * AppModule for web
@@ -38,6 +42,9 @@ import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found
     ReviewComponent,
     SettingsComponent,
     PageNotFoundComponent,
+    MyLetDirective,
+    FooterComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,

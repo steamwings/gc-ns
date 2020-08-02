@@ -1,0 +1,25 @@
+.my-root {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.my-outlet {
+    flex: 1;
+}
+
+/* TODO: How to vertically center by default?*/
+/* 
+.my-outlet div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
+app-nav {
+    flex: 0 0 content;
+}
+
+app-footer {
+    flex: 0 0 content;
+}
