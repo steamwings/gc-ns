@@ -7,6 +7,7 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AccountDetailsComponent } from './shared/components/account-details/account-details.component';
 
 // These routes are shared between mobile and web
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'review', component: ReviewComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: 'account-details', component: AccountDetailsComponent},
+  { path: '**', component: PageNotFoundComponent },
 ];

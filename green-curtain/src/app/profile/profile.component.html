@@ -1,16 +1,26 @@
 <h1>{{title}}</h1>
 
-<div class="profile-items-list">
-    <!-- <img src="~/assets/images/morgan.png"></img> -->
+<!-- <div class="profile-items-list">
+    < !-- <img src="~/assets/images/morgan.png"></img> -- >
     <div *ngFor="let item of info" class="info">
         {{item.text}}     
         <span *ngIf="item.lockable" class="fas lock">{{item.locked ? locked : unlocked}}</span>
     </div>
+
+</div> -->
+
+<div class="profile-items-list" *myLet="profile$ | async as profile">
+    <div>{{profile.domains}}</div>
+    <div>{{profile.bio}}</div>
+    
+    <button mat-button (click)="goToUserDetails()">
+        Edit Details
+    </button>
 </div>
 
 <div class="portfolio">
     <h2>portfolio</h2>
-    <button mat-button>
+    <button mat-button (click)="addExperience()">
         + Add an experience
-    </button>    
+    </button>
 </div>

@@ -7,7 +7,7 @@
             <GridLayout rows="auto, auto, auto, auto">
                 <StackLayout row="0" *ngIf="!isLoggingIn" class="input-field">
                     <TextField class="input" hint="Full Name" [isEnabled]="!(processing | async)"
-                        autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.name"
+                        autocorrect="false" autocapitalizationType="words" [(ngModel)]="user.name"
                         returnKeyType="next" (returnPress)="focusEmail()"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>

@@ -9,12 +9,13 @@ registerElement('PreviousNextView', () => require('nativescript-iqkeyboardmanage
 
 import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-bar.directive';
 import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
+import { MyLetDirective } from '@src/app/shared/directives/my-let.directive';
 
 import { UserService } from '@src/app/shared/services/user.service';
 import { ApiService } from '@src/app/shared/services/api.service';
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
-import { httpInterceptorProviders } from './shared/http-interceptors';
+import { httpInterceptorProviders } from '@src/app/shared/http-interceptors/index';
 
 import { AppComponent } from '@src/app/app.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
@@ -26,6 +27,7 @@ import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
+import { AccountDetailsComponent } from '@src/app/shared/components/account-details/account-details.component';
 
 /**
  * AppModule for mobile
@@ -39,11 +41,13 @@ import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found
     ProfileComponent,
     HideActionBarDirective,
     ClearNavHistoryDirective,
+    MyLetDirective,
     SearchComponent,
     OrgsComponent,
     ReviewComponent,
     SettingsComponent,
     PageNotFoundComponent,
+    AccountDetailsComponent,
   ],
   imports: [
     NativeScriptModule,

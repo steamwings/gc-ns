@@ -38,6 +38,7 @@
     "@compodoc/compodoc": "^1.1.11",
     "bootstrap": "^4.4.1",
     "core-js": "^2.6.9",
+    "fast-deep-equal": "^3.1.3",
     "hammerjs": "^2.0.8",
     "nativescript-angular": "^8.20.4",
     "nativescript-iqkeyboardmanager": "^1.5.1",
