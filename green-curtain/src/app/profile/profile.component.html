@@ -12,6 +12,10 @@
 <div class="profile-items-list" *myLet="profile$ | async as profile">
     <div>{{profile.domains}}</div>
     <div>{{profile.bio}}</div>
+    
+    <button mat-button (click)="goToUserDetails()">
+        Edit Details
+    </button>
 </div>
 
 <div class="portfolio">

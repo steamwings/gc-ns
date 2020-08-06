@@ -27,7 +27,7 @@ import { OrgsComponent } from '@src/app/orgs/orgs.component';
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
-import { ProfileEditComponent } from '@src/app/shared/components/profile-edit/profile-edit.component';
+import { AccountDetailsComponent } from '@src/app/shared/components/account-details/account-details.component';
 
 /**
  * AppModule for mobile
@@ -47,7 +47,7 @@ import { ProfileEditComponent } from '@src/app/shared/components/profile-edit/pr
     ReviewComponent,
     SettingsComponent,
     PageNotFoundComponent,
-    ProfileEditComponent,
+    AccountDetailsComponent,
   ],
   imports: [
     NativeScriptModule,

@@ -7,17 +7,14 @@ import { StorageService } from './storage.service';
 import { LogService } from './log.service';
 import { ApiService } from './api.service';
 import { HttpResponse } from '@angular/common/http';
-import "@src/app/shared/utilities/object-utility";
-
-const USER_KEY = 'user';
-const TOKEN_KEY = 'token';
+import { ObjectUtility } from '@src/app/shared/utilities/object-utility';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
-  private _user$ = new BehaviorSubject<UserDetail>(null);
+  private _user$ = new BehaviorSubject<UserDetail>(new UserDetail());
   private _profile$ = new BehaviorSubject<UserProfile>(new UserProfile());
   private _token : string;
   public seenWelcome = false;
@@ -29,10 +26,15 @@ export class UserService {
     private api: ApiService,
     private log: LogService,
   ) {
-    const userDetail = storage.getUserDetail();
-    if (userDetail != null) {
+    const userDetail: UserDetail = storage.getUserDetail();
+    const userProfile: UserProfile = storage.getUserProfile();
+    // id is set to null (which == undefined) in new UserDetail()
+    if (userDetail != null && userDetail.id != undefined) {
       log.verbose('User from storage: ' + JSON.stringify(userDetail));
       this._user$.next(userDetail);
+      if (userProfile != null){
+        this._profile$.next(userProfile);
+      }
       const token = storage.getUserToken();
       if (token != null) { // TODO check token status (if expired, valid)
         this._token = token;
@@ -43,20 +45,28 @@ export class UserService {
     }
   }
 
-  get isLoggedIn() {
-    return this._isLoggedIn$.value;
-  }
-
   get isLoggedIn$() {
     return this._isLoggedIn$.asObservable();
+  }
+
+  get isLoggedIn() {
+    return this._isLoggedIn$.value;
   }
 
   get user$() {
     return this._user$.asObservable();
   }
 
+  get user() {
+    return this._user$.value;
+  }
+
   get profile$() {
     return this._profile$.asObservable();
+  }
+
+  get profile() {
+    return this._profile$.value;
   }
 
   get token() {
@@ -118,15 +128,15 @@ export class UserService {
       this.log.verbose('token: ' + resp.body.token);
       this.log.verbose('User from callback: ' + JSON.stringify(user));
 
-      //profile.copyMatchingValuedPropertiesFrom(resp.body.profile);
-      //detail.copyMatchingValuedPropertiesFrom(resp.body);
+      ObjectUtility.CopyMatchingValuedProperties(resp.body.profile, profile);
+      ObjectUtility.CopyMatchingValuedProperties(resp.body, detail);
 
-      // Save details, profile, token to storage and service state
       this.storage.setUserToken(resp.body.token);
-      this._token = resp.body.token;
       this.storage.setUserDetail(detail);
-      this._user$.next(detail);
       this.storage.setUserProfile(profile);
+
+      this._token = resp.body.token;
+      this._user$.next(detail);
       this._profile$.next(profile);
       
       resolve();

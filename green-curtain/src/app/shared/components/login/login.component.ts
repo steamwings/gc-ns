@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { LoginFormUser } from '@src/app/shared/models/user/user.model';
 import { UserService } from '@src/app/shared/services/user.service';
 import { PopupService } from '../../services/popup.service';
@@ -23,12 +22,14 @@ export class LoginComponent implements OnInit {
   title: string;
   processing: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   user: LoginFormUser;
+
+  // Used in NS template to focus next box 
   @ViewChild('name', { static: false }) name: ElementRef;
   @ViewChild('email', { static: false }) email: ElementRef;
   @ViewChild('password', { static: false }) password: ElementRef;
   @ViewChild('confirmPassword', { static: false }) confirmPassword: ElementRef;
 
-  constructor(
+  constructor (
     private userService: UserService,
     private popup: PopupService,
     private log: LogService,

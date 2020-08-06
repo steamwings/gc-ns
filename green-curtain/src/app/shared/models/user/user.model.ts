@@ -9,16 +9,16 @@ export interface IUser extends IParty {
 }
 
 export class UserProfile {
-    bio: string;
-    domains: string;
+    bio: string = "";
+    domains: string = "";
 }
 
 export class UserDetail {
-    id: string;
-    name: string;
-    dob: Date;
-    phone: string;
-    email: string;
+    id: string = null;
+    name: string = "";
+    dob: Date = null;
+    phone: string = "";
+    email: string = "";
 }
 
 export class LoginFormUser {

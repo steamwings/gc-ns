@@ -1,46 +1,38 @@
 import { isNullOrUndefined } from "util";
 
-export {};
-
-// In Typescript, this is called augmenting the global scope
-declare global {
-    interface Object {
-        /**
-         * Non-recursively copy properties for which `this` and `target` share a key
-         * @param target Object to copy properties from
-         */
-        copyMatchingPropertiesFrom(target: Object) : void;
-
-        /**
-         * Non-recursively copy properties for which `this` and `target` share a key
-         * @param target Object to copy from
-         * @param discriminator Function to evaluate values from `target`; copied when `true`
-         */
-        copyMatchingPropertiesFrom(target: Object, discriminator: (value: any) => boolean) : void;
-
-        /**
-         * Non-recursively copy properties which are not `null` or `undefined` 
-         * and for which `this` and `target` share a key
-         * @param target `Object` to copy from
-         */
-        copyMatchingValuedPropertiesFrom(target: Object): void;
-    }
-}
-
-Object.prototype.copyMatchingPropertiesFrom = function (target: Object, 
-    discriminator: (value: any) => boolean = () => true) {
+/**
+ * Provide static functions used with `Object`s
+ */
+export class ObjectUtility {
     
-    if (isNullOrUndefined(target)) return;
-    Object.keys(target).forEach(key => {
-        if (this[key] !== undefined) {
-            var value = target[key];
-            if (discriminator(value)) {
-                this[key] = value;
+    /**
+     * Non-recursively copy properties for which `this` and `target` share a key
+     * @param source `Object` to copy from
+     * @param target `Object` to copy to
+     * @param discriminator Function to evaluate values from `target`; copied when `true`
+     */
+    static CopyMatchingProperties = function (source: Object, target: Object, 
+        discriminator: (value: any) => boolean = () => true) {
+        
+        if (isNullOrUndefined(source) || isNullOrUndefined(target)) 
+            return;
+        Object.keys(source).forEach(key => {
+            if (target[key] !== undefined) {
+                var value = source[key];
+                if (discriminator(value)) {
+                    target[key] = value;
+                }
             }
-        }
-    });
-}
+        });
+    }
 
-Object.prototype.copyMatchingValuedPropertiesFrom = function (target: Object) {
-    this.copyMatchingPropertiesFrom(target, (value) => !isNullOrUndefined(value));
-}
+    /**
+     * Non-recursively copy properties which are not `null` or `undefined` 
+     * and for which `this` and `target` share a key
+     * @param source `Object` to copy to
+     * @param target `Object` to copy from
+     */
+    static CopyMatchingValuedProperties = function (source: Object, target: Object) {
+        this.CopyMatchingProperties(source, target, (value) => !isNullOrUndefined(value));
+    }
+};

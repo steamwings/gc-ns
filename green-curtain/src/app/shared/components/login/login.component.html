@@ -6,7 +6,7 @@
             <div>
                 <mat-form-field *ngIf="!isLoggingIn">
                     <!-- TODO Fix validation -->
-                    <input matInput [(ngModel)]="user.name" name="email" type="email" placeholder="Full Name"
+                    <input matInput [(ngModel)]="user.name" name="name" type="text" placeholder="Full Name"
                         [disabled]="processing | async" required>
                 </mat-form-field>
             </div>

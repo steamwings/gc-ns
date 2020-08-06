@@ -23,9 +23,9 @@ import { SettingsComponent } from '@src/app/shared/components/settings/settings.
 import { httpInterceptorProviders } from 'src/app/shared/http-interceptors';
 import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
 import { FooterComponent } from '@src/app/shared/components/footer/footer.component';
+import { AccountDetailsComponent } from '@src/app/shared/components/account-details/account-details.component';
 
 import { MyLetDirective } from '@src/app/shared/directives/my-let.directive';
-import { ProfileEditComponent } from '@src/app/shared/components/profile-edit/profile-edit.component';
 
 /**
  * AppModule for web
@@ -44,7 +44,7 @@ import { ProfileEditComponent } from '@src/app/shared/components/profile-edit/pr
     PageNotFoundComponent,
     MyLetDirective,
     FooterComponent,
-    ProfileEditComponent,
+    AccountDetailsComponent,
   ],
   imports: [
     BrowserModule,

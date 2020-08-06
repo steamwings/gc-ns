@@ -6,7 +6,7 @@
 
 .ns-root {
     --gc-green: #229954;
-    --gc-gold: #f5b045;
+    --gc-gold:  #f5b045;
     --gc-purple: #733b99;
     --gc-dark-grey: #362c41;
 }
@@ -26,10 +26,18 @@
     color: white;
 }
 
+.btn-medium {
+    height: 38;
+    font-size: 17;
+    font-weight: 600;
+    width: 75%;
+}
+
 .btn-small {
-    height: 35;
-    font-size: 15;
-    font-weight: 400;
+    height: 38;
+    font-size: 17;
+    font-weight: 600;
+    width: 40%;
 }
 
 .btn:disabled {

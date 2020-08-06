@@ -10,12 +10,21 @@
         <StackLayout>
             <!-- TODO: This is hardcoded -->
             <Image src="~/assets/images/morgan.png"></Image>
-            <StackLayout *ngFor="let item of info" orientation="horizontal" horizontalAlignment="center">
+
+            <StackLayout *myLet="profile$ | async as profile" horizontalAlignment="center"> 
+                <Label class="info" [text]="profile.domains"></Label>
+                <Label class="info" [text]="profile.bio"></Label>
+            </StackLayout>
+
+            <!-- <StackLayout *ngFor="let item of info" orientation="horizontal" horizontalAlignment="center">
                 <Label [text]="item.text" class="info"></Label>
                 <Label *ngIf="item.lockable" [text]="item.locked ? locked : unlocked" class="fas lock"></Label>
-            </StackLayout>
+                [nsRouterLink]="['/account-details']"
+            </StackLayout> -->
+            <Button text="Edit Details" (tap)="goToUserDetails()" class="btn btn-small bg-gold m-t-20"></Button>
+
             <Label text="portfolio" class="profile-header"></Label>
-            <Button text="Add Experience" (tap)="addExperience()" class="btn btn-small bg-gold m-t-20"></Button>
+            <Button text="Add Experience" (tap)="addExperience()" class="btn btn-medium bg-gold m-t-20"></Button>
         </StackLayout>
     </ScrollView>
 </GridLayout>
