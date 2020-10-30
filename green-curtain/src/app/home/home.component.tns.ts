@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
-import { screen } from '@nativescript/core/platform';
+import { Screen } from '@nativescript/core/platform';
 import { GridLayout } from '@nativescript/core/ui/layouts/grid-layout';
 import { PanGestureEventData, GestureStateTypes, GestureEventData } from '@nativescript/core/ui/gestures';
 import { AnimationCurve } from '@nativescript/core/ui/enums';
@@ -109,7 +109,7 @@ export class HomeComponent implements AfterViewInit {
         } else if (args.state === 3) {
             // finger up
             this.prevDeltaX = 0;
-            const tabWidth = screen.mainScreen.widthDIPs / this.tabList.length;
+            const tabWidth = Screen.mainScreen.widthDIPs / this.tabList.length;
             const tabSelected: number = Math.round(Math.abs(newX / tabWidth));
             const translateX: number = tabSelected * tabWidth;
             if (newX < 0) {
@@ -131,11 +131,11 @@ export class HomeComponent implements AfterViewInit {
 
     initializeTabBar(): void {
         // set up base layer
-        this.leftTabs.nativeElement.width = screen.mainScreen.widthDIPs;
-        this.rightTabs.nativeElement.width = screen.mainScreen.widthDIPs;
+        this.leftTabs.nativeElement.width = Screen.mainScreen.widthDIPs;
+        this.rightTabs.nativeElement.width = Screen.mainScreen.widthDIPs;
         this.centerPatch.nativeElement.width = 100;
 
-        this.tabBGContainer.nativeElement.translateX = - (screen.mainScreen.widthDIPs / 2) - (80 / 2);
+        this.tabBGContainer.nativeElement.translateX = - (Screen.mainScreen.widthDIPs / 2) - (80 / 2);
 
         // set default selected tab
         const tabContentsArr = this.tabContents.toArray();
@@ -171,7 +171,7 @@ export class HomeComponent implements AfterViewInit {
 
     getTabTranslateX(index: number): number {
         // TODO: Improve. I have no idea why this works
-        return index * screen.mainScreen.widthDIPs / this.tabList.length - (screen.mainScreen.widthDIPs / 2) + (135 / 2)
+        return index * Screen.mainScreen.widthDIPs / this.tabList.length - (Screen.mainScreen.widthDIPs / 2) + (135 / 2)
     }
 
 }

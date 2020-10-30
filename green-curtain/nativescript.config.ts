@@ -9,7 +9,7 @@ export default {
   },
   appPath: 'src',
   nsext: '.tns',
-  webext: '',
+  webext: '.web',
   shared: true,
   useLegacyWorkflow: false,
 } as NativeScriptConfig

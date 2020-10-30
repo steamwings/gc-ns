@@ -19,8 +19,8 @@ export class ProfileComponent implements OnInit {
   constructor(private userSvc: UserService, private router: Router, 
     private popups: PopupService, private log: LogService) { }
   title = 'Profile';
-  private cogs = String.fromCharCode(0xf085);
-  private profile$ = this.userSvc.profile$;
+  cogs = String.fromCharCode(0xf085);
+  profile$ = this.userSvc.profile$;
 
   ngOnInit() {
   }
