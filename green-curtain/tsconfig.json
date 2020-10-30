@@ -28,7 +28,7 @@
         "src/*.ts"
       ]
     },
-    "module": "esnext",
+    "module": "es2020",
     "removeComments": false
   }
 }
