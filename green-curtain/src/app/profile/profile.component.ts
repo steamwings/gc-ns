@@ -38,11 +38,15 @@ export class ProfileComponent implements OnInit {
   addExperience() {
     this.log.debug('adding experience...');
     var p = new UserProfile();
-    p.bio = "Art is dope"
-    p.domains = "artist, writer, photographer"
+    p.bio = "Art is dope";
+    p.domains = "artist, writer, photographer";
     this.userSvc.updateProfile(p)
       .then(() => {})
       .catch(() => {this.popups.warning('Profile update failed.')})
+  }
+
+  uploadProfilePic() {
+    // TODO
   }
 
 }

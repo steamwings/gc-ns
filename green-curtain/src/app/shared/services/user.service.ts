@@ -3,12 +3,15 @@ import { BehaviorSubject } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
 import { LoginFormUser, UserProfile, UserFull, UserDetail } from '../models/user/user.model';
-import { StorageService } from './storage.service';
+import { UserStorageService } from './user-storage.service';
 import { LogService } from './log.service';
 import { ApiService } from './api.service';
 import { HttpResponse } from '@angular/common/http';
 import { ObjectUtility } from '@src/app/shared/utilities/object-utility';
 
+/**
+ * Manage user-related data
+ */
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +25,7 @@ export class UserService {
 
   constructor(
     private router: Router,
-    private storage: StorageService,
+    private storage:UserStorageService,
     private api: ApiService,
     private log: LogService,
   ) {
@@ -32,7 +35,7 @@ export class UserService {
     if (userDetail != null && userDetail.id != undefined) {
       log.verbose('User from storage: ' + JSON.stringify(userDetail));
       this._user$.next(userDetail);
-      if (userProfile != null){
+      if (userProfile != null) {
         this._profile$.next(userProfile);
       }
       const token = storage.getUserToken();

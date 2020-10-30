@@ -1,64 +1,37 @@
 import { Injectable } from '@angular/core';
-import { UserFull, UserDetail, UserProfile } from '../models/user/user.model';
-
-const USER_TOKEN_KEY = 'token';
-const USER_PROFILE_KEY = 'user-profile';
-const USER_DETAIL_KEY = 'user-detail';
+import { KeyValueStorage } from './key-value-storage';
 
 /**
- * Generic storage service
+ * Web implementation for KeyValueStorage
  */
-@Injectable()
-export abstract class StorageService {
-    protected abstract hasKey(key: string): boolean;
-    protected abstract get<T>(key: string): T;
-    protected abstract set(key: string, value: any): void;
-    protected abstract remove(key: string): void;
-    public abstract clearAll(): void;
+@Injectable({
+  providedIn: 'root'
+})
+export class StorageService extends KeyValueStorage {
 
-    public getUserDetail(): UserDetail { 
-        return this.get<UserDetail>(USER_DETAIL_KEY);
-    }
+  hasKey(key: string): boolean{
+    return localStorage.getItem(key) == null;
+    
+    // TODO: Determine the faster implementation by experimentation
+    // for (let i = 0; i < localStorage.length; i++) {
+    //   if (localStorage.key(i) === key) { return true; }
+    // }
+    //return false;
+  }
 
-    public getUserToken(): string {
-        return this.get<string>(USER_TOKEN_KEY);
-    }
+  get<T>(key: string) {
+    return JSON.parse(localStorage.getItem(key)) as T;
+  }
 
-    public getUserProfile(): UserProfile {
-        return this.get<UserProfile>(USER_PROFILE_KEY);
-    }
+  set(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 
-    /**
-     * Save (overwrite) user details.
-     * @param user 
-     */
-    public setUserDetail(user: UserDetail) {
-        this.set(USER_DETAIL_KEY, user);
-    }
+  remove(key: string) {
+    localStorage.removeItem(key);
+  }
 
-    /**
-     * Save (overwrite) the user profile.
-     * @param profile 
-     */
-    public setUserProfile(profile: UserProfile) {
-        this.set(USER_PROFILE_KEY, profile);
-    }
-
-    /**
-     * Save (overwrite) the authentication token.
-     * @param token 
-     */
-    public setUserToken(token: string) {
-        this.set(USER_TOKEN_KEY, token);
-    }
-
-    /**
-     * Clear all user data.
-     */
-    public clearUser() {
-        this.remove('user');
-        this.remove(USER_TOKEN_KEY);
-        this.remove(USER_DETAIL_KEY);
-        this.remove(USER_PROFILE_KEY);
-    }
+  clearAll() {
+    localStorage.clear();
+  }
 }

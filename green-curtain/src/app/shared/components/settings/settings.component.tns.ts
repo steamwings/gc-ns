@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { StorageService } from '../../services/storage.service';
 import { RouterExtensions } from '@nativescript/angular/router';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-settings',

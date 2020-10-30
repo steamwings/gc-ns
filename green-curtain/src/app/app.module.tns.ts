@@ -13,9 +13,10 @@ import { MyLetDirective } from '@src/app/shared/directives/my-let.directive';
 
 import { UserService } from '@src/app/shared/services/user.service';
 import { ApiService } from '@src/app/shared/services/api.service';
+import { UserStorageService } from '@src/app/shared/services/user-storage.service';
 import { StorageService } from '@src/app/shared/services/storage.service';
-import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
 import { httpInterceptorProviders } from '@src/app/shared/http-interceptors/index';
+import { KeyValueStorage } from '@src/app/shared/services/key-value-storage';
 
 import { AppComponent } from '@src/app/app.component';
 import { WelcomeComponent } from '@src/app/shared/components/welcome/welcome.component';
@@ -59,7 +60,8 @@ import { AccountDetailsComponent } from '@src/app/shared/components/account-deta
   providers: [
     UserService,
     ApiService,
-    { provide: StorageService, useClass: LocalStorageService },
+    { provide: KeyValueStorage, useClass: StorageService },
+    UserStorageService,
     httpInterceptorProviders,
   ],
   bootstrap: [AppComponent],

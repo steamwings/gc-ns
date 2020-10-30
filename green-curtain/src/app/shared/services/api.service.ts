@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpResponse, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { environment } from '@src/environments/environment';
-import { first, catchError } from 'rxjs/operators';
+import { first, catchError, map } from 'rxjs/operators';
 import { LogService } from './log.service';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, concat } from 'rxjs';
 import { LoginFormUser, UserFull, UserProfile } from '../models/user/user.model';
+
+
+type HttpHeaderOptionsType = { headers?: HttpHeaders; observe: "response"; params?: HttpParams | { [param: string]: string | string[]; }; reportProgress?: boolean; responseType?: "json"; withCredentials?: boolean; };
 
 /**
  * Service to handle API calls
@@ -16,13 +19,18 @@ import { LoginFormUser, UserFull, UserProfile } from '../models/user/user.model'
 export class ApiService {
 
   private apiUrl = environment.apiUrl;
-  private httpOptions : { headers?: HttpHeaders; observe: "response"; params?: HttpParams | { [param: string]: string | string[]; }; reportProgress?: boolean; responseType?: "json"; withCredentials?: boolean; }
+
+  private httpOptions : HttpHeaderOptionsType
   = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }), 
-    observe: "response" // Allows us to get the HttpResponse. Switching to "event" might be necessary at some point
+    observe: "response" // Allows us to get the HttpResponse. Switching to "event" might be necessary for some requests
   };
+
+  private blobOptions : HttpHeaderOptionsType = {headers: new HttpHeaders({
+    'x-ms-blob-type': 'BlockBlob',
+  }), observe: "response" };
 
   constructor(private http: HttpClient, private log: LogService) {
     if (environment.apiHeader === '') {
@@ -47,14 +55,23 @@ export class ApiService {
     return this.put(body, '/profile');
   }
 
-  private post<TSend, TRecieve>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TRecieve>>  {
-    this.log.verbose(`POST at ${uri} with ${body}`);
-    return this.handleErrorPipeFirst(this.http.post<TRecieve>(this.apiUrl + uri, body, this.httpOptions), context);
+  getProfilePicUrl() {
+    return this.get<string>('/profile/pic-url');
   }
 
-  private put<TSend, TRecieve>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TRecieve>> {
+  // TODO What is the type of pic?
+  uploadProfilePicture(id: string, pic) {
+    return this.get<string>(`/profile/upload-pic-url/${id}`).pipe(map(x => this.putBlob(pic, x.body)))
+  }
+
+  private post<TSend, TReceive>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TReceive>>  {
+    this.log.verbose(`POST at ${uri} with ${body}`);
+    return this.handleErrorPipeFirst(this.http.post<TReceive>(this.apiUrl + uri, body, this.httpOptions), context);
+  }
+
+  private put<TSend, TReceive>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TReceive>> {
     this.log.verbose(`PUT at ${uri} with ${body}`);
-    return this.handleErrorPipeFirst(this.http.put<TRecieve>(this.apiUrl + uri, body, this.httpOptions), context);
+    return this.handleErrorPipeFirst(this.http.put<TReceive>(this.apiUrl + uri, body, this.httpOptions), context);
   }
 
   private get<T>(uri: string, context: StatusContext = StatusContext.General) {
@@ -62,11 +79,17 @@ export class ApiService {
     return this.handleErrorPipeFirst(this.http.get<T>(this.apiUrl + uri, this.httpOptions), context);
   }
 
+  private putBlob<TSend>(body: TSend, uri: string) : Observable<HttpResponse<Object>> {
+    this.log.verbose(`PUT at ${uri} with ${body}`);
+    return this.handleErrorPipeFirst(this.http.put(uri, body, this.blobOptions), StatusContext.BlobStorage);
+  }
+
   private handleErrorPipeFirst<T>(obs : Observable<HttpResponse<T>>, context: StatusContext){
+    // Always using first() makes the obs essentially a promise
     return obs.pipe(first()).pipe(catchError(err => this.handleError(err, context))); 
   }
 
-  private handleError(error: HttpErrorResponse, context: StatusContext) {
+  private handleError(error: HttpErrorResponse, context: StatusContext = StatusContext.General) {
     if (error.error instanceof HttpErrorResponse) {
       this.log.error(
         `Client or network error ${error.status} (${error.statusText}):` +
@@ -78,9 +101,14 @@ export class ApiService {
     let msg = '';
     switch (error.status) {
       case 401: msg = 'Authorization error.';
-        // TODO Analytics: critical
+        // TODO Analytics: critical error
         this.log.error('401 should have been consumed by interceptor--and wasn\'t!');
         break;
+      case 403: 
+        if (context === StatusContext.BlobStorage) {
+          msg = 'No permissions for that action. SAS token may be expired.'
+          break;
+        }
       case 404: msg = 'That account was not found.';
         break;
       case 409: switch(context) {
@@ -104,5 +132,6 @@ export class ApiService {
 
 enum StatusContext {
   LoginRegister,
-  General
+  General,
+  BlobStorage
 }

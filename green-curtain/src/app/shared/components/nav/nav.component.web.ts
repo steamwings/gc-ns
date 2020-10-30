@@ -21,9 +21,9 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     // TODO: retrieve from server
     const btns = [
-      {title: 'Auditions', path: '/search'},
-      {title: 'Organizations', path: '/search'},
-      {title: 'People', path: '/search'},
+      {title: 'Auditions', path: '/search?=auditions'},
+      {title: 'Organizations', path: '/orgs'},
+      {title: 'People', path: '/search'}, 
     ];
     this.centerButtons.next(btns);
   }

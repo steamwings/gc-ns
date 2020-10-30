@@ -68,11 +68,12 @@ export class AccountDetailsComponent implements OnInit {
       .catch(() => {this.popup.warning('Profile update failed.')})
     }
  
-    //if (!equal(this.user, oldUser)){
-      // TODO Api call to update user info
+    if (!equal(this.user, oldUser)){
+      this.log.debug("Updating user info...")
+      //TODO Api call to update user info
 
-      // TODO Process for updating email
-    //}
+      //TODO Process for updating email
+    }
   }
 
   returnToProfile() {

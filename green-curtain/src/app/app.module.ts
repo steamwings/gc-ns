@@ -6,9 +6,10 @@ import { MaterialModule } from '@src/app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { StorageService } from '@src/app/shared/services/storage.service';
+import { UserStorageService } from '@src/app/shared/services/user-storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
-import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
+import { KeyValueStorage } from './shared/services/key-value-storage';
+import { StorageService } from './shared/services/storage.service';
 import { ApiService } from '@src/app/shared/services/api.service';
 
 import { AppComponent } from '@src/app/app.component';
@@ -57,7 +58,8 @@ import { MyLetDirective } from '@src/app/shared/directives/my-let.directive';
   providers: [
     UserService,
     ApiService,
-    { provide: StorageService, useClass: LocalStorageService},
+    { provide: KeyValueStorage, useClass: StorageService },
+    UserStorageService,
     httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
