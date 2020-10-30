@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
   user: LoginFormUser;
 
   // Used in NS template to focus next box 
-  @ViewChild('name', { static: false }) name: ElementRef;
-  @ViewChild('email', { static: false }) email: ElementRef;
-  @ViewChild('password', { static: false }) password: ElementRef;
-  @ViewChild('confirmPassword', { static: false }) confirmPassword: ElementRef;
+  @ViewChild('name') name: ElementRef;
+  @ViewChild('email') email: ElementRef;
+  @ViewChild('password') password: ElementRef;
+  @ViewChild('confirmPassword') confirmPassword: ElementRef;
 
   constructor (
     private userService: UserService,
