@@ -11,6 +11,8 @@ out-tsc
 # Compodoc
 documentation
 
+# NativeScript
+.migration_backup/
 /nativescript-angular/**/*.d.ts
 /nativescript-angular/**/*.js
 
