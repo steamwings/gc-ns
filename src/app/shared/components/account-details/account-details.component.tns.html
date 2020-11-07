@@ -1,0 +1,56 @@
+
+<ActionBar title="Settings">
+    <NavigationButton icon="res://ic_arrow_back_black_24dp" (tap)="returnToProfile()"></NavigationButton>
+</ActionBar>
+
+<ScrollViewer>
+    <StackLayout class="form">
+        <!-- TODO <Image class="logo" src="~/images/logo.png"></Image> -->
+        <Label class="header" text="{{title}}"></Label>
+        
+        <!-- TODO Labels needed for fields -->
+        <PreviousNextView>
+            <GridLayout rows="auto, auto, auto, auto, auto">
+                <StackLayout row="0" class="input-field">
+                    <TextField class="input" hint="Full Name" [isEnabled]="!(processing | async)"
+                        autocorrect="false" autocapitalizationType="words" [(ngModel)]="user.name" returnKeyType="done"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <StackLayout row="1" class="input-field">
+                    <TextField class="input" hint="Email" [isEnabled]="!(processing | async)" keyboardType="email"
+                        autocorrect="false" autocapitalizationType="none" [(ngModel)]="user.email" returnKeyType="done"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <!-- TODO: Use DatePicker for bday -->
+                <!-- <StackLayout row="2" *ngIf="!isLoggingIn" class="input-field">
+                    <DatePicker class="input" [(ngModel)]="user.dob"> [isEnabled]="!(processing | async)" </DatePicker>
+                    <StackLayout class="hr-light"></StackLayout>
+                    Or maybe
+                    <TextField keyboardType="datetime" ...> </TextField>
+                </StackLayout> -->
+                <StackLayout row="2" class="input-field">
+                    <TextField class="input" hint="Phone" [isEnabled]="!(processing | async)" keyboardType="phone"
+                    [(ngModel)]="user.phone" returnKeyType="done"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <StackLayout row="3" class="input-field">
+                    <TextField class="input" hint="Domains" [isEnabled]="!(processing | async)"
+                        autocorrect="false" autocapitalizationType="none" [(ngModel)]="profile.domains" returnKeyType="done"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <StackLayout row="4" class="input-field">
+                    <TextField class="input" hint="Bio" [isEnabled]="!(processing | async)"
+                        autocorrect="false" autocapitalizationType="sentences" [(ngModel)]="profile.bio" returnKeyType="done"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                
+
+                <ActivityIndicator rowSpan="3" [busy]="processing | async" class="app-activity"></ActivityIndicator>
+            </GridLayout>
+        </PreviousNextView>
+
+        <Button text="Save" [isEnabled]="!(processing | async)" (tap)="submit()"
+            class="btn bg-green m-t-20"></Button>
+    </StackLayout>
+
+</ScrollViewer>
