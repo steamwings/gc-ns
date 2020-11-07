@@ -1,58 +1,19 @@
-node_modules
-platforms
-hooks
-.update_backup
-tags
-dist
-out-tsc
-**/*.js.map
-**/*.metadata.json
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# NativeScript
+/hooks
+/platforms
 
 # Compodoc
-documentation
-
-/nativescript-angular/**/*.d.ts
-/nativescript-angular/**/*.js
-
-!/nativescript-angular/global.d.ts
-!/nativescript-angular/postinstall.js
-!/nativescript-angular/hooks/**/*.js
-!/nativescript-angular/gulpfile.js
-!/nativescript-angular/zone-js/dist/*.js
-
-/nativescript-angular-package/**/*.d.ts
-/nativescript-angular-package/**/*.js
-
-!/nativescript-angular-package/global.d.ts
-!/nativescript-angular-package/postinstall.js
-!/nativescript-angular-package/hooks/**/*.js
-!/nativescript-angular-package/gulpfile.js
-!/nativescript-angular-package/zone-js/dist/*.js
-
-.tscache
-.nvm
-.vscode
-.DS_Store
-npm-debug.log
-nativescript-angular*.tgz
-
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-yarn-error.log
-testem.log
-/typings
-
-# Apps' JS files
-tests/app/**/*.js
-tests/test-output.txt
-ng-sample/app/**/*.js
-
-# Webpack configuration files
-webpack.config.js
-tsconfig.esm.json
-tsconfig.tns.json
+/documentation
 
 # IDEs and editors
 /.idea
@@ -61,19 +22,25 @@ tsconfig.tns.json
 .c9/
 *.launch
 .settings/
+*.sublime-workspace
 
 # IDE - VSCode
+/.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-*.code-workspace
 
-# exclude misc fonts
-*.ttf
-# include the font-awesome free pack we actually use
-!fa-solid-900.ttf
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
 
 # System Files
 .DS_Store

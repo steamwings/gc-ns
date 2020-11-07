@@ -1,0 +1,85 @@
+ /**
+ * Styles used by NativeScript   
+ */
+ 
+ @import '~@nativescript/theme/css/core.css';
+
+ .ns-root {
+     --gc-green: #229954;
+     --gc-gold:  #f5b045;
+     --gc-purple: #733b99;
+     --gc-dark-grey: #362c41;
+ }
+ 
+ /* Font Awesome Solid*/
+ .fas {
+     font-family: 'Font Awesome 5 Free', 'fa-solid-900';
+     font-weight: 900;
+ }
+ 
+ .btn {
+     height: 50;
+     border-radius: 5;
+     font-size: 20;
+     font-weight: 600;
+     background-color: var(--gc-green);
+     color: white;
+ }
+ 
+ .btn-medium {
+     height: 38;
+     font-size: 17;
+     font-weight: 600;
+     width: 75%;
+ }
+ 
+ .btn-small {
+     height: 38;
+     font-size: 17;
+     font-weight: 600;
+     width: 40%;
+ }
+ 
+ .btn:disabled {
+     opacity: 0.5;
+ }
+ 
+ .bg-green {
+     background-color: var(--gc-green);
+ }
+ 
+ .bg-gold {
+     background-color: var(--gc-gold);
+ }
+ 
+ .bg-purple {
+     background-color: var(--gc-purple);
+ }
+ 
+ .bg-dark-grey {
+     background-color: var(--gc-dark-grey);
+ }
+ 
+ .title {
+     font-size: 30;
+     text-align: left;
+ }
+ 
+ .progressBar {
+     color: var(--gc-green);
+ }
+ 
+ .app-activity {
+     color: var(--gc-green);
+ }
+ 
+ /* Alas NS does not support :last-child, so we can't do this 
+ .home-view:last-child {
+     margin-bottom: 80;
+ } 
+ */
+ 
+ /* TODO: this should be dynamic */
+ .margin-for-navbar {
+     margin-bottom: 90;
+ }
