@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { routes } from '@src/app/app.routes';
 import { environment } from '@src/environments/environment';
-import { HomeComponent } from './home/home.component.tns';
+import { HomeComponent } from './home/home.component';
 import { OrgsComponent } from './orgs/orgs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SearchComponent } from './search/search.component';

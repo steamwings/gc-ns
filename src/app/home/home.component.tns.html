@@ -49,7 +49,7 @@
         <GridLayout #tabContents *ngFor="let item of tabList; let i = index" [col]="i" marginTop="20"
             (tap)="onBottomNavTap(i)" verticalAlignment="middle">
             <Label class="fas" [text]="item.text" verticalAlignment="middle" horizontalAlignment="center"
-                [color]="item.color" fontSize="22"></Label>
+                [color]="item.color" fontSize="21"></Label>
         </GridLayout>
 
         <!-- pan layer -->
