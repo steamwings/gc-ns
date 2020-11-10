@@ -1,5 +1,3 @@
-import { isNullOrUndefined } from "util";
-
 /**
  * Provide static functions used with `Object`s
  */
@@ -14,7 +12,7 @@ export class ObjectUtility {
     static CopyMatchingProperties = function (source: Object, target: Object, 
         discriminator: (value: any) => boolean = () => true) {
         
-        if (isNullOrUndefined(source) || isNullOrUndefined(target)) 
+        if (!source || !target) 
             return;
         Object.keys(source).forEach(key => {
             if (target[key] !== undefined) {
@@ -33,6 +31,6 @@ export class ObjectUtility {
      * @param target `Object` to copy from
      */
     static CopyMatchingValuedProperties = function (source: Object, target: Object) {
-        this.CopyMatchingProperties(source, target, (value) => !isNullOrUndefined(value));
+        this.CopyMatchingProperties(source, target, (value) => !!value);
     }
 };

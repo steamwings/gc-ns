@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import {  MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
 import { MatMenuModule } from '@angular/material/menu'

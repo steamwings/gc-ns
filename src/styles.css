@@ -30,6 +30,7 @@ mat-card-content {
 }
 
 body, html {
+    margin: 0;
     height: 100%;
 }
 

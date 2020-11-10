@@ -43,7 +43,8 @@
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-import 'core-js/es7/reflect';
+//import "core-js/es/reflect"; // This should work with latest core-js version
+//import 'core-js/es7/reflect'; // This might be safer to use this with a lower core-js version
 
 
 /**

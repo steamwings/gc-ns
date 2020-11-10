@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "module": "esnext",
+    "noEmitHelpers": false,
     "types": [],
     "paths": {
       "@src/*": [
