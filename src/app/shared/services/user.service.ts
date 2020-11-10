@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
 import { LoginFormUser, UserProfile, UserFull, UserDetail } from '../models/user/user.model';
 import { StorageService } from './storage.service';
@@ -122,7 +121,7 @@ export class UserService {
 
   private loginRegisterCallback = (user: LoginFormUser, resp: HttpResponse<UserFull>, resolve, reject) => {
     this.log.verbose(JSON.stringify(resp));
-    if (!isNullOrUndefined(resp.body.token)) {
+    if (!resp.body.token) {
       var detail = this._user$.value;
       var profile = this._profile$.value;
       this.log.verbose('token: ' + resp.body.token);
@@ -150,7 +149,7 @@ export class UserService {
 
   private navigate() {
     this._isLoggedIn$.next(true);
-    if (!isNullOrUndefined(this.redirectUrl)) {
+    if (!this.redirectUrl) {
       this.log.verbose('User service navigating to ' + this.redirectUrl);
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = null;
