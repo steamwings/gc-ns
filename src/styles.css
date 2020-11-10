@@ -2,13 +2,15 @@
 
 /* Purple rgba(109, 56, 145, .8) #6D3891 */
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-:host {
+:host { 
     --gc-green: #229954;
 }
+
+body, html { margin: 0; height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 h1 {
     text-align: center;
@@ -27,10 +29,6 @@ mat-card-content {
     display: flex;
     justify-content: center;
     text-align: center;
-}
-
-body, html {
-    height: 100%;
 }
 
 .clickable {

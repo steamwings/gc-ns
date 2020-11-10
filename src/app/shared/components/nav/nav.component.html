@@ -1,5 +1,4 @@
 <nav>
-
     <span>
         <button mat-button (click)="go('/home')">
             <img class="title-image" src="assets/images/Title-smallish.png" height="42" />
@@ -22,7 +21,7 @@
 </nav>
 
 <!-- Hide these over here so it doesn't get affected by CSS -->
-<mat-menu #profileMenu="matMenu">
+<mat-menu #profileMenu="matMenu" xPosition="before" yPosition="below">
     <button mat-menu-item *ngIf="loggedIn | async" (click)="go('/profile')">Profile</button>
     <button mat-menu-item *ngIf="loggedIn | async" (click)="go('/settings')">Settings</button>
     <button mat-menu-item (click)="logX()">{{(loggedIn | async) ? "Logout" : "Login"}}</button>
