@@ -49,7 +49,7 @@
                     </button>
                 </div>
                 <div class="button">
-                    <button type="menu" (click)="returnToProfile()" [disabled]="processing | async" mat-button>
+                    <button type="menu" [routerLink]="['/profile']" [disabled]="processing | async" mat-button>
                         Close
                     </button>
                 </div>

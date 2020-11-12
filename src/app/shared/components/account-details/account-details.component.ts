@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '@src/app/shared/services/user.service';
 import { PopupService } from '@src/app/shared/services/popup.service';
 import { LogService } from '@src/app/shared/services/log.service';
-import { Router } from '@angular/router';
 import { UserDetail, UserProfile } from '@src/app/shared/models/user/user.model';
 import { BehaviorSubject } from 'rxjs';
 import * as equal from 'fast-deep-equal'; // Switch to 'fast-deep-equal/es6'?
 import { BasicPopupService } from '@src/app/shared/services/basic-popup.service';
 import { ObjectUtility } from '@src/app/shared/utilities/object-utility';
+import { RouterExtensions } from '@src/app/modules/app-platform.module';
+
+//import { AppRouter } from '@src/app/shared/services/app-router.service';
 
 /**
  * Allow the user to view and edit personal details and profile data
@@ -38,9 +40,10 @@ export class AccountDetailsComponent implements OnInit {
     private userService: UserService,
     private popup: PopupService,
     private log: LogService,
-    private router: Router,
+    public routerExt: RouterExtensions,
     ) { }
 
+  // TODO use or delete
   private locked = String.fromCharCode(0xf023);
   private unlocked = String.fromCharCode(0xf3c1);
   private info = [
@@ -74,9 +77,4 @@ export class AccountDetailsComponent implements OnInit {
       // TODO Process for updating email
     //}
   }
-
-  returnToProfile() {
-    this.router.navigate(['/profile']);
-  }
-  
 }

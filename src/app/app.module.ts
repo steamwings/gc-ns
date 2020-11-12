@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@src/app/modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { AppPlatformModule } from './modules/app-platform.module';
 
 import { StorageService } from '@src/app/shared/services/storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
@@ -53,6 +54,7 @@ import { MyLetDirective } from '@src/app/shared/directives/my-let.directive';
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AppPlatformModule,
   ],
   providers: [
     UserService,

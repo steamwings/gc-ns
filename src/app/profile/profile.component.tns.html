@@ -21,7 +21,7 @@
                 <Label *ngIf="item.lockable" [text]="item.locked ? locked : unlocked" class="fas lock"></Label>
                 [nsRouterLink]="['/account-details']"
             </StackLayout> -->
-            <Button text="Edit Details" (tap)="goToUserDetails()" class="btn btn-small bg-gold m-t-20"></Button>
+            <Button text="Edit Details" [nsRouterLink]="['/account-details']" pageTransition="slide" class="btn btn-small bg-gold m-t-20"></Button>
 
             <Label text="portfolio" class="profile-header"></Label>
             <Button text="Add Experience" (tap)="addExperience()" class="btn btn-medium bg-gold m-t-20"></Button>
