@@ -28,7 +28,7 @@ export class UserService {
     const userDetail: UserDetail = storage.getUserDetail();
     const userProfile: UserProfile = storage.getUserProfile();
     // id is set to null (which == undefined) in new UserDetail()
-    if (userDetail != null && userDetail.id != undefined) {
+    if (!!userDetail && userDetail.id != undefined) {
       log.verbose('User from storage: ' + JSON.stringify(userDetail));
       this._user$.next(userDetail);
       if (userProfile != null){
@@ -97,7 +97,7 @@ export class UserService {
   updateProfile(profile: UserProfile) {
     return new Promise((resolve, reject) => {
       this.api.setProfile(profile).subscribe(r => {
-        this.log.info("set response " + JSON.stringify(r));
+        this.log.debug("set response " + JSON.stringify(r));
         this.api.getProfile(this._user$.value.id).subscribe((r) => {
           this.log.info(JSON.stringify(r));
           this._profile$.next(r.body);
@@ -121,7 +121,7 @@ export class UserService {
 
   private loginRegisterCallback = (user: LoginFormUser, resp: HttpResponse<UserFull>, resolve, reject) => {
     this.log.verbose(JSON.stringify(resp));
-    if (!resp.body.token) {
+    if (!!resp.body.token) {
       var detail = this._user$.value;
       var profile = this._profile$.value;
       this.log.verbose('token: ' + resp.body.token);
