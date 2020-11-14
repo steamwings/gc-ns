@@ -28,8 +28,8 @@ import { ReviewComponent } from '@src/app/shared/components/review/review.compon
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
 import { AccountDetailsComponent } from '@src/app/shared/components/account-details/account-details.component';
-import { RouterExtensions } from './modules/app-platform.module';
-import { MobileActionBarComponent } from './shared/components/mobile-action-bar/mobile-action-bar.component.tns';
+import { RouterExtensions } from '@src/app/modules/app-platform.module';
+import { MobileActionBarComponent } from '@src/app/shared/components/mobile-action-bar/mobile-action-bar.component.tns';
 
 @NgModule({
   declarations: [
