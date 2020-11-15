@@ -13,7 +13,7 @@
     <div>{{profile.domains}}</div>
     <div>{{profile.bio}}</div>
     
-    <button mat-button (click)="goToUserDetails()">
+    <button mat-button [routerLink]="['/account-details']">
         Edit Details
     </button>
 </div>

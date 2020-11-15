@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IQuestion, NumberAnswer } from '../../models/reviews/question.model';
+import { IQuestion, NumberAnswer } from '@src/app/shared/models/reviews/question.model';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs'; // TODO
-import { sampleOrgReview, sampleTheaterReview } from '../../models/reviews/sample-questions';
-import { IReview } from '../../models/reviews/review.model';
-import { LogService } from '../../services/log.service';
+import { sampleOrgReview, sampleTheaterReview } from '@src/app/shared/models/reviews/sample-questions';
+import { IReview } from '@src/app/shared/models/reviews/review.model';
+import { LogService } from '@src/app/shared/services/log.service';
 
 @Component({
   selector: 'app-review',

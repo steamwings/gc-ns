@@ -5,9 +5,9 @@ import {
 
 import { Observable, throwError } from 'rxjs';
 import { environment } from '@src/environments/environment';
-import { UserService } from '../services/user.service';
+import { UserService } from '@src/app/shared/services/user.service';
 import { map, tap, catchError } from 'rxjs/operators';
-import { LogService } from '../services/log.service';
+import { LogService } from '@src/app/shared/services/log.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

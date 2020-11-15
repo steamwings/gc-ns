@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/services/user.service';
-import { Router } from '@angular/router';
-import { UserProfile } from '../shared/models/user/user.model';
-import { LogService } from '../shared/services/log.service';
-import { PopupService } from '../shared/services/popup.service';
-import { BasicPopupService } from '../shared/services/basic-popup.service';
+import { UserService } from '@src/app/shared/services/user.service';
+import { UserProfile } from '@src/app/shared/models/user/user.model';
+import { LogService } from '@src/app/shared/services/log.service';
+import { PopupService } from '@src/app/shared/services/popup.service';
+import { BasicPopupService } from '@src/app/shared/services/basic-popup.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,23 +15,15 @@ import { BasicPopupService } from '../shared/services/basic-popup.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private userSvc: UserService, private router: Router, 
-    private popups: PopupService, private log: LogService) { }
+  constructor(
+    private userSvc: UserService, 
+    private popups: PopupService, 
+    private log: LogService) { }
   title = 'Profile';
   cogs = String.fromCharCode(0xf085);
   profile$ = this.userSvc.profile$;
 
   ngOnInit() {
-  }
-
-  goToSettings() {
-    this.router.navigate(['/settings']);
-  }
-
-  goToUserDetails() {
-    // In mobile, this is not preferred
-    // It doesn't preserve nav history like using RouterExtensions or [nsRouterLink]
-    this.router.navigate(['/account-details']);
   }
 
   addExperience() {

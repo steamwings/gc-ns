@@ -13,6 +13,7 @@ export interface IOrganization extends IParty {
 export class BasicOrg implements IOrganization {
     id: number;
     name: string;
+    description: string;
     city: string;
     markers: MarkerList;
     parent: IRef;

@@ -3,7 +3,7 @@
         <Label column="0" paddingLeft="10" class="title" verticalAlignment="center" fontWeight="bold" color="#fff"
             text="{{title}}"></Label>
         <GridLayout column="1" verticalAlignment="middle" horizontalAlignment="center">
-            <Label [text]="cogs" class="fas settings-gears" (tap)="goToSettings()" automationText="Settings"></Label>
+            <Label [text]="cogs" class="fas settings-gears" [nsRouterLink]="['/settings']" pageTransition="slide" automationText="Settings"></Label>
         </GridLayout>
     </GridLayout>
     <ScrollView row="1" class="margin-for-navbar">
@@ -24,7 +24,7 @@
             <Button text="Edit Details" [nsRouterLink]="['/account-details']" pageTransition="slide" class="btn btn-small bg-gold m-t-20"></Button>
 
             <Label text="portfolio" class="profile-header"></Label>
-            <Button text="Add Experience" (tap)="addExperience()" class="btn btn-medium bg-gold m-t-20"></Button>
+            <Button text="Add Experience" (tap)="addExperience()" class="btn btn-small bg-gold m-t-20"></Button>
         </StackLayout>
     </ScrollView>
 </GridLayout>
