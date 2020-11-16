@@ -6,25 +6,7 @@
             <Label [text]="cogs" class="fas settings-gears" [nsRouterLink]="['/settings']" pageTransition="slide" automationText="Settings"></Label>
         </GridLayout>
     </GridLayout>
-    <ScrollView row="1" class="margin-for-navbar">
-        <StackLayout>
-            <!-- TODO: This is hardcoded -->
-            <Image src="~/assets/images/morgan.png"></Image>
-
-            <StackLayout *myLet="profile$ | async as profile" horizontalAlignment="center"> 
-                <Label class="info" [text]="profile.domains"></Label>
-                <Label class="info" [text]="profile.bio"></Label>
-            </StackLayout>
-
-            <!-- <StackLayout *ngFor="let item of info" orientation="horizontal" horizontalAlignment="center">
-                <Label [text]="item.text" class="info"></Label>
-                <Label *ngIf="item.lockable" [text]="item.locked ? locked : unlocked" class="fas lock"></Label>
-                [nsRouterLink]="['/account-details']"
-            </StackLayout> -->
-            <Button text="Edit Details" [nsRouterLink]="['/account-details']" pageTransition="slide" class="btn btn-small bg-gold m-t-20"></Button>
-
-            <Label text="portfolio" class="profile-header"></Label>
-            <Button text="Add Experience" (tap)="addExperience()" class="btn btn-small bg-gold m-t-20"></Button>
-        </StackLayout>
+    <ScrollView row="1" class="margin-for-navbar" *myLet="profile$ | async as profile">
+        <app-user-profile [profile]="profile" [editable]="true"></app-user-profile>
     </ScrollView>
 </GridLayout>

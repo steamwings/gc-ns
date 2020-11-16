@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from '@src/app/app.component';
-
 import { NavComponent } from '@src/app/shared/components/nav/nav.component';
 import { SearchComponent } from '@src/app/search/search.component';
 import { OrgsComponent } from '@src/app/orgs/orgs.component';

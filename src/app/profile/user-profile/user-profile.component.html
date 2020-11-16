@@ -1,0 +1,16 @@
+<div class="profile-items-list" >
+    <img src="/assets/images/morgan.png"/>
+    <div>{{profile.domains}}</div>
+    <div>{{profile.bio}}</div>
+    
+    <button mat-button *ngIf="editable"  [routerLink]="['/account-details']">
+        Edit Details
+    </button>
+</div>
+
+<div class="portfolio">
+    <h2>portfolio</h2>
+    <button mat-button *ngIf="editable" (click)="addExperience()">
+        + Add an experience
+    </button>
+</div>

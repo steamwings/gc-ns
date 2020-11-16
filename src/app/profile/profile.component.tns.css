@@ -1,6 +1,4 @@
 /* Add mobile styles for the component here.  */
-
-
 .settings-gears {
     color: white;
     font-size: 30;
@@ -14,11 +12,6 @@ Label {
 
 .title, .profile-header {
     horizontal-align: left;
-}
-
-Label.info {
-    font-size: 20;
-    margin-left: 10;
 }
 
 Label.lock {
