@@ -147,6 +147,11 @@ export class UserService {
     }
    }
 
+   /**
+    * Navigate the user to their requested destination after authentication.
+    * @description Generally, we use NativeScript routing extensions for mobile (by using template directives)
+    * but in this case that might be overcomplicated.
+    */
   private navigate() {
     this._isLoggedIn$.next(true);
     if (!this.redirectUrl) {
