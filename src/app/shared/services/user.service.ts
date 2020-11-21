@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginFormUser, UserProfile, UserFull, UserDetail } from '../models/user/user.model';
-import { StorageService } from './storage.service';
+import { UserStorageService } from './user-storage.service';
 import { LogService } from './log.service';
 import { ApiService } from './api.service';
 import { HttpResponse } from '@angular/common/http';
@@ -21,7 +21,7 @@ export class UserService {
 
   constructor(
     private router: Router,
-    private storage: StorageService,
+    private storage: UserStorageService,
     private api: ApiService,
     private log: LogService,
   ) {

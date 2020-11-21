@@ -6,8 +6,9 @@ import { AppPlatformModule } from '@src/app/shared/modules/app-platform.module';
 import { httpInterceptorProviders } from '@src/app/shared/http-interceptors/index';
 
 import { StorageService } from '@src/app/shared/services/storage.service';
+import { KeyValueStorage } from '@src/app/shared/services/key-value-storage';
+import { UserStorageService } from '@src/app/shared/services/user-storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
-import { LocalStorageService } from '@src/app/shared/services/local-storage.service';
 import { ApiService } from '@src/app/shared/services/api.service';
 
 @NgModule({ 
@@ -26,7 +27,8 @@ import { ApiService } from '@src/app/shared/services/api.service';
     providers: [
         UserService,
         ApiService,
-        { provide: StorageService, useClass: LocalStorageService},
+        { provide: KeyValueStorage, useClass: StorageService},
+        UserStorageService,
         httpInterceptorProviders,
     ]
 })
