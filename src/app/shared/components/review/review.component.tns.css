@@ -16,7 +16,6 @@
     border-radius: 0;
     text-align: center;
     padding: 15;
-    editable: false;
     font-size: 20;
     font-weight: 500;
 }
@@ -29,8 +28,4 @@
 .unselected {
     background-color: var(--gc-green);
     color: white;
-}
-
-.submit {
-    /* vertical-alignment: bottom; */
 }

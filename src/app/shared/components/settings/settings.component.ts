@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
-import { StorageService } from '../../services/storage.service';
+import { UserService } from '@src/app/shared/services/user.service';
+import { StorageService } from '@src/app/shared/services/storage.service';
 
 /**
  * TODO

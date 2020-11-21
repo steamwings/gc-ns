@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { UserService } from '@src/app/shared/services/user.service';
 import { BehaviorSubject } from 'rxjs';
 
 /**
@@ -20,10 +20,11 @@ export class NavComponent implements OnInit {
 
   ngOnInit() {
     // TODO: retrieve from server
+    // TODO: Create search and use query params to filter
     const btns = [
-      {title: 'Auditions', path: '/search'},
-      {title: 'Organizations', path: '/search'},
-      {title: 'People', path: '/search'},
+      {title: 'Auditions', path: '/search?type=audition'},
+      {title: 'Organizations', path: '/search?type=orgs'},
+      {title: 'People', path: '/search?type=people'},
     ];
     this.centerButtons.next(btns);
   }

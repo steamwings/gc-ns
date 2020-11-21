@@ -1,0 +1,14 @@
+<StackLayout>
+    <!-- TODO: This is hardcoded -->
+    <Image src="~/assets/images/morgan.png"></Image>
+
+    <StackLayout horizontalAlignment="center"> 
+        <Label class="info" [text]="profile.domains"></Label>
+        <Label class="info" [text]="profile.bio"></Label>
+    </StackLayout>
+
+    <Button *ngIf="editable" text="Edit Details" [nsRouterLink]="['/account-details']" pageTransition="slide" class="btn btn-small bg-gold m-t-20"></Button>
+
+    <Label text="portfolio" class="profile-header"></Label>
+    <Button *ngIf="editable" text="Add Experience" (tap)="addExperience()" class="btn btn-small bg-gold m-t-20"></Button>
+</StackLayout>

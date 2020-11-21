@@ -7,8 +7,5 @@ export interface IPartyRef extends IRef { }
  * Interface for any user or org: any party in the legal sense
  */
 export interface IParty extends IPartyRef {
-    id: number;
-    name: string,
-    parent: IPartyRef;
-    children: IParty[];
+    description: string;
 }

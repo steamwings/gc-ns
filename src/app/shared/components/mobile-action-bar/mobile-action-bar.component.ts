@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { RouterExtensions } from "@src/app/modules/app-platform.module";
+import { RouterExtensions } from "@nativescript/angular";
 
 @Component({
     selector: 'app-action-bar',
@@ -10,6 +10,6 @@ import { RouterExtensions } from "@src/app/modules/app-platform.module";
 
     @Input() title: string;
     
-    constructor(public routerExt: RouterExtensions) {}
+    constructor(public routerExt: RouterExtensions) { }
   
   }

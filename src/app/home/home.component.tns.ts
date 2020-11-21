@@ -33,7 +33,7 @@ export class HomeComponent implements AfterViewInit {
         backgroundColor: '#fff',
         focusColor: '#fff'
     };
-    tabList: { text: string, icon?: string, color?: string, backgroundColor: string, fadeColor?: string }[] = [
+    tabList: { text: string, color?: string, backgroundColor: string }[] = [
         { text: String.fromCharCode(0xf002) /*search*/, backgroundColor: '#f5b045', color: '#000' },
         { text: String.fromCharCode(0xf66f) /*landmark*/, backgroundColor: '#229954', color: '#000' },
         { text: String.fromCharCode(0xf2bb) /*address-card*/, backgroundColor: '#733b99', color: '#000' },

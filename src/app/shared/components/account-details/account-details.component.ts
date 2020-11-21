@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 import * as equal from 'fast-deep-equal'; // Switch to 'fast-deep-equal/es6'?
 import { BasicPopupService } from '@src/app/shared/services/basic-popup.service';
 import { ObjectUtility } from '@src/app/shared/utilities/object-utility';
-import { RouterExtensions } from '@src/app/modules/app-platform.module';
+import { RouterExtensions } from '@src/app/shared/modules/app-platform.module';
 
 //import { AppRouter } from '@src/app/shared/services/app-router.service';
 
@@ -71,10 +71,10 @@ export class AccountDetailsComponent implements OnInit {
       .catch(() => {this.popup.warning('Profile update failed.')})
     }
  
-    //if (!equal(this.user, oldUser)){
+    if (!equal(this.user, oldUser)){
+      this.log.debug("Updating user info...")
       // TODO Api call to update user info
-
       // TODO Process for updating email
-    //}
+    }
   }
 }

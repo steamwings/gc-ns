@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import { RouterExtensions } from "@nativescript/angular";
-import { LogService } from '../services/log.service';
+import { LogService } from '@src/app/shared/services/log.service';
 
 /**
  * TODO: this does not work?

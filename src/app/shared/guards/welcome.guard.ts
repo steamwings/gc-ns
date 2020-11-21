@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { LogService } from '../services/log.service';
+import { UserService } from '@src/app/shared/services/user.service';
+import { LogService } from '@src/app/shared/services/log.service';
 
 
 /**

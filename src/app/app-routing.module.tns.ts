@@ -3,11 +3,11 @@ import { Routes } from '@angular/router';
 import { NativeScriptRouterModule } from '@nativescript/angular';
 import { routes } from '@src/app/app.routes';
 import { environment } from '@src/environments/environment';
-import { HomeComponent } from './home/home.component';
-import { OrgsComponent } from './orgs/orgs.component';
-import { ProfileComponent } from './profile/profile.component';
-import { SearchComponent } from './search/search.component';
-import { AuthGuard } from './shared/guards/auth.guard';
+import { HomeComponent } from '@src/app/home/home.component';
+import { OrgsComponent } from '@src/app/orgs/orgs.component';
+import { ProfileComponent } from '@src/app/profile/profile.component';
+import { SearchComponent } from '@src/app/search/search.component';
+import { AuthGuard } from '@src/app/shared/guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // Default route

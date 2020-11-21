@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import * as appSettings from '@nativescript/core/application-settings';
-import { StorageService } from './storage.service';
+import { KeyValueStorage } from './key-value-storage';
 
 /**
- * @summary Mobile implementation of local storage service
+ * @summary Mobile implementation of KeyValueStorage
  * 
  * The use of NativeScript appSettings is conveniently OS generic, but may have privacy/security implications.
  */
 @Injectable({
   providedIn: 'root'
 })
-export class LocalStorageService extends StorageService {
+export class StorageService extends KeyValueStorage {
   
   constructor() {
     super();

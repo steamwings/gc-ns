@@ -1,9 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LoginFormUser } from '@src/app/shared/models/user/user.model';
 import { UserService } from '@src/app/shared/services/user.service';
-import { PopupService } from '../../services/popup.service';
-import { BasicPopupService } from '../../services/basic-popup.service';
-import { LogService } from '../../services/log.service';
+import { PopupService } from '@src/app/shared/services/popup.service';
+import { BasicPopupService } from '@src/app/shared/services/basic-popup.service';
+import { LogService } from '@src/app/shared/services/log.service';
 import { BehaviorSubject } from 'rxjs';
 
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^ <>() \[\]\\.,;: \s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
