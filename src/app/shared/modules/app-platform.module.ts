@@ -3,7 +3,7 @@ import { MaterialModule } from '@src/app/shared/modules/material.module';
 
 import { FooterComponent } from '@src/app/shared/components/footer/footer.component';
 
-// Do-nothing class; only used in mobile
+// Do-nothing class; only used in mobile, but needs to be injected in shared component classes
 export class RouterExtensions {}
 
 @NgModule({

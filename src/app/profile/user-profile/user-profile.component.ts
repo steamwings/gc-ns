@@ -14,7 +14,7 @@ import { UserService } from "@src/app/shared/services/user.service";
 
     @Input() profile: UserProfile;
     @Input() editable: boolean = false;
-    public edit = false;
+    public editButtonText = "Edit";
 
     constructor(
       private userSvc: UserService,
