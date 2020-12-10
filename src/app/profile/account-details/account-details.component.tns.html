@@ -2,9 +2,13 @@
 
 <ScrollView>
     <StackLayout class="form">       
-        <!-- TODO Labels needed for fields -->
         <PreviousNextView>
             <StackLayout>
+                <!-- TODO Display profile pic -->
+                <Image (tap)="updateProfilePic()" src="~/assets/images/morgan.png"></Image>
+
+                <!-- TODO Labels needed for fields -->
+                <!-- TODO Are all these StackLayouts really needed? -->
                 <StackLayout class="input-field">
                     <TextField class="input" hint="Full Name" [isEnabled]="!(processing | async)"
                         autocorrect="false" autocapitalizationType="words" [(ngModel)]="user.name" returnKeyType="done"></TextField>

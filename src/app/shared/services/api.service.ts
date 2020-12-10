@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpResponse, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { environment } from '@src/environments/environment';
-import { first, catchError, map } from 'rxjs/operators';
+import { first, catchError, map, mapTo } from 'rxjs/operators';
 import { LogService } from '@src/app/shared/services/log.service';
 import { throwError, Observable, concat } from 'rxjs';
 import { LoginFormUser, UserFull, UserProfile } from '@src/app/shared/models/user/user.model';
@@ -58,13 +58,13 @@ export class ApiService {
     return this.put(body, '/profile');
   }
 
-  getProfilePicUrl() {
-    return this.get<string>('/profile/pic-url');
+  getPicUrl() {
+    return this.bodyOf(this.get<string>('/profile/pic-url'));
   }
 
-  // TODO What is the type of pic?
-  uploadProfilePicture(id: string, pic) {
-    return this.get<string>(`/profile/upload-pic-url/${id}`).pipe(map(x => this.putBlob(pic, x.body)))
+  getUploadProfilePicUrl(id: string) {
+    return this.bodyOf(this.get<string>(`/profile/upload-pic-url/${id}`));
+     //.pipe(map(x => this.putBlob(pic, x.body)))
   }
 
   private post<TSend, TReceive>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TReceive>>  {
@@ -85,6 +85,10 @@ export class ApiService {
   private putBlob<TSend>(body: TSend, uri: string) : Observable<HttpResponse<Object>> {
     this.log.verbose(`PUT at ${uri} with ${body}`);
     return this.handleErrorPipeFirst(this.http.put(uri, body, this.blobOptions), StatusContext.BlobStorage);
+  }
+
+  private bodyOf<T>(obs: Observable<HttpResponse<T>>) {
+    return obs.pipe(map((resp: HttpResponse<T>) => resp.body));
   }
 
   private handleErrorPipeFirst<T>(obs : Observable<HttpResponse<T>>, context: StatusContext){

@@ -13,7 +13,6 @@ import { LoginComponent } from '@src/app/shared/components/login/login.component
 import { ReviewComponent } from '@src/app/shared/components/review/review.component';
 import { SettingsComponent } from '@src/app/shared/components/settings/settings.component';
 import { PageNotFoundComponent } from '@src/app/shared/components/page-not-found/page-not-found.component';
-import { AccountDetailsComponent } from '@src/app/shared/components/account-details/account-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { AccountDetailsComponent } from '@src/app/shared/components/account-deta
     ReviewComponent,
     SettingsComponent,
     PageNotFoundComponent,
-    AccountDetailsComponent,
   ],
   imports: [
     AppRoutingModule,

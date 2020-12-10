@@ -23,7 +23,6 @@ import { UserService } from "@src/app/shared/services/user.service";
     ) {}
 
     ngOnInit() {
-      //this.edit = this.editable;
     }
 
     addExperience() {

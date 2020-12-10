@@ -28,7 +28,7 @@ export class DataService implements OnInit {
   }
 
   public refreshProfilePicUrl() {
-    this.api.getProfilePicUrl().subscribe(resp => this.profilePicUrl$.next(resp.body));
+    this.api.getPicUrl().subscribe(url => this.profilePicUrl$.next(url));
   }
 
   public getProfilePic(id: string): Observable<string> {

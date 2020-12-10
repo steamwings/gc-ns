@@ -8,6 +8,8 @@ import * as equal from 'fast-deep-equal'; // Switch to 'fast-deep-equal/es6'?
 import { BasicPopupService } from '@src/app/shared/services/basic-popup.service';
 import { ObjectUtility } from '@src/app/shared/utilities/object-utility';
 import { RouterExtensions } from '@src/app/shared/modules/app-platform.module';
+import { ImageServiceBase } from '@src/app/shared/services/image.service.base';
+import { ApiService } from '@src/app/shared/services/api.service';
 
 //import { AppRouter } from '@src/app/shared/services/app-router.service';
 
@@ -41,6 +43,8 @@ export class AccountDetailsComponent implements OnInit {
     private popup: PopupService,
     private log: LogService,
     public routerExt: RouterExtensions,
+    private imageService: ImageServiceBase,
+    private api: ApiService,
     ) { }
 
   // TODO use or delete
@@ -54,6 +58,12 @@ export class AccountDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.refresh();
+  }
+
+  updateProfilePic() {
+    this.api.getUploadProfilePicUrl(this.user.id).subscribe((url) => {
+      this.imageService.selectImageAndUpload(url, null);
+    })
   }
 
   refresh() {

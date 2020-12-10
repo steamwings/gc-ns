@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountDetailsComponent } from '@src/app/shared/components/account-details/account-details.component';
+import { AccountDetailsComponent } from '@src/app/profile/account-details/account-details.component';
 
 describe('UserDetailsComponent', () => {
   let component: AccountDetailsComponent;

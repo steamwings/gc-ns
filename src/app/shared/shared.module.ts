@@ -10,6 +10,8 @@ import { KeyValueStorage } from '@src/app/shared/services/key-value-storage';
 import { UserStorageService } from '@src/app/shared/services/user-storage.service';
 import { UserService } from '@src/app/shared/services/user.service';
 import { ApiService } from '@src/app/shared/services/api.service';
+import { ImageServiceBase } from "@src/app/shared/services/image.service.base";
+import { ImageService } from "@src/app/shared/services/image.service";
 
 @NgModule({ 
     declarations:[ 
@@ -29,6 +31,7 @@ import { ApiService } from '@src/app/shared/services/api.service';
         ApiService,
         { provide: KeyValueStorage, useClass: StorageService},
         UserStorageService,
+        { provide: ImageServiceBase, useClass: ImageService },
         httpInterceptorProviders,
     ]
 })
