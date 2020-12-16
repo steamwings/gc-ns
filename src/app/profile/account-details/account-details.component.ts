@@ -62,7 +62,12 @@ export class AccountDetailsComponent implements OnInit {
 
   updateProfilePic() {
     this.api.getUploadProfilePicUrl(this.user.id).subscribe((url) => {
-      this.imageService.selectImageAndUpload(url, null);
+      this.log.debug('upload url: ' + url);
+      this.imageService.selectImageAndUpload(url, null)
+      // TODO Should we show loading animation until we detect uploaded image is processed?
+      // TODO We need an "OK" popup
+      .then(() => this.popup.warning('Profile picture uploaded.'))
+      .catch(() => this.popup.warning('Upload cancelled.'));
     })
   }
 

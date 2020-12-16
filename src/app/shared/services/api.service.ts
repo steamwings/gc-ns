@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpResponse, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpResponse, HttpErrorResponse, HttpParams, HttpEvent } from '@angular/common/http';
 import { environment } from '@src/environments/environment';
-import { first, catchError, map, mapTo } from 'rxjs/operators';
+import { first, catchError, map, mapTo, filter } from 'rxjs/operators';
 import { LogService } from '@src/app/shared/services/log.service';
 import { throwError, Observable, concat } from 'rxjs';
 import { LoginFormUser, UserFull, UserProfile } from '@src/app/shared/models/user/user.model';
 
-type HttpHeaderOptionsType = { headers?: HttpHeaders; observe: "response"; 
+type HttpOptionsJsonResponseType = { headers?: HttpHeaders; observe: "response"; 
   params?: HttpParams | { [param: string]: string | string[]; }; reportProgress?: boolean; 
   responseType?: "json"; withCredentials?: boolean; 
+};
+
+type HttpOptionsTextResponseType = { headers?: HttpHeaders; observe: "response"; 
+  params?: HttpParams | { [param: string]: string | string[]; }; reportProgress?: boolean; 
+  responseType?: "text"; withCredentials?: boolean; 
 };
 
 /**
@@ -21,14 +26,18 @@ type HttpHeaderOptionsType = { headers?: HttpHeaders; observe: "response";
 export class ApiService {
 
   private apiUrl = environment.apiUrl;
-  private httpOptions : HttpHeaderOptionsType = 
-  { headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }), 
-    observe: "response" // Allows us to get the HttpResponse. Switching to "event" might be necessary for some requests
-  };
 
-  private blobOptions : HttpHeaderOptionsType = 
+  private httpHeadersBase = new HttpHeaders({});
+
+  private get httpOptionsJson(): HttpOptionsJsonResponseType { return { 
+      headers: this.httpHeadersBase.append('Content-Type', 'application/json'), observe: 'response'
+  }}
+
+  private get httpOptionsText(): HttpOptionsTextResponseType { return {
+      headers: this.httpHeadersBase, observe: 'response', responseType: 'text'
+  }}
+
+  private httpOptionsBlob : HttpOptionsJsonResponseType = 
   { headers: new HttpHeaders({
     'x-ms-blob-type': 'BlockBlob',
     }), 
@@ -39,7 +48,7 @@ export class ApiService {
     if (environment.apiHeader === '') {
       throw new Error('No API header.');
     }
-    this.httpOptions.headers = this.httpOptions.headers.append(environment.apiHeader, environment.apiKey);
+    this.httpHeadersBase = this.httpHeadersBase.append(environment.apiHeader, environment.apiKey);
   }
 
   login(body: LoginFormUser) {
@@ -51,7 +60,7 @@ export class ApiService {
   }
 
   getProfile(id: string) {
-    return this.get<UserProfile>(`/profile/${id}`);  
+    return this.getJson<UserProfile>(`/profile/${id}`);  
   }
 
   setProfile(body: UserProfile) {
@@ -59,51 +68,65 @@ export class ApiService {
   }
 
   getPicUrl() {
-    return this.bodyOf(this.get<string>('/profile/pic-url'));
+    return this.bodyOf(this.getText<string>('/profile/pic-url'));
   }
 
   getUploadProfilePicUrl(id: string) {
-    return this.bodyOf(this.get<string>(`/profile/upload-pic-url/${id}`));
+    return this.bodyOf(this.getText<string>(`/profile/upload-pic-url/${id}`));
      //.pipe(map(x => this.putBlob(pic, x.body)))
   }
 
   private post<TSend, TReceive>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TReceive>>  {
     this.log.verbose(`POST at ${uri} with ${body}`);
-    return this.handleErrorPipeFirst(this.http.post<TReceive>(this.apiUrl + uri, body, this.httpOptions), context);
+    return this.pipeFirstResponse(this.http.post<TReceive>(this.apiUrl + uri, body, this.httpOptionsJson), context);
   }
 
   private put<TSend, TReceive>(body: TSend, uri: string, context: StatusContext = StatusContext.General) : Observable<HttpResponse<TReceive>> {
     this.log.verbose(`PUT at ${uri} with ${body}`);
-    return this.handleErrorPipeFirst(this.http.put<TReceive>(this.apiUrl + uri, body, this.httpOptions), context);
+    return this.pipeFirstResponse(this.http.put<TReceive>(this.apiUrl + uri, body, this.httpOptionsJson), context);
   }
 
-  private get<T>(uri: string, context: StatusContext = StatusContext.General) {
+  private getJson<T>(uri: string, context: StatusContext = StatusContext.General) {
+    return this.get<T>(uri, this.httpOptionsJson, context);
+  }
+
+  private getText<T>(uri: string, context: StatusContext = StatusContext.General) {
+    return this.get<T>(uri, this.httpOptionsText, context);
+  }
+
+  private get<T>(uri: string, httpOptions, context: StatusContext = StatusContext.General) {
     this.log.verbose(`GET at ${uri}`);
-    return this.handleErrorPipeFirst(this.http.get<T>(this.apiUrl + uri, this.httpOptions), context);
+    return this.pipeFirstResponse(this.http.get<T>(this.apiUrl + uri, httpOptions), context);
   }
 
   private putBlob<TSend>(body: TSend, uri: string) : Observable<HttpResponse<Object>> {
     this.log.verbose(`PUT at ${uri} with ${body}`);
-    return this.handleErrorPipeFirst(this.http.put(uri, body, this.blobOptions), StatusContext.BlobStorage);
+    return this.pipeFirstResponse(this.http.put(uri, body, this.httpOptionsBlob), StatusContext.BlobStorage);
   }
 
   private bodyOf<T>(obs: Observable<HttpResponse<T>>) {
     return obs.pipe(map((resp: HttpResponse<T>) => resp.body));
   }
 
-  private handleErrorPipeFirst<T>(obs : Observable<HttpResponse<T>>, context: StatusContext){
+  /**
+   * Filter to only first HttpResponse (and force cast); add catchError
+   * @param obs observable from http call
+   * @param context context for error handling 
+   */
+  private pipeFirstResponse<T>(obs : Observable<HttpEvent<T>>, context: StatusContext): Observable<HttpResponse<T>> {
     // TODO Always using first() makes the obs essentially a promise so...refactor?
-    return obs.pipe(first()).pipe(catchError(err => this.handleError(err, context))); 
+    return <Observable<HttpResponse<T>>> obs.pipe(catchError(err => this.interpretError(err, context)))
+      .pipe(filter(e => e instanceof HttpResponse), first()); 
   }
 
-  private handleError(error: HttpErrorResponse, context: StatusContext = StatusContext.General) {
+  private interpretError(error: HttpErrorResponse, context: StatusContext = StatusContext.General) {
     if (error.error instanceof HttpErrorResponse) {
       this.log.error(
         `Client or network error ${error.status} (${error.statusText}):` +
         `${error.error.message}`, error.error.error, error.error);
     } else { // Backend error
       this.log.error(
-        `Backend returned ${error.status} (${error.statusText}): ${error.message})`, error.error);
+        `Backend returned ${error.status} (${error.statusText}): ${error.message}`, error.error);
     }
     let msg = '';
     switch (error.status) {

@@ -18,6 +18,7 @@ export class ImageService extends ImageServiceBase  {
     }
 
   selectImageAndUpload(uploadUrl: string, cancellationToken: CancellationToken = null) : Promise<void> {
+    this.log.debug('selectImageAndUpload...');
     return new Promise<void>((resolve, reject) => {
       this.selectImage()
       .then(asset => this.saveImageAsset(asset))
