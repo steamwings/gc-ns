@@ -18,7 +18,6 @@ export class ImageService extends ImageServiceBase  {
     }
 
   selectImageAndUpload(uploadUrl: string, cancellationToken: CancellationToken = null) : Promise<void> {
-    this.log.debug('selectImageAndUpload...');
     return new Promise<void>((resolve, reject) => {
       this.selectImage()
       .then(asset => this.saveImageAsset(asset))
@@ -41,13 +40,13 @@ export class ImageService extends ImageServiceBase  {
         return context.present();
       }, () => reject('Failed to obtain permissions.'))
       .then((selection) => {
-        this._ngZone.run(() => {
-          this.log.debug('NS imagepicker selection done: ' + JSON.stringify(selection));
-        });
         if (!selection || selection.length !== 1) {
           this.log.debug('No ImageAsset returned.');
           reject('No image selected.');
         }
+        this._ngZone.run(() => {
+          this.log.debug('NS imagepicker selection done: ' + JSON.stringify(selection));
+        });
         resolve(selection[0]);
       })
       .catch((e) => {
@@ -111,7 +110,8 @@ export class ImageService extends ImageServiceBase  {
           reject('Failed to save image to ' + savepath);
         }
         resolve(File.fromPath(filepath))
-      });
+      })
+      .catch(e => reject(e));
     })
   }
 

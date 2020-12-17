@@ -67,7 +67,7 @@ export class AccountDetailsComponent implements OnInit {
       // TODO Should we show loading animation until we detect uploaded image is processed?
       // TODO We need an "OK" popup
       .then(() => this.popup.warning('Profile picture uploaded.'))
-      .catch(() => this.popup.warning('Upload cancelled.'));
+      .catch(e => this.popup.warning('Upload cancelled: ' + e));
     })
   }
 
@@ -82,8 +82,8 @@ export class AccountDetailsComponent implements OnInit {
 
     if (!equal(this.profile, oldProfile)){
       this.userService.updateProfile(this.profile)
-      .then(() => {})
-      .catch(() => {this.popup.warning('Profile update failed.')})
+      .then(() => { this.log.debug('Profile updated.')} )
+      .catch(() => { this.popup.warning('Profile update failed.')} )
     }
  
     if (!equal(this.user, oldUser)){

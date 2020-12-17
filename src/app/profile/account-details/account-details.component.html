@@ -2,6 +2,9 @@
     <mat-card-title>{{title}}</mat-card-title>
 
     <mat-card-content>
+        <!-- TODO: Use profile pic -->
+        <img (click)="updateProfilePic()" src="/assets/images/morgan.png"/>
+
         <form class="loginForm" (ngSubmit)="submit()">
             <div>
                 <mat-form-field>
