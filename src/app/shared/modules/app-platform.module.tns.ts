@@ -10,6 +10,9 @@ import { HideActionBarDirective } from '@src/app/shared/directives/hide-action-b
 import { ClearNavHistoryDirective } from '@src/app/shared/directives/clear-nav-history.directive';
 import { MobileActionBarComponent } from "@src/app/shared/components/mobile-action-bar/mobile-action-bar.component";
 
+/**
+ * The mobile definition of AppPlatformModule includes mobile-specific imports and functionality.
+ */
 @NgModule({
     declarations: [
         HideActionBarDirective,

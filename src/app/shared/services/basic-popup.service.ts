@@ -10,13 +10,13 @@ export class BasicPopupService extends PopupService {
     }
 
     warning(msg) {
-        alert(msg);
+        alert(msg); // TODO use snackbar
         this.log.info('Popup: ' + msg);
     }
 
     // TODO this
     prompt(msg) {
-        // TODO Use some material thing
+        // TODO Use pretty material modal thing
         prompt(msg);
     }
 

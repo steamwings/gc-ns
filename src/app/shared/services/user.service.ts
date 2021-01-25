@@ -90,6 +90,8 @@ export class UserService {
 
   reauthenticate() {
     this.log.debug('Reauthentication requested.');
+    this.redirectUrl = this.router.url;
+    this.seenWelcome = true; // Assume user is not new
     this._isLoggedIn$.next(false);
     this.router.navigate(['/login']);
   }
