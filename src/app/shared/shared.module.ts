@@ -11,6 +11,11 @@ import { UserStorageService } from '@src/app/shared/services/user-storage.servic
 import { UserService } from '@src/app/shared/services/user.service';
 import { ApiService } from '@src/app/shared/services/api.service';
 
+/**
+ * Include "things" which are declared/defined by both mobile and web to reduce identical lines in
+ * app.module and app.module.tns. Note that included "things" may have joint or separate definitions,
+ * but are defined with the same name for both mobile and web.
+ */
 @NgModule({ 
     declarations:[ 
         MyLetDirective,
