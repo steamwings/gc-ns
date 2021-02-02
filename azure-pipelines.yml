@@ -15,6 +15,12 @@ steps:
     versionSpec: '14.x'
   displayName: 'Install Node.js'
 
+- script: |
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -22,14 +28,8 @@ steps:
       # Write your commands here
       ls
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
-
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/dist/temp-site'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/dist/green-curtain'
     ArtifactName: 'drop'
     publishLocation: 'Container'
