@@ -14,7 +14,6 @@ import { UserService } from "@src/app/shared/services/user.service";
 
     @Input() profile: UserProfile;
     @Input() editable: boolean = false;
-    public edit = false;
 
     constructor(
       private userSvc: UserService,
@@ -22,11 +21,18 @@ import { UserService } from "@src/app/shared/services/user.service";
       private log: LogService
     ) {}
 
-    ngOnInit() {
-      //this.edit = this.editable;
+    ngOnInit() { }
+
+    uploadPic() {
+      if(!this.editable) return; // fail-safe
+
+      this.log.debug('uploading profile pic...');
+      
     }
 
     addExperience() {
+      if(!this.editable) return; // fail-safe
+
       this.log.debug('adding experience...');
       var p = new UserProfile();
       p.bio = "Art is dope"

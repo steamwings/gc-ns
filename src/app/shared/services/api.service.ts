@@ -6,7 +6,7 @@ import { LogService } from '@src/app/shared/services/log.service';
 import { throwError, Observable, concat } from 'rxjs';
 import { LoginFormUser, UserFull, UserProfile } from '@src/app/shared/models/user/user.model';
 
-type HttpHeaderOptionsType = { headers?: HttpHeaders; observe: "response"; 
+type HttpHeaderOptions = { headers?: HttpHeaders; observe: "response"; 
   params?: HttpParams | { [param: string]: string | string[]; }; reportProgress?: boolean; 
   responseType?: "json"; withCredentials?: boolean; 
 };
@@ -21,14 +21,14 @@ type HttpHeaderOptionsType = { headers?: HttpHeaders; observe: "response";
 export class ApiService {
 
   private apiUrl = environment.apiUrl;
-  private httpOptions : HttpHeaderOptionsType = 
+  private httpOptions : HttpHeaderOptions = 
   { headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }), 
     observe: "response" // Allows us to get the HttpResponse. Switching to "event" might be necessary for some requests
   };
 
-  private blobOptions : HttpHeaderOptionsType = 
+  private blobOptions : HttpHeaderOptions = 
   { headers: new HttpHeaders({
     'x-ms-blob-type': 'BlockBlob',
     }), 
